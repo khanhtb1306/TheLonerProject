@@ -61,7 +61,11 @@ public class Buff : MonoBehaviour
                 break;
         }
     }
-
+    public void UpHealth(Collider player)
+    {
+        Player player = player.GetComponent<Player>();
+        player.maxHealth += healthup;
+    }
     private void Dash()
     {
         throw new NotImplementedException();
