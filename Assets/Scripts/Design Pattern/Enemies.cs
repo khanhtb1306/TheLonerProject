@@ -25,6 +25,7 @@ public class Enemies : MonoBehaviour
     public bool isAlive;
     public bool isHunt;
     Vector3 endPoint;
+    public Player player;
 
 
     void Start()
@@ -68,7 +69,15 @@ public class Enemies : MonoBehaviour
     
     void Update()
     {
+        if (enemyType.Equals("Ant"))
+        {
+            Hunt(player, movementSpeed);
+        }
 
+        if (enemyType.Equals("Ranged"))
+        {
+            Patrol();
+        } 
     }
 
     public void TakeDamage(float damage)
@@ -133,10 +142,12 @@ public class Enemies : MonoBehaviour
         return new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -Camera.main.transform.position.z);
     }
 
-
     //Check event takeDamage
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.gameObject.tag == "Bullet")
+        {
+            TakeDamage(10);
+        }
     }
 }
