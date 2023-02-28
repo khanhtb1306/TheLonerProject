@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed = 10.0f;
+    [SerializeField] public float speed = 10.0f;
     [SerializeField] private float rotationSpeed = 600.0f;
     [SerializeField] public float maxHealth = 200;
     [SerializeField] private float curHealth;

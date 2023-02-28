@@ -15,6 +15,8 @@ public class Buff : MonoBehaviour
     public float amout;
     public BuffStyle style;
     private Rigidbody2D r2d;
+    float healthup = 10;
+    float speedup = 5;
     void Start()
     {
 
@@ -61,10 +63,19 @@ public class Buff : MonoBehaviour
                 break;
         }
     }
-    public void UpHealth(Collider player)
+    public void UpHealth(Collider coll)
     {
-        Player player = player.GetComponent<Player>();
+        Player player = coll.GetComponent<Player>();
         player.maxHealth += healthup;
+    }
+    public void UpSpeed(Collider coll)
+    {
+        Player player = coll.GetComponent<Player>();
+        player.speed += healthup;
+    }
+    public void upDame(Collider coll)
+    {
+
     }
     private void Dash()
     {
