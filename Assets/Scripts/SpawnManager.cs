@@ -7,6 +7,9 @@ public class SpawnManager : MonoBehaviour
 {
     public List<Buff> buffPrefab;
     Vector3 endPoint;
+    public List<Enemies> enemiesPrefab;
+    public static int totalEnemies = 10;
+    Timer timer;
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
@@ -23,13 +26,70 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("BuffSpawn", 0f, 3f);
-       
+        SpawnEnemies();
+        timer = gameObject.AddComponent<Timer>();
+        timer.Duarion = 2;
+        timer.Run();
     }
     void Update()
     {
         endPoint = Gennerate();
         
     }
+
+    public void SpawnEnemies()
+    {
+        if (true)
+        {
+            foreach (var item in enemiesPrefab)
+            {
+                if (item.enemyType == EnemyType.Bee)
+                {
+                    for (int i = 0; i < totalEnemies * 0.1; i++)
+                    {
+                        Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
+                    }
+                }
+
+                if (item.enemyType == EnemyType.Ant)
+                {
+                    for (int i = 0; i < totalEnemies * 0.7; i++)
+                    {
+                        Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
+                    }
+                }
+
+                if (item.enemyType == EnemyType.Ranged)
+                {
+                    for (int i = 0; i < totalEnemies * 0.2; i++)
+                    {
+                        Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
+                    }
+                }
+            }
+        }
+    }
+
+    public void SpawnBoss()
+    {
+        //Enemies.isBossAlive = true;
+        foreach (var item in enemiesPrefab)
+        {
+            if (item.enemyType == EnemyType.Boss)
+            {
+                Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
+            }
+        }
+    }
+
+    public void UpGradeAttribute()
+    {
+        //Enemies.maxHealth += float.Parse((Enemies.maxHealth * 0.2).ToString());
+        //totalEnemies += int.Parse((totalEnemies * 0.2).ToString());
+        //Enemies.damage += float.Parse((Enemies.damage * 0.2).ToString());
+
+    }
+
 
     public Vector3 Gennerate()
     {
@@ -45,6 +105,6 @@ public class SpawnManager : MonoBehaviour
         float screenRight = upperRightCornerWorld.x;
         float screenTop = upperRightCornerWorld.y;
         float screenBottom = lowerLeftCornerWorld.y;
-        return new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -Camera.main.transform.position.z);
+        return new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -1);
     }
 }
