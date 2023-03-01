@@ -150,4 +150,11 @@ public class Enemies : MonoBehaviour
             TakeDamage(10);
         }
     }
+    public void Death()
+    {
+        SpawnManager spawn = new SpawnManager();
+        spawn.BuffSpawn(this.transform);
+        Destroy(this.gameObject);
+
+    }
 }

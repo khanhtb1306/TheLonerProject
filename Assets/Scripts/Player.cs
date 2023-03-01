@@ -6,13 +6,13 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed = 10.0f;
+    [SerializeField] public float speed = 10.0f;
     [SerializeField] private float rotationSpeed = 600.0f;
-    [SerializeField] private float maxHealth = 200;
+    [SerializeField] public float maxHealth = 200;
     [SerializeField] private float curHealth;
     [SerializeField] private Transform gunSpawnPos;
     [SerializeField] private FixedJoystick joystick;
-
+    [SerializeField] public float bonusdame = 0;
 
 
     public Weapon firstWeapon;
