@@ -374,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4658863745312110291, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4658863745312110291, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1451,6 +1451,7 @@ MonoBehaviour:
   - {fileID: 4093389510451610994, guid: b3f67a77c1caa534caad20c84014fcc6, type: 3}
   - {fileID: 4616237553137073203, guid: cd8819aec9ea885418c937f0ff2d849a, type: 3}
   - {fileID: 7662975080717929668, guid: 3c650fa32fb854a4e814b10493bc6591, type: 3}
+  enemiesPrefab: []
 --- !u!4 &2104174061
 Transform:
   m_ObjectHideFlags: 0
