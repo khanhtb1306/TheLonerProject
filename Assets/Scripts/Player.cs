@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float curHealth;
     [SerializeField] private Transform gunSpawnPos;
     [SerializeField] private FixedJoystick joystick;
-
+    [SerializeField] public float bonusdame = 0;
 
 
     public Weapon firstWeapon;

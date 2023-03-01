@@ -8,18 +8,16 @@ using UnityEngine.EventSystems;
 
 public enum BuffStyle
 {
-    health, strong, speed
+    health, strong, speed, dashSkill, immortalSkill, boomSkill
 }
 public class Buff : MonoBehaviour
 {
     public float amout;
     public BuffStyle style;
-    private Rigidbody2D r2d;
-    float healthup = 10;
-    float speedup = 5;
+   
     void Start()
     {
-
+         
     }
 
     // Update is called once per frame
@@ -47,48 +45,33 @@ public class Buff : MonoBehaviour
         }
     }
     
-    public void BuffSkill(Player player)
-    {
-        switch(style)
-        {
-            case BuffStyle.health:
-                Immortal();
-                break;
-            case BuffStyle.strong:
-                Boom(player);
-                break;
+    //public void BuffSkill(Player player)
+    //{
+    //    switch(style)
+    //    {
+    //        case BuffStyle.immortalSkill:
+    //            Immortal();
+    //            break;
+    //        case BuffStyle.boomSkill:
+    //            Boom();
+    //            break;
                 
-            case BuffStyle.speed:
-                Dash();
-                break;
-        }
-    }
-    public void UpHealth(Collider coll)
+    //        case BuffStyle.dashSkill:
+    //            Dash();
+    //            break;
+    //    }
+    //}
+    public void UpHealth(Player player)
     {
-        Player player = coll.GetComponent<Player>();
-        player.maxHealth += healthup;
+        player.maxHealth += amout;
     }
-    public void UpSpeed(Collider coll)
+    public void UpSpeed(Player player)
     {
-        Player player = coll.GetComponent<Player>();
-        player.speed += healthup;
+        player.speed += amout;
     }
-    public void upDame(Collider coll)
+    public void upDame(Player player)
     {
-
+        player.bonusdame += amout;
     }
-    private void Dash()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Boom(Player player)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void Immortal()
-    {
-        throw new NotImplementedException();
-    }
+   
 }

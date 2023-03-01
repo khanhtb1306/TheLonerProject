@@ -139,4 +139,11 @@ public class Enemies : MonoBehaviour
     {
         
     }
+    public void Death()
+    {
+        SpawnManager spawn = new SpawnManager();
+        spawn.BuffSpawn(this.transform);
+        Destroy(this.gameObject);
+
+    }
 }
