@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     public Weapon firstWeapon;
     public Buff firtBuff;
-
+    //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
     [SerializeField] private Weapon curWeapon;
