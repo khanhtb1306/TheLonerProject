@@ -12,9 +12,9 @@ public enum BuffStyle
 }
 public class Buff : MonoBehaviour
 {
-    public float amout;
+ 
     public BuffStyle style;
-   
+      public float quantity;
     void Start()
     {
          
@@ -29,49 +29,20 @@ public class Buff : MonoBehaviour
     public void upGrade(int amount)
     {
     }
-    public void BuffEffectFirst()
+    public void BuffEffect()
     {
         switch (style)
         {
             case BuffStyle.health:
-                amout = 20;
+                quantity = 20;
                 break;
             case BuffStyle.strong:
-                amout = 2;
+                quantity = 2;
                 break; 
             case BuffStyle.speed:
-                amout = 5;
+                quantity  = 5;
                 break;
         }
     }
     
-    //public void BuffSkill(Player player)
-    //{
-    //    switch(style)
-    //    {
-    //        case BuffStyle.immortalSkill:
-    //            Immortal();
-    //            break;
-    //        case BuffStyle.boomSkill:
-    //            Boom();
-    //            break;
-                
-    //        case BuffStyle.dashSkill:
-    //            Dash();
-    //            break;
-    //    }
-    //}
-    public void UpHealth(Player player)
-    {
-        player.maxHealth += amout;
-    }
-    public void UpSpeed(Player player)
-    {
-        player.speed += amout;
-    }
-    public void upDame(Player player)
-    {
-        player.bonusdame += amout;
-    }
-   
 }

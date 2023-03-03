@@ -18,10 +18,15 @@ public class SpawnManager : MonoBehaviour
         int a = Random.Range(0, 10);
         Debug.Log(a);
         if(a <= 2) {
-            Instantiate(buffPrefab[Random.Range(0, 2)],tf);
+        
         }else if ( a <= 3)
         {
             Instantiate(buffPrefab[Random.Range(3, 5)],tf);
+        }
+        int r = Random.Range(0, 10);
+        if(r <= 2)
+        {
+            Instantiate(buffPrefab[(Random.Range(0, 2)],tf);
         }
     }
     void Start()
