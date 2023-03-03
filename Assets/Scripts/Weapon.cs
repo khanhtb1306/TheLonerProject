@@ -4,9 +4,10 @@ using UnityEngine;
 
 public enum WeaponStyle
 {
-    gun1,
-    gun2,
-    gun3
+    pistol,
+    fartGun,
+    strongGun,
+    bom,
 }
 public class Weapon : MonoBehaviour
 {
@@ -20,17 +21,21 @@ public class Weapon : MonoBehaviour
 
     private float nextFireTime = 0f;
 
+    public void Start()
+    {
+        SetUp();
+    }
     public void SetUp()
     {
         switch (style)
         {
-            case WeaponStyle.gun1:
+            case WeaponStyle.pistol:
                 Shoot();
                 break;
-            case WeaponStyle.gun2:
+            case WeaponStyle.fartGun:
                 ShootFast();
                 break;
-            case WeaponStyle.gun3:
+            case WeaponStyle.strongGun:
                 ShootStrong();
                 break;
         }

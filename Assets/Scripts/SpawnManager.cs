@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
     public List<Enemies> enemiesPrefab;
     public static int totalEnemies = 10;
     Timer timer;
+    public List<Weapon> weaponsPrefab;
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
@@ -87,6 +88,10 @@ public class SpawnManager : MonoBehaviour
         //Enemies.maxHealth += float.Parse((Enemies.maxHealth * 0.2).ToString());
         //totalEnemies += int.Parse((totalEnemies * 0.2).ToString());
         //Enemies.damage += float.Parse((Enemies.damage * 0.2).ToString());
+
+    }
+    public void SpawnWeapon()
+    {
 
     }
 
