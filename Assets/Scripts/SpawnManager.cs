@@ -14,9 +14,6 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
-       
-       
-       
         int r = Random.Range(0, 10);
         if(r <= 2)
         {
