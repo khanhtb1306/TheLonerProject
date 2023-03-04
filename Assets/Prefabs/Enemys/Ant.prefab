@@ -95,14 +95,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3067736728038901154}
-  m_BodyType: 1
-  m_Simulated: 1
+  m_BodyType: 0
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosivePrefabs: {fileID: 0}
+  rangedBulletPrefabs: {fileID: 3620500638246969039, guid: c62f9428e19cc7b479a6e258585f5ef4, type: 3}
+  bossBulletPrefabs: {fileID: 0}
   enemyType: 0
   currentHealth: 0
   maxHealth: 0
@@ -156,5 +158,5 @@ MonoBehaviour:
   isBossAlive: 0
   isAlive: 0
   isHunt: 0
-  player: {fileID: 0}
+  interval: 25
   bulletPrefabs: []

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -16,6 +17,8 @@ public class Enemies : MonoBehaviour
 {
     //Attribute and Property
     [SerializeField] public GameObject explosivePrefabs;
+    public BulletEnemies rangedBulletPrefabs;
+    [SerializeField] public GameObject bossBulletPrefabs;
 
     public EnemyType enemyType;
     public float currentHealth;
@@ -27,7 +30,9 @@ public class Enemies : MonoBehaviour
     public bool isAlive;
     public bool isHunt;
     Vector3 endPoint;
-    public Player player;
+    public float interval = 0.1f;
+    private float timeSinceLastShot = 0f;
+
     public List<BulletEnemies> bulletPrefabs;
     Timer timer;
 
@@ -40,6 +45,8 @@ public class Enemies : MonoBehaviour
         isBossAlive = false;
         isHunt = false;
         endPoint = Gennerate();
+        timer.Duarion = 3;
+        timer.Run();
     }
 
     public void SetUp()
@@ -49,7 +56,7 @@ public class Enemies : MonoBehaviour
             case EnemyType.Ant:
                 maxHealth = 50;
                 damage = 5;
-                movementSpeed= 1;
+                movementSpeed= GameManager.instance.player.speed * 0.3f;
                 break;
             case EnemyType.Ranged:
                 maxHealth = 40;
@@ -126,33 +133,20 @@ public class Enemies : MonoBehaviour
 
     public void AttackPlayer()
     {
-        switch(enemyType)
+        switch (enemyType)
         {
-            case EnemyType.Ranged: //sau 0.5s bắn đạn
-                timer.Duarion = 0.5f;
-                timer.Run();
-                if (timer.Finished) //kiểm tra thơi gian finished
-                {
-                    foreach (var item in bulletPrefabs)
-                    {
-                        if (item.typeBullet == BulletType.Ranged)
-                        {
-                            GameObject bur = Instantiate(item.gameObject);
-                            bur.GetComponent<Rigidbody2D>().AddForce(GameManager.instance.player.transform.position * 9f, ForceMode2D.Impulse);
-                            timer.Duarion = 1;
-                            timer.Run();
-                        }
-                    }
-                }
+            case EnemyType.Ranged:
+                    BulletEnemies bur = Instantiate(rangedBulletPrefabs, transform.position, Quaternion.identity);
+                    Vector3 dir = GameManager.instance.player.transform.position - transform.position;
+                    bur.Project(dir);
                 break;
             case EnemyType.Bee:
-                player.TakeDamge(damage);
+                GameManager.instance.player.TakeDamge(damage);
                 break;
             case EnemyType.Boss:
                 break;
         }
     }
-
     public void Patrol()
     {
         if (enemyType == EnemyType.Bee)
@@ -161,19 +155,59 @@ public class Enemies : MonoBehaviour
             {
                 Hunt(GameManager.instance.player.transform.position, movementSpeed);
             }
-        } else
-        {
-            Vector2 dir = endPoint - transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = rotation;
-
-            transform.position = Vector3.MoveTowards(transform.position, endPoint, 10 * Time.deltaTime);
-            if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+            else
             {
-                endPoint = Gennerate();
+                Vector2 dir = endPoint - transform.position;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = rotation;
+
+                transform.position = Vector3.MoveTowards(transform.position, endPoint, 10 * Time.deltaTime);
+                if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+                {
+                    endPoint = Gennerate();
+                }
             }
-        }   
+        }
+        Vector3 po = transform.position;
+        if (enemyType == EnemyType.Ranged)
+        {
+            if (Vector3.Distance(po, GameManager.instance.player.transform.position) < 10f)
+            {
+                transform.position = po;
+                Vector2 dir = endPoint - transform.position;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = rotation;
+                //if (timeSinceLastShot >= interval)
+                //{
+                //    timeSinceLastShot = 0f;
+                //    AttackPlayer();
+                //}
+                //timeSinceLastShot += Time.deltaTime;
+                if (timer.Finished)
+                {
+                    AttackPlayer();
+                    timer.Duarion = 3;
+                    timer.Run();
+                }
+
+            }
+            else
+            {
+                Vector2 dir = endPoint - transform.position;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                transform.rotation = rotation;
+
+                transform.position = Vector3.MoveTowards(transform.position, endPoint, 10 * Time.deltaTime);
+                if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+                {
+                    endPoint = Gennerate();
+                }
+            }
+        }
+
     }
 
     public Vector3 Gennerate()
@@ -199,8 +233,8 @@ public class Enemies : MonoBehaviour
         {
             if(enemyType == EnemyType.Bee)
             {
-                AttackPlayer();
                 Destroy(gameObject);
+                AttackPlayer();    
             }
 
             if (enemyType == EnemyType.Ant)
