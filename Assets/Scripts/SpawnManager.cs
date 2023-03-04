@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public List<Buff> buffPrefab;
-    Vector3 endPoint;
+    
     public List<Enemies> enemiesPrefab;
     public static int totalEnemies = 10;
     Timer timer;
@@ -15,18 +15,15 @@ public class SpawnManager : MonoBehaviour
     public void BuffSpawn(Transform tf)
     {
        
-        int a = Random.Range(0, 10);
-        Debug.Log(a);
-        if(a <= 2) {
-        
-        }else if ( a <= 3)
-        {
-            Instantiate(buffPrefab[Random.Range(3, 5)],tf);
-        }
+       
+       
         int r = Random.Range(0, 10);
         if(r <= 2)
         {
-            Instantiate(buffPrefab[(Random.Range(0, 2)],tf);
+            Instantiate(buffPrefab[Random.Range(0, 2)], tf);
+        }else if(r<=3)
+        {
+            Instantiate(buffPrefab[Random.Range(0, 3)], tf);
         }
     }
     void Start()
@@ -39,7 +36,6 @@ public class SpawnManager : MonoBehaviour
     }
     void Update()
     {
-        endPoint = Gennerate();
         
     }
 

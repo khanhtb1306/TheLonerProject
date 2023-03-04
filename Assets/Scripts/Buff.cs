@@ -45,4 +45,18 @@ public class Buff : MonoBehaviour
         }
     }
     
+    
+    public void UpHealth(Player player)
+    {
+        player.maxHealth += quantity;
+    }
+    public void UpSpeed(Player player)
+    {
+        player.speed += quantity;
+    }
+    public void upDame(Player player)
+    {
+        player.bonusdame += quantity;
+    }
+   
 }
