@@ -1452,6 +1452,7 @@ MonoBehaviour:
   - {fileID: 4616237553137073203, guid: cd8819aec9ea885418c937f0ff2d849a, type: 3}
   - {fileID: 7662975080717929668, guid: 3c650fa32fb854a4e814b10493bc6591, type: 3}
   enemiesPrefab: []
+  weaponsPrefab: []
 --- !u!4 &2104174061
 Transform:
   m_ObjectHideFlags: 0
