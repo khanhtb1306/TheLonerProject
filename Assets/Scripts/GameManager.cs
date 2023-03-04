@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public List<Buff> Buffs;
     public List<Weapon> Weapons;
     public Player player;
+    public Enemies enemies;
     public SkillButton skillButton;
 
     
