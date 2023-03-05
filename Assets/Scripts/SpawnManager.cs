@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
     }
     void Start()
     {
-        InvokeRepeating("BuffSpawn", 0f, 3f);
+        //InvokeRepeating("BuffSpawn", 0f, 3f);
         SpawnEnemies();
         timer = gameObject.AddComponent<Timer>();
         timer.Duarion = 2;
