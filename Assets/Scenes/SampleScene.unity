@@ -360,6 +360,7 @@ MonoBehaviour:
   - {fileID: 8580815902667108611, guid: d9bed6ba2e3a7f0449abc06acc230522, type: 3}
   - {fileID: 7969016790558176023, guid: a2f56e0142cbf6b4ea1465fa61172bcd, type: 3}
   - {fileID: 7794859326587936032, guid: ff1348f693639ce4ca9d7a861d6b16d2, type: 3}
+  weaponsPrefab: []
 --- !u!114 &559645062 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
@@ -1535,7 +1536,15 @@ MonoBehaviour:
   - {fileID: 4093389510451610994, guid: b3f67a77c1caa534caad20c84014fcc6, type: 3}
   - {fileID: 4616237553137073203, guid: cd8819aec9ea885418c937f0ff2d849a, type: 3}
   - {fileID: 7662975080717929668, guid: 3c650fa32fb854a4e814b10493bc6591, type: 3}
---- !u!4 &2104174061
+
+
+  enemiesPrefab:
+  - {fileID: 8580815902667108611, guid: d9bed6ba2e3a7f0449abc06acc230522, type: 3}
+  - {fileID: 7969016790558176023, guid: a2f56e0142cbf6b4ea1465fa61172bcd, type: 3}
+  - {fileID: 7794859326587936032, guid: ff1348f693639ce4ca9d7a861d6b16d2, type: 3}
+  weaponsPrefab: []
+
+
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
