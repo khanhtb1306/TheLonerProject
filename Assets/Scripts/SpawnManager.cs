@@ -6,26 +6,28 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public List<Buff> buffPrefab;
-    Vector3 endPoint;
+
     public List<Enemies> enemiesPrefab;
     public static int totalEnemies = 10;
     Timer timer;
+    public List<Weapon> weaponsPrefab;
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
-       
-        int a = Random.Range(0, 10);
-        Debug.Log(a);
-        if(a <= 2) {
-            Instantiate(buffPrefab[Random.Range(0, 2)],tf);
-        }else if ( a <= 3)
+
+        int r = Random.Range(0, 10);
+        if (r <= 2)
         {
-            Instantiate(buffPrefab[Random.Range(3, 5)],tf);
+            Instantiate(buffPrefab[Random.Range(0, 2)], tf);
+        }
+        else if (r <= 3)
+        {
+            Instantiate(buffPrefab[Random.Range(0, 3)], tf);
         }
     }
     void Start()
     {
-        InvokeRepeating("BuffSpawn", 0f, 3f);
+        //InvokeRepeating("BuffSpawn", 0f, 3f);
         SpawnEnemies();
         timer = gameObject.AddComponent<Timer>();
         timer.Duarion = 2;
@@ -33,8 +35,7 @@ public class SpawnManager : MonoBehaviour
     }
     void Update()
     {
-        endPoint = Gennerate();
-        
+
     }
 
     public void SpawnEnemies()
@@ -87,6 +88,10 @@ public class SpawnManager : MonoBehaviour
         //Enemies.maxHealth += float.Parse((Enemies.maxHealth * 0.2).ToString());
         //totalEnemies += int.Parse((totalEnemies * 0.2).ToString());
         //Enemies.damage += float.Parse((Enemies.damage * 0.2).ToString());
+
+    }
+    public void SpawnWeapon()
+    {
 
     }
 

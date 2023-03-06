@@ -15,14 +15,13 @@ public class BulletEnemies : MonoBehaviour
     public GameObject explosivePrefab;
     public BulletType typeBullet;
     public float damage;
-    public Enemies enemies;
-    public GameObject head;
+    private Rigidbody2D rb2D;
 
-    void Start()
+    private void Awake()
     {
-        SetUp(); 
-        GetComponent<Rigidbody2D>().AddForce(
-            head.transform.position, ForceMode2D.Impulse);
+        SetUp();
+        rb2D = GetComponent<Rigidbody2D>();
+        //Physics2D.gravity = new Vector2(0, 0);
     }
 
     public void SetUp()
@@ -41,42 +40,22 @@ public class BulletEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        Instantiate(explosivePrefab, transform.position, Quaternion.identity);
-    //        Destroy(gameObject);
-    //    }  
-    //}
+    public void Project(Vector3 direction)
+    {
+        //rb2D.AddForce(direction * 9f * Time.deltaTime);
+        //Destroy(gameObject, 10f);
+        rb2D.velocity = direction * 1f;
+    }
 
-    //public void Project(Vector3 direction)
-    //{
-    //    rigidbody2D.AddForce(direction * speedBullet * Time.deltaTime);
-    //    Destroy(gameObject, maxLifeTime);
-    //}
-
-    //private void OnBecameInvisible()
-    //{
-    //    Destroy(gameObject);
-    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            Instantiate(explosivePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
-
-    public void AttackPlayer()
-    {
-
-    }
-
     void OnBecameInvisible()
     {
         Destroy(gameObject);
