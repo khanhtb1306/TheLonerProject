@@ -15,6 +15,8 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
+
+
         int r = Random.Range(0, 10);
         if (r <= 2)
         {
@@ -28,11 +30,8 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         //InvokeRepeating("BuffSpawn", 0f, 3f);
-        //InvokeRepeating("SpawnWeapon", 0f, 3f);
-        SpawnEnemies();
-        timer = gameObject.AddComponent<Timer>();
-        timer.Duarion = 2;
-        timer.Run();
+        InvokeRepeating("SpawnEnemies", 0f, 10f);
+        //SpawnEnemies();
     }
     void Update()
     {
@@ -73,7 +72,6 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnBoss()
     {
-        //Enemies.isBossAlive = true;
         foreach (var item in enemiesPrefab)
         {
             if (item.enemyType == EnemyType.Boss)
@@ -83,14 +81,8 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void UpGradeAttribute()
-    {
-        //Enemies.maxHealth += float.Parse((Enemies.maxHealth * 0.2).ToString());
-        //totalEnemies += int.Parse((totalEnemies * 0.2).ToString());
-        //Enemies.damage += float.Parse((Enemies.damage * 0.2).ToString());
 
-    }
-    public void SpawnWeapon(Transform tf)
+    public void SpawnWeapon()
     {
         int r = Random.Range(0, 10);
         if (r <= 2)

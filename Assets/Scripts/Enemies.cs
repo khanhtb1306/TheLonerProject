@@ -70,6 +70,7 @@ public class Enemies : MonoBehaviour
                 attackSpeed= 50;
                 break;
             case EnemyType.Boss:
+                isBossAlive = true;
                 maxHealth = 50;
                 damage = 5;
                 movementSpeed = 20;
@@ -89,6 +90,11 @@ public class Enemies : MonoBehaviour
         } 
 
         if (enemyType == EnemyType.Bee)
+        {
+            Patrol();
+        }
+
+        if (enemyType == EnemyType.Boss)
         {
             Patrol();
         }
@@ -179,12 +185,6 @@ public class Enemies : MonoBehaviour
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 transform.rotation = rotation;
-                //if (timeSinceLastShot >= interval)
-                //{
-                //    timeSinceLastShot = 0f;
-                //    AttackPlayer();
-                //}
-                //timeSinceLastShot += Time.deltaTime;
                 if (timer.Finished)
                 {
                     AttackPlayer();
@@ -208,6 +208,38 @@ public class Enemies : MonoBehaviour
             }
         }
 
+    }
+
+    public void UpgradeAttribute()
+    {
+        //totalEnemies += (int)Mathf.Round(totalEnemies * 0.3f);
+        if (enemyType == EnemyType.Ant)
+        {
+            maxHealth += maxHealth * 0.1f;
+            damage += (int)Mathf.Round(damage * 0.1f);
+            movementSpeed += movementSpeed * 0.1f;
+        }
+
+        if (enemyType == EnemyType.Bee)
+        {
+            maxHealth += maxHealth * 0.1f;
+            damage += (int)Mathf.Round(damage * 0.1f);
+            movementSpeed += movementSpeed * 0.1f;
+        }
+
+        if (enemyType == EnemyType.Ranged)
+        {
+            maxHealth += maxHealth * 0.1f;
+            damage += (int)Mathf.Round(damage * 0.1f);
+            movementSpeed += movementSpeed * 0.1f;
+        }
+
+        if (enemyType == EnemyType.Boss)
+        {
+            maxHealth += maxHealth * 0.2f;
+            damage += (int)Mathf.Round(damage * 0.2f);
+            movementSpeed += movementSpeed * 0.1f;
+        }
     }
 
     public Vector3 Gennerate()
