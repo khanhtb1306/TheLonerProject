@@ -16,4 +16,13 @@ public class Destroy : MonoBehaviour
     {
         Destroy(gameObject, bulletLifeTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Ant" || collision.gameObject.tag == "Bee" ||collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "Range")
+        {
+            Destroy(gameObject);
+        }
+
+    }
 }

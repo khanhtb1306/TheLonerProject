@@ -51,13 +51,9 @@ public class BulletEnemies : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Enemys")
         {
             Destroy(gameObject);
         }
-    }
-    void OnBecameInvisible()
-    {
-        Destroy(gameObject);
     }
 }

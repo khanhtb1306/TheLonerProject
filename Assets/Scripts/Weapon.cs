@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 
 public enum WeaponStyle
 {
-    pistol,
-    fartGun,
-    strongGun,
-    bom,
+    Pistol,
+    FartGun,
+    StrongGun,
+    Bom,
 }
 public class Weapon : MonoBehaviour
 {
     public WeaponStyle style;
+    public float quantity;
 
     //public float fireRate = 0.5f;
     public GameObject bulletPrefab;
@@ -20,6 +22,8 @@ public class Weapon : MonoBehaviour
     public float TimeBtwFire = 0.2f;
     public float bulletForce;
 
+    public float timeBtwFireFastGun = 0.2f;
+    public float TimeBtwFireFastGun = 1f;
     private float timeBtwFire;
     //public float bulletSpeed = 10f;
     public float ultimateBulletSpeed = 20f;
@@ -34,64 +38,94 @@ public class Weapon : MonoBehaviour
     public bool Gun2;
     public bool Gun3;
     public bool Gun4;
+    public bool checkshoot = false;
 
 
     public float missileSpeed = 10f;
     public float explosionRadius = 5f;
 
+    public void SetUp()
+    {
+        switch (style)
+        {
+            case WeaponStyle.Pistol:
+                quantity = 20;
+                break;
+            case WeaponStyle.FartGun:
+                quantity = 20;
+                break;
+            case WeaponStyle.StrongGun:
+                quantity = 20; 
+                break;
+            case WeaponStyle.Bom:
+                quantity = 20;
+                break;
+        }
+    }
+
     public void Update()
     {
-        rotateTowardsMouse();
-        if (Gun1)
-        {
-            timeBtwFire -= Time.deltaTime;
-            if (Input.GetMouseButton(0) && timeBtwFire < 0)
-            {
-                Shoot();
-            }
-        }
-        if (Gun2)
-        {
-            timeBtwFire -= Time.deltaTime;
-            if (Input.GetMouseButton(0) && timeBtwFire < 0)
-            {
-                ShootFast();
+       // rotateTowardsMouse();
+        //if (Gun1)
+        //{
+        //    timeBtwFire -= Time.deltaTime;
+        //    if (Input.GetKey("Shoot") && timeBtwFire < 0)
+        //    {
+        //        Shoot();
+        //    }
+        //}
+        //if (Gun2)
+        //{
+        //    timeBtwFire -= Time.deltaTime;
+        //    if (Input.GetKey("Shoot") && timeBtwFire < 0)
+        //    {
+        //        ShootFast();
 
-            }
-            if (Input.GetMouseButton(1) && timeBtwFire < 0)
-            {
-                UltimateSkillFast();
+        //    }
+        //    if (Input.GetKey("ShootUltimate") && timeBtwFire < 0 && !checkshoot)
+        //    {
+        //        checkshoot = true;
+        //        int count = 0;
+        //        while (count <= 5) 
+        //        {
+        //            timeBtwFireFastGun -= Time.deltaTime;
+        //            if (timeBtwFireFastGun < 0)
+        //            {
+        //                UltimateSkillFast();
+        //                count++;
+        //            }
 
-            }
-        }
-        if (Gun3)
-        {
-            timeBtwFire -= Time.deltaTime;
-            if (Input.GetMouseButton(0) && timeBtwFire < 0)
-            {
-                ShootStrong();
+        //        }
+        //    }
+        //}
+        //if (Gun3)
+        //{
+        //    timeBtwFire -= Time.deltaTime;
+        //    if (Input.GetKey("Shoot") && timeBtwFire < 0)
+        //    {
+        //        ShootStrong();
 
-            }
-            if (Input.GetMouseButton(1) && timeBtwFire < 0)
-            {
-                UltimateSkillStrong();
+        //    }
+        //    if (Input.GetKey("ShootUltimate") && timeBtwFire < 0)
+        //    {
+        //        UltimateSkillStrong();
 
-            }
-        }
-        if (Gun4)
-        {
-            timeBtwFire -= Time.deltaTime;
-            if (Input.GetMouseButton(0) && timeBtwFire < 0)
-            {
-                //Bom(); ;
+        //    }
+        //}
+        //if (Gun4)
+        //{
+        //    timeBtwFire -= Time.deltaTime;
+        //    if (Input.GetKey("Shoot") && timeBtwFire < 0)
+        //    {
+        //        //Bom(); ;
 
-            }
-            if (Input.GetMouseButton(1) && timeBtwFire < 0)
-            {
-                //UltimateSkillBom();
+        //    }
+        //    if (Input.GetKey("ShootUltimate") && timeBtwFire < 0)
+        //    {
+        //        //UltimateSkillBom();
 
-            }
-        }
+        //    }
+        //}
     }
 
     void rotateTowardsMouse()
@@ -123,8 +157,9 @@ public class Weapon : MonoBehaviour
 
     public void UltimateSkillFast()
     {
-        timeBtwFire = TimeBtwFire;
-        StartCoroutine(FireBulletsInCone(5, 1, ultimateBulletSpeed, ultimateDuration));
+        timeBtwFireFastGun = TimeBtwFireFastGun;
+        StartCoroutine(FireBulletsInCone());
+
     }
 
     // Sniper rifle weapon, UltimateSkill deals high damage
@@ -206,26 +241,24 @@ public class Weapon : MonoBehaviour
     }
 
 
-    private IEnumerator FireBulletsInCone(int coneCount, int bulletCount, float bulletSpeed, float duration)
+    private IEnumerator FireBulletsInCone()
     {
-        float halfConeAngle = (coneCount - 1) * 5f / 2f;
+        float halfConeAngle = (6 - 1) * 6f / 2f;
         Vector2 direction = transform.right;
 
-        //for (float t = 0f; t < 1; t += Time.deltaTime)
-        //{
-            for (int i = 0; i < coneCount; i++)
+            for (int i = 0; i < 6; i++)
             {
-                float angle = i * 5f - halfConeAngle;
+                float angle = i * 10f - halfConeAngle;
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 Vector2 rotatedDirection = rotation * direction;
 
                 for (int j = 0; j < 1; j++)
                 {
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                    bullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * bulletSpeed;
+                    bullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * 25;
                 }
             }
             yield return null;
-        //}
+
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
@@ -11,9 +11,11 @@ public class SpawnManager : MonoBehaviour
     public static int totalEnemies = 10;
     Timer timer;
     public List<Weapon> weaponsPrefab;
+    public GameObject[] gunPrefabs; 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
+
 
         int r = Random.Range(0, 10);
         if (r <= 2)
@@ -33,7 +35,6 @@ public class SpawnManager : MonoBehaviour
     }
     void Update()
     {
-
     }
 
     public void SpawnEnemies()
@@ -80,10 +81,21 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+
     public void SpawnWeapon()
     {
+        int r = Random.Range(0, 10);
+        if (r <= 2)
+        {
+            Instantiate(weaponsPrefab[Random.Range(0, 2)], tf);
+        }
+        else if (r <= 3)
+        {
+            Instantiate(weaponsPrefab[Random.Range(0, 3)], tf);
+        }
 
     }
+
 
 
     public Vector3 Gennerate()
