@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 
 public enum WeaponStyle
 {
-    pistol,
-    fartGun,
-    strongGun,
-    bom,
+    Pistol,
+    FartGun,
+    StrongGun,
+    Bom,
 }
 public class Weapon : MonoBehaviour
 {
     public WeaponStyle style;
+    public float quantity;
 
     //public float fireRate = 0.5f;
     public GameObject bulletPrefab;
@@ -38,6 +40,25 @@ public class Weapon : MonoBehaviour
 
     public float missileSpeed = 10f;
     public float explosionRadius = 5f;
+
+    public void SetUp()
+    {
+        switch (style)
+        {
+            case WeaponStyle.Pistol:
+                quantity = 20;
+                break;
+            case WeaponStyle.FartGun:
+                quantity = 20;
+                break;
+            case WeaponStyle.StrongGun:
+                quantity = 20; 
+                break;
+            case WeaponStyle.Bom:
+                quantity = 20;
+                break;
+        }
+    }
 
     public void Update()
     {

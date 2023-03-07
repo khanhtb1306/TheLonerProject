@@ -3,4 +3,5 @@
 public class Bullet : MonoBehaviour 
 {
     public int damage = 10;
+
 }
