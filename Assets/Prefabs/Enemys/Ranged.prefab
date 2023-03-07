@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7794859326587936032}
   m_Layer: 0
   m_Name: Ranged
-  m_TagString: Untagged
+  m_TagString: Range
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   isBossAlive: 0
   isAlive: 0
   isHunt: 0
+  interval: 0.1
   bulletPrefabs: []
 --- !u!1 &4744035246011936513
 GameObject:

@@ -99,16 +99,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   style: 1
+  quantity: 0
   bulletPrefab: {fileID: 0}
   firePos: {fileID: 0}
   TimeBtwFire: 0.2
   bulletForce: 0
+  timeBtwFireFastGun: 0.2
+  TimeBtwFireFastGun: 1
   ultimateBulletSpeed: 20
   ultimateDuration: 5
   Gun1: 0
-  Gun2: 1
+  Gun2: 0
   Gun3: 0
-  Gun4: 0
+  Gun4: 1
+  checkshoot: 0
   missileSpeed: 10
   explosionRadius: 5
 --- !u!65 &7285170433242145073

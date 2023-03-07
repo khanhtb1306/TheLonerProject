@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7969016790558176023}
   m_Layer: 0
   m_Name: Bee
-  m_TagString: Untagged
+  m_TagString: Bee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,5 +158,5 @@ MonoBehaviour:
   isBossAlive: 0
   isAlive: 0
   isHunt: 0
-  player: {fileID: 0}
+  interval: 0.1
   bulletPrefabs: []
