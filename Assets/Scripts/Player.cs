@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TakeDamge(int damage)
+    public void TakeDamge(float damage)
     {
         curHealth -= damage;
     }
@@ -192,6 +192,7 @@ public class Player : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Weapon weapon = collision.GetComponent<Weapon>();
@@ -215,6 +216,14 @@ public class Player : MonoBehaviour
         }
     }
 
+=======
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        BulletEnemies bulletEnemies = collision.gameObject.GetComponent<BulletEnemies>();
+    }
+
+    
+>>>>>>> Stashed changes
     private IEnumerator Undead(float timeDuration, Player player)
     {
         isUndead = true;
