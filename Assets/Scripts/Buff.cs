@@ -58,5 +58,13 @@ public class Buff : MonoBehaviour
     {
         player.bonusdame += quantity;
     }
-   
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player p = collision.gameObject.GetComponent<Player>();
+        if(p != null)
+        {
+            p.ChangeBuffSkill(this);
+        }
+    }
 }
