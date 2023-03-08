@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void ChangeWeapon(Weapon newWeapon)
+    public void ChangeWeapon(Weapon newWeapon)
     {
         if (curWeapon.style != newWeapon.style)
         {
@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ChangeBuffSkill(Buff newBuff)
+    public void ChangeBuffSkill(Buff newBuff)
     {
         if (curBuff == null || (curBuff.style != newBuff.style))
         {
