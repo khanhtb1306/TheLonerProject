@@ -191,35 +191,6 @@ public class Player : MonoBehaviour
             GameManager.instance.EndGame();
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Weapon weapon = collision.GetComponent<Weapon>();
-        Buff buff = collision.GetComponent<Buff>();
-        Bullet bullet = collision.GetComponent<Bullet>();
-        if (weapon != null)
-        {                                                                                                                                                                                                                         
-            ChangeWeapon(weapon);
-            Destroy(collision.gameObject);
-        }
-        if (buff != null)                                                                                                                               
-        {
-            ChangeBuffSkill(buff);
-            GameManager.instance.skillButton.ChangeAvatar();
-            Destroy(collision.gameObject);
-        }
-        if(bullet != null)
-        {
-            TakeDamge(bullet.damage);
-            Destroy(collision.gameObject);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        BulletEnemies bulletEnemies = collision.gameObject.GetComponent<BulletEnemies>();
-    }
-
     
     private IEnumerator Undead(float timeDuration, Player player)
     {
