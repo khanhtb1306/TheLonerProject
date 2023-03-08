@@ -82,7 +82,7 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    public void SpawnWeapon()
+    public void SpawnWeapon(Transform tf)
     {
         int r = Random.Range(0, 10);
         if (r <= 2)
