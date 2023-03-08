@@ -51,8 +51,14 @@ public class BulletEnemies : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+<<<<<<< Updated upstream
         if (collision.gameObject.tag == "Enemys")
+=======
+        Player p = collision.gameObject.GetComponent<Player>();
+        if (p!=null)
+>>>>>>> Stashed changes
         {
+            p.TakeDamge(damage);
             Destroy(gameObject);
         }
     }

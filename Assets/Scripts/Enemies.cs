@@ -259,9 +259,10 @@ public class Enemies : MonoBehaviour
     }
 
     //Check event takeDamage
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player") 
+        Player p = collision.gameObject.GetComponent<Player>();
+        if (p!=null) 
         {
             if(enemyType == EnemyType.Bee)
             {
