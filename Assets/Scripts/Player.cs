@@ -214,12 +214,6 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        BulletEnemies bulletEnemies = collision.gameObject.GetComponent<BulletEnemies>();
-    }
-
     
     private IEnumerator Undead(float timeDuration, Player player)
     {
