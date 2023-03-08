@@ -55,7 +55,7 @@ public class Weapon : MonoBehaviour
                 quantity = 20;
                 break;
             case WeaponStyle.StrongGun:
-                quantity = 20; 
+                quantity = 20;
                 break;
             case WeaponStyle.Bom:
                 quantity = 20;
@@ -65,7 +65,7 @@ public class Weapon : MonoBehaviour
 
     public void Update()
     {
-       // rotateTowardsMouse();
+        // rotateTowardsMouse();
         //if (Gun1)
         //{
         //    timeBtwFire -= Time.deltaTime;
@@ -74,26 +74,20 @@ public class Weapon : MonoBehaviour
         //        Shoot();
         //    }
         //}
-        //if (Gun2)
-        //{
-        //    timeBtwFire -= Time.deltaTime;
-        //    if (Input.GetKey("Shoot") && timeBtwFire < 0)
-        //    {
-        //        ShootFast();
+        if (Gun2)
+        {
+            timeBtwFire -= Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.M) && timeBtwFire < 0)
+            {
+                ShootFast();
 
-        //    }
-        //    if (Input.GetKey("ShootUltimate") && timeBtwFire < 0 && !checkshoot)
-        //    {
-        //        checkshoot = true;
-        //        int count = 0;
-        //        while (count <= 5) 
-        //        {
-        //            timeBtwFireFastGun -= Time.deltaTime;
-        //            if (timeBtwFireFastGun < 0)
-        //            {
-        //                UltimateSkillFast();
-        //                count++;
-        //            }
+            }
+
+            if (Input.GetKeyDown(KeyCode.V) && timeBtwFire < 0 && !checkshoot)
+
+
+                UltimateSkillFast();
+        }
 
         //        }
         //    }
@@ -131,7 +125,7 @@ public class Weapon : MonoBehaviour
     void rotateTowardsMouse()
     {
         Vector2 range = Camera.main.ScreenToWorldPoint(Input.mousePosition) - bulletPrefab.transform.position;
-        float angle = Mathf.Atan2(range.y, range.x)* Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(range.y, range.x) * Mathf.Rad2Deg;
         bulletPrefab.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
@@ -243,22 +237,23 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator FireBulletsInCone()
     {
+
         float halfConeAngle = (6 - 1) * 6f / 2f;
         Vector2 direction = transform.right;
+        for (int i = 0; i < 6; i++)
+        {
+            float angle = i * 10f - halfConeAngle;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Vector2 rotatedDirection = rotation * direction;
 
-            for (int i = 0; i < 6; i++)
+            for (int j = 0; j < 1; j++)
             {
-                float angle = i * 10f - halfConeAngle;
-                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                Vector2 rotatedDirection = rotation * direction;
-
-                for (int j = 0; j < 1; j++)
-                {
-                    GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-                    bullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * 25;
-                }
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                bullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * 25;
             }
-            yield return null;
+
+            yield return new WaitForSeconds(0.2f);
+        }
 
     }
 }

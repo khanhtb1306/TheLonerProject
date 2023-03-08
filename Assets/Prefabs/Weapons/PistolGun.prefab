@@ -107,8 +107,8 @@ MonoBehaviour:
   TimeBtwFireFastGun: 1
   ultimateBulletSpeed: 20
   ultimateDuration: 5
-  Gun1: 1
-  Gun2: 0
+  Gun1: 0
+  Gun2: 1
   Gun3: 0
   Gun4: 0
   checkshoot: 0

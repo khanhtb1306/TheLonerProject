@@ -49,14 +49,10 @@ public class BulletEnemies : MonoBehaviour
         rb2D.velocity = direction * 1f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-<<<<<<< Updated upstream
-        if (collision.gameObject.tag == "Enemys")
-=======
         Player p = collision.gameObject.GetComponent<Player>();
         if (p!=null)
->>>>>>> Stashed changes
         {
             p.TakeDamge(damage);
             Destroy(gameObject);
