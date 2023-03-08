@@ -11,8 +11,6 @@ public enum BulletType
 public class BulletEnemies : MonoBehaviour
 {
     //Attribute and Property
-    [SerializeField] 
-    public GameObject explosivePrefab;
     public BulletType typeBullet;
     public float damage;
     private Rigidbody2D rb2D;
@@ -21,7 +19,6 @@ public class BulletEnemies : MonoBehaviour
     {
         SetUp();
         rb2D = GetComponent<Rigidbody2D>();
-        //Physics2D.gravity = new Vector2(0, 0);
     }
 
     public void SetUp()
@@ -31,21 +28,11 @@ public class BulletEnemies : MonoBehaviour
             case BulletType.Ranged:
                 damage = 15f;
                 break;
-            case BulletType.Boss:
-                damage = 20f;
-                break;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void Project(Vector3 direction)
     {
-        //rb2D.AddForce(direction * 9f * Time.deltaTime);
-        //Destroy(gameObject, 10f);
         rb2D.velocity = direction * 1f;
     }
 

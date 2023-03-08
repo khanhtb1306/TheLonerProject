@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -19,7 +20,7 @@ public class Enemies : MonoBehaviour
     [SerializeField] public GameObject explosivePrefabs;
     public BulletEnemies rangedBulletPrefabs;
     [SerializeField] public GameObject bossBulletPrefabs;
-
+    public FireBullet fireBullet;
     public EnemyType enemyType;
     public float currentHealth;
     public float maxHealth;
@@ -30,8 +31,6 @@ public class Enemies : MonoBehaviour
     public bool isAlive;
     public bool isHunt;
     Vector3 endPoint;
-    public float interval = 0.1f;
-    private float timeSinceLastShot = 0f;
 
     public List<BulletEnemies> bulletPrefabs;
     Timer timer;
@@ -72,8 +71,8 @@ public class Enemies : MonoBehaviour
             case EnemyType.Boss:
                 isBossAlive = true;
                 maxHealth = 50;
-                damage = 5;
-                movementSpeed = 20;
+                damage = 15;
+                movementSpeed = 2;
                 break;
         }
     }
@@ -96,7 +95,7 @@ public class Enemies : MonoBehaviour
 
         if (enemyType == EnemyType.Boss)
         {
-            Patrol();
+            Hunt(GameManager.instance.player.transform.position, movementSpeed);
         }
     }
 
@@ -106,8 +105,12 @@ public class Enemies : MonoBehaviour
         if (currentHealth <= 0)
         {
             isAlive = false;
-            isBossAlive = false;
-            Destroy(gameObject);
+            if (enemyType == EnemyType.Boss)
+            {
+                GameManager.instance.isBossAlive = false;
+                UpgradeAttribute();
+            }
+            Destroy(gameObject);   
         }
     }
 
@@ -130,9 +133,17 @@ public class Enemies : MonoBehaviour
                        po, MovementSpeed * Time.deltaTime);
         }
 
+        Vector3 po1 = transform.position;
         if (enemyType == EnemyType.Boss)
         {
-
+            if (Vector3.Distance(po1, player) < 10f)
+            {
+                transform.position = po1;
+            } else
+            {
+                transform.position = Vector3.MoveTowards(po1,
+                            player, MovementSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -212,7 +223,7 @@ public class Enemies : MonoBehaviour
 
     public void UpgradeAttribute()
     {
-        //totalEnemies += (int)Mathf.Round(totalEnemies * 0.3f);
+        GameManager.instance.totalEnemies = (int)Mathf.Round(GameManager.instance.totalEnemies * 1.3f);
         if (enemyType == EnemyType.Ant)
         {
             maxHealth += maxHealth * 0.1f;
@@ -275,7 +286,7 @@ public class Enemies : MonoBehaviour
                 AttackPlayer();
             }
         }
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Pistol")
         {
             TakeDamage(10);
         }
