@@ -240,20 +240,22 @@ public class Weapon : MonoBehaviour
 
         float halfConeAngle = (6 - 1) * 6f / 2f;
         Vector2 direction = transform.right;
-        for (int i = 0; i < 6; i++)
+        for(int i =0; i< 5; i++)
         {
-            float angle = i * 10f - halfConeAngle;
-            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            Vector2 rotatedDirection = rotation * direction;
-
-            for (int j = 0; j < 1; j++)
+            for (int j = 0; j < 6; j++)
             {
+                float angle = j * 6f - halfConeAngle;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                Vector2 rotatedDirection = rotation * direction;
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 bullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * 25;
-            }
 
+
+
+            }
             yield return new WaitForSeconds(0.2f);
         }
+        
 
     }
 }
