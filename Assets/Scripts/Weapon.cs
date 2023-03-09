@@ -258,4 +258,13 @@ public class Weapon : MonoBehaviour
         
 
     }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player p = collision.gameObject.GetComponent<Player>();
+        if (p != null)
+        {
+            p.ChangeWeapon(this);
+        }
+        Destroy(this.gameObject);
+    }
 }
