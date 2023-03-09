@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4061026008096901553}
   - component: {fileID: 4061026008096901552}
   - component: {fileID: 4061026008096901555}
+  - component: {fileID: -2940285969903947478}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -128,7 +129,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -149,6 +150,7 @@ MonoBehaviour:
   explosivePrefabs: {fileID: 0}
   rangedBulletPrefabs: {fileID: 0}
   bossBulletPrefabs: {fileID: 0}
+  fireBullet: {fileID: 0}
   enemyType: 3
   currentHealth: 0
   maxHealth: 0
@@ -158,5 +160,19 @@ MonoBehaviour:
   isBossAlive: 0
   isAlive: 0
   isHunt: 0
-  interval: 0.1
   bulletPrefabs: []
+--- !u!114 &-2940285969903947478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061026008096901554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb1c058f5441214a90811c5f115a673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletsAmount: 10
+  startAngle: 0
+  endAngle: 360

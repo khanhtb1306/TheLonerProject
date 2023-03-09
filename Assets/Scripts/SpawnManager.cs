@@ -29,9 +29,9 @@ public class SpawnManager : MonoBehaviour
     }
     void Start()
     {
-        //InvokeRepeating("BuffSpawn", 0f, 3f);
         InvokeRepeating("SpawnEnemies", 0f, 10f);
-        //SpawnEnemies();
+        InvokeRepeating("SpawnBoss", 50f, 50f);
+        //SpawnBoss();
     }
     void Update()
     {
@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        if (true)
+        if (GameManager.instance.isBossAlive == false)
         {
             foreach (var item in enemiesPrefab)
             {
@@ -76,6 +76,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (item.enemyType == EnemyType.Boss)
             {
+                GameManager.instance.isBossAlive = true;
                 Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
             }
         }
@@ -95,9 +96,6 @@ public class SpawnManager : MonoBehaviour
         }
 
     }
-
-
-
     public Vector3 Gennerate()
     {
         float screenWidth = Screen.width;
