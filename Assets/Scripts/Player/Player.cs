@@ -126,13 +126,13 @@ public class Player : MonoBehaviour
         {
             switch (curBuff.style)
             {
-                case BuffStyle.strong:
+                case BuffStyle.boomSkill:
                     Boom();
                     break;
-                case BuffStyle.speed:
+                case BuffStyle.dashSkill:
                     Dash();
                     break;
-                case BuffStyle.health:
+                case BuffStyle.immortalSkill:
                     Undead();
                     break;
             }
@@ -146,6 +146,7 @@ public class Player : MonoBehaviour
     }
     private void Dash()
     {
+        Debug.Log("dash");
         Vector2 force = 1000 * transform.up;
         Debug.Log(force);
         rb2d.AddForce(force);
