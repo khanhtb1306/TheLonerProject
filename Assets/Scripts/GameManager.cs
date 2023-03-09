@@ -10,7 +10,9 @@ public class GameManager : Singleton<GameManager>
     public List<Buff> Buffs;
     public List<Weapon> Weapons;
     public Player player;
-    public Enemies enemies;
+
+    public int totalEnemies = 10;
+    public bool isBossAlive = false;
     public SkillButton skillButton;
 
     
