@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : Singleton<SpawnManager>
 {
+
     public List<Buff> buffPrefab;
 
     public List<Enemies> enemiesPrefab;
@@ -29,9 +30,9 @@ public class SpawnManager : MonoBehaviour
     }
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", 0f, 10f);
-        InvokeRepeating("SpawnBoss", 50f, 50f);
-        //SpawnBoss();
+        //InvokeRepeating("SpawnEnemies", 0f, 10f);
+        //InvokeRepeating("SpawnBoss", 50f, 50f);
+        SpawnBoss();
     }
     void Update()
     {

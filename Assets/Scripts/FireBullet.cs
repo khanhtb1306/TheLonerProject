@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,16 +10,38 @@ public class FireBullet : MonoBehaviour
     private float angle = 0f;
     [SerializeField]
     private float startAngle = 0f, endAngle = 360f;
-    private Vector2 bulletMoveDirection;
+    public float involkTime = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Spiral", 0f, 0.1f);
+        InvokeRepeating("BossShot", 0f, 3f);
+    }
+
+
+
+    public void BossShot()
+    {
+        int a = Random.Range(1, 4);
+        if (a == 1 )
+        {
+            Fire();  
+        }
+
+        if (a == 2 )
+        {
+            DoubleSpiral();
+        }   
+
+        if (a == 3 )
+        {
+            Spiral();
+        }
     }
 
     public void Fire()
     {
+        involkTime = 1;
         float angleStep = (endAngle - startAngle) / bulletsAmount;
         float angle = startAngle;
 
@@ -42,8 +64,10 @@ public class FireBullet : MonoBehaviour
     }
 
 
+    // Check lại sau
     public void DoubleSpiral()
     {
+        involkTime = 10;
         for (int i = 0; i <= 1; i++)
         {
             float bulDirX = transform.position.x + Mathf.Sin(((angle + 180f * i) * Mathf.PI) / 180f);
@@ -70,18 +94,28 @@ public class FireBullet : MonoBehaviour
 
     private void Spiral()
     {
-        float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-        float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
-
-        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-        Vector2 bulDir = (bulMoveVector - transform.position).normalized;
-
-        GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
-        bul.transform.position = transform.position;
-        bul.transform.rotation = transform.rotation;
-        bul.SetActive(true);
-        bul.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
-
-        angle += 10f;
+        StartCoroutine(SpiralShoot());
     }
+
+    private IEnumerator SpiralShoot()
+    {
+        for (int i = 0; i < 18; i++)
+        {
+            float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
+            float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
+
+            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+            Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+
+            GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
+            bul.transform.position = transform.position;
+            bul.transform.rotation = transform.rotation;
+            bul.SetActive(true);
+            bul.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
+
+            angle += 20f;
+            yield return new WaitForSeconds(0.1f);
+        }  
+    }
+
 }

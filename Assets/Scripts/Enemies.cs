@@ -20,7 +20,7 @@ public class Enemies : MonoBehaviour
     [SerializeField] public GameObject explosivePrefabs;
     public BulletEnemies rangedBulletPrefabs;
     [SerializeField] public GameObject bossBulletPrefabs;
-    public FireBullet fireBullet;
+    //public FireBullet fireBullet;
     public EnemyType enemyType;
     public float currentHealth;
     public float maxHealth;
@@ -105,12 +105,13 @@ public class Enemies : MonoBehaviour
         if (currentHealth <= 0)
         {
             isAlive = false;
+
             if (enemyType == EnemyType.Boss)
             {
                 GameManager.instance.isBossAlive = false;
                 UpgradeAttribute();
             }
-            Destroy(gameObject);   
+            DestroyEnemies();
         }
     }
 
@@ -134,11 +135,13 @@ public class Enemies : MonoBehaviour
         }
 
         Vector3 po1 = transform.position;
+        
         if (enemyType == EnemyType.Boss)
         {
             if (Vector3.Distance(po1, player) < 10f)
             {
                 transform.position = po1;
+                
             } else
             {
                 transform.position = Vector3.MoveTowards(po1,
@@ -159,8 +162,6 @@ public class Enemies : MonoBehaviour
                 break;
             case EnemyType.Bee:
                 GameManager.instance.player.TakeDamge(damage);
-                break;
-            case EnemyType.Boss:
                 break;
         }
     }
@@ -277,7 +278,7 @@ public class Enemies : MonoBehaviour
         {
             if(enemyType == EnemyType.Bee)
             {
-                Destroy(gameObject);
+                DestroyEnemies();
                 AttackPlayer();    
             }
 
@@ -286,9 +287,18 @@ public class Enemies : MonoBehaviour
                 AttackPlayer();
             }
         }
-        if (collision.gameObject.tag == "Pistol")
+
+        Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+        if (bullet != null)
         {
             TakeDamage(10);
         }
     }
-}
+
+    public void DestroyEnemies()
+    {
+        SpawnManager.instance.BuffSpawn(this.transform);
+        SpawnManager.instance.SpawnWeapon(this.transform);
+        Destroy(gameObject);
+    }
+ }
