@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform gunSpawnPos;
     [SerializeField] private FixedJoystick joystick;
     [SerializeField] public float bonusdame = 0;
-
+    [SerializeField] public Slider healthBar;
 
     public Weapon firstWeapon;
     public Buff firtBuff;
@@ -27,9 +27,11 @@ public class Player : MonoBehaviour
     private Vector2 movementInputSmooth;
     private Vector2 velocityInputSmooth;
 
+
     private void Awake()
     {
         GameManager.instance.player = this;
+        healthBar.maxValue = maxHealth;
     }
     private void Start()
     {
@@ -38,6 +40,10 @@ public class Player : MonoBehaviour
         curHealth = maxHealth;
         curWeapon = Instantiate(firstWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
         curWeapon.transform.SetParent(this.transform);
+    }
+    private void Update()
+    {
+        healthBar.value = curHealth;
     }
 
     private void LateUpdate()
@@ -80,27 +86,27 @@ public class Player : MonoBehaviour
         Dead();
     }
 
-    
+
     private void SetVelocityOfInput()
     {
-        movementInput = new Vector2(joystick.Horizontal  , joystick.Vertical) 
+        movementInput = new Vector2(joystick.Horizontal, joystick.Vertical)
             + new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        
+
         movementInputSmooth = Vector2.SmoothDamp(movementInputSmooth,
             movementInput, ref velocityInputSmooth, 0.1f);
-        
+
         rb2d.velocity = movementInputSmooth * speed;
     }
 
-   
+
 
     private void SetRotationInDirectinOfInput()
     {
         if (movementInput != Vector2.zero)
         {
-            Quaternion targetRotaion = 
+            Quaternion targetRotaion =
                 Quaternion.LookRotation(transform.forward, movementInputSmooth);
-            
+
             Quaternion rotation = Quaternion.RotateTowards
                 (transform.rotation, targetRotaion, rotationSpeed * Time.deltaTime);
 
@@ -115,8 +121,9 @@ public class Player : MonoBehaviour
     }
 
     public void BuffSkill()
-    {   
-        if(curBuff != null) {
+    {
+        if (curBuff != null)
+        {
             switch (curBuff.style)
             {
                 case BuffStyle.strong:
@@ -130,7 +137,7 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-       
+
     }
 
     private void Boom()
@@ -144,7 +151,7 @@ public class Player : MonoBehaviour
         rb2d.AddForce(force);
     }
 
-    
+
     float undeadDuration = 5.0f;
     bool isUndead = true;
     private void Undead()
@@ -174,7 +181,7 @@ public class Player : MonoBehaviour
                 {
                     curBuff = buff;
                     break;
-                }                
+                }
             }
         }
     }
@@ -191,7 +198,7 @@ public class Player : MonoBehaviour
             GameManager.instance.EndGame();
         }
     }
-    
+
     private IEnumerator Undead(float timeDuration, Player player)
     {
         isUndead = true;
