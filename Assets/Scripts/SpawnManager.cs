@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
+
     public List<Buff> buffPrefab;
 
     public List<Enemies> enemiesPrefab;
@@ -29,9 +30,9 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        //InvokeRepeating("BuffSpawn", 0f, 3f);
-        InvokeRepeating("SpawnEnemies", 0f, 10f);
-        //SpawnEnemies();
+        //InvokeRepeating("SpawnEnemies", 0f, 10f);
+        //InvokeRepeating("SpawnBoss", 50f, 50f);
+        SpawnBoss();
     }
     void Update()
     {
@@ -39,7 +40,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnEnemies()
     {
-        if (true)
+        if (GameManager.instance.isBossAlive == false)
         {
             foreach (var item in enemiesPrefab)
             {
@@ -76,6 +77,7 @@ public class SpawnManager : Singleton<SpawnManager>
         {
             if (item.enemyType == EnemyType.Boss)
             {
+                GameManager.instance.isBossAlive = true;
                 Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
             }
         }
@@ -95,9 +97,6 @@ public class SpawnManager : Singleton<SpawnManager>
         }
 
     }
-
-
-
     public Vector3 Gennerate()
     {
         float screenWidth = Screen.width;

@@ -11,7 +11,7 @@ public enum BulletType
 public class BulletEnemies : MonoBehaviour
 {
     //Attribute and Property
-    [SerializeField] 
+    [SerializeField]
     public GameObject explosivePrefab;
     public BulletType typeBullet;
     public float damage;
@@ -26,7 +26,7 @@ public class BulletEnemies : MonoBehaviour
 
     public void SetUp()
     {
-        switch(typeBullet)
+        switch (typeBullet)
         {
             case BulletType.Ranged:
                 damage = 15f;
@@ -49,12 +49,10 @@ public class BulletEnemies : MonoBehaviour
         rb2D.velocity = direction * 1f;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player p = collision.gameObject.GetComponent<Player>();
-        if (p!=null)
+        if (collision.gameObject.tag == "Enemys")
         {
-            p.TakeDamge(damage);
             Destroy(gameObject);
         }
     }

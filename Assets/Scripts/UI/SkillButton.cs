@@ -21,7 +21,7 @@ public class SkillButton : MonoBehaviour
     {
         if (GameManager.instance.player.GetCurBuff() == null) 
             buttonImage.sprite = null;
-        for (int i = 0; i < GameManager.instance.Buffs.Count; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (GameManager.instance.Buffs[i] == GameManager.instance.player.GetCurBuff())
             {
