@@ -8,12 +8,17 @@ using UnityEngine.EventSystems;
 
 public enum BuffStyle
 {
-    health, strong, speed, dashSkill, immortalSkill, boomSkill
+    health, strong, speed
+}
+public enum BuffSkillStyle
+{
+    dashSkill, immortalSkill, boomSkill
 }
 public class Buff : MonoBehaviour
 {
  
     public BuffStyle style;
+    public BuffSkillStyle buffskill;
       public float quantity;
     void Start()
     {
@@ -62,9 +67,10 @@ public class Buff : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
+
         if(p != null)
         {
             p.ChangeBuffSkill(this);
-        }
+        }Destroy(this.gameObject);
     }
 }

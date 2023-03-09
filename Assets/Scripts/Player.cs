@@ -117,22 +117,39 @@ public class Player : MonoBehaviour
     public void BuffSkill()
     {   
         if(curBuff != null) {
-            switch (curBuff.style)
+            switch (curBuff.buffskill)
             {
-                case BuffStyle.strong:
+                case BuffSkillStyle.boomSkill:
                     Boom();
                     break;
-                case BuffStyle.speed:
+                case BuffSkillStyle.dashSkill:
                     Dash();
                     break;
-                case BuffStyle.health:
+                case BuffSkillStyle.immortalSkill:
                     Undead();
                     break;
             }
         }
        
     }
-
+    public void BuffUpdate()
+    {
+        if (curBuff != null)
+        {
+            switch (curBuff.style)
+            {
+                case BuffStyle.health:
+                    curHealth += curBuff.quantity;
+                    break;
+                case BuffStyle.speed:
+                    speed += curBuff.quantity;
+                    break;
+                case BuffStyle.strong:
+                    bonusdame += curBuff.quantity;
+                    break;
+            }
+        }
+    }
     private void Boom()
     {
 
@@ -202,7 +219,7 @@ public class Player : MonoBehaviour
             timeCount -= Time.deltaTime;
             if (isUndead)
             {
-                if (player.curHealth <= 1) player.curHealth = 1;
+                if (player.curHealth <= 160) player.curHealth = 160;
             }
             yield return null;
         }

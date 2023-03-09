@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : Singleton<SpawnManager>
 {
     public List<Buff> buffPrefab;
 
     public List<Enemies> enemiesPrefab;
     public static int totalEnemies = 10;
-    Timer timer;
+   
     public List<Weapon> weaponsPrefab;
     public GameObject[] gunPrefabs; 
     // Start is called before the first frame update
@@ -18,13 +18,13 @@ public class SpawnManager : MonoBehaviour
 
 
         int r = Random.Range(0, 10);
-        if (r <= 2)
-        {
-            Instantiate(buffPrefab[Random.Range(0, 2)], tf);
-        }
-        else if (r <= 3)
+        if (r < 2)
         {
             Instantiate(buffPrefab[Random.Range(0, 3)], tf);
+        }
+        else if (r < 3)
+        {
+            Instantiate(buffPrefab[Random.Range(3, 6)], tf);
         }
     }
     void Start()
