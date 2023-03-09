@@ -566,7 +566,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8870499329453688616, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4658863745312110291, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_RootOrder
@@ -614,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_Mass
-      value: 0.1
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_BodyType
@@ -644,6 +644,18 @@ PrefabInstance:
       propertyPath: curHealth
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 263114929}
+    - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+      propertyPath: firstWeapon
+      value: 
+      objectReference: {fileID: 5925012683688565253, guid: 36b97a0354b47c243b44e692fb778953, type: 3}
+    - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+      propertyPath: gunSpawnPos
+      value: 
+      objectReference: {fileID: 953146274}
     - target: {fileID: 7230842613747717989, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -658,6 +670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+--- !u!4 &953146274 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8701888887801953353, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+  m_PrefabInstance: {fileID: 953146273}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1039302967
 PrefabInstance:
   m_ObjectHideFlags: 0
