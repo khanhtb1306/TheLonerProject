@@ -72,7 +72,7 @@ public class Buff : MonoBehaviour
         {
             p.ChangeBuffSkill(this);
 
-        } Destroy(this.gameObject);
+        } 
         GameManager.instance.skillButton.ChangeAvatar();
         Destroy(this.gameObject);
     }
