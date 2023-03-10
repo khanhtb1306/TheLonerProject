@@ -121,9 +121,9 @@ public class Player : MonoBehaviour
     }
 
     public void BuffSkill()
-<<<<<<< HEAD:Assets/Scripts/Player.cs
-    {   
-        if(curBuff != null) {
+    {
+        if (curBuff != null)
+        {
             switch (curBuff.buffskill)
             {
                 case BuffSkillStyle.boomSkill:
@@ -133,25 +133,10 @@ public class Player : MonoBehaviour
                     Dash();
                     break;
                 case BuffSkillStyle.immortalSkill:
-=======
-    {
-        if (curBuff != null)
-        {
-            switch (curBuff.style)
-            {
-                case BuffStyle.boomSkill:
-                    Boom();
-                    break;
-                case BuffStyle.dashSkill:
-                    Dash();
-                    break;
-                case BuffStyle.immortalSkill:
->>>>>>> 3f7fda57859a022c34e6c22e565bf0534e5d3ab6:Assets/Scripts/Player/Player.cs
-                    Undead();
+                    Dead();
                     break;
             }
         }
-
     }
     public void BuffUpdate()
     {

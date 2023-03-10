@@ -16,13 +16,13 @@ public enum BuffSkillStyle
 }
 public class Buff : MonoBehaviour
 {
- 
+
     public BuffStyle style;
     public BuffSkillStyle buffskill;
-      public float quantity;
+    public float quantity;
     void Start()
     {
-         
+
     }
 
     // Update is called once per frame
@@ -43,14 +43,14 @@ public class Buff : MonoBehaviour
                 break;
             case BuffStyle.strong:
                 quantity = 2;
-                break; 
+                break;
             case BuffStyle.speed:
-                quantity  = 5;
+                quantity = 5;
                 break;
         }
     }
-    
-    
+
+
     public void UpHealth(Player player)
     {
         player.maxHealth += quantity;
@@ -68,15 +68,15 @@ public class Buff : MonoBehaviour
     {
         Player p = collision.gameObject.GetComponent<Player>();
 
-        if(p != null)
+        if (p != null)
         {
             p.ChangeBuffSkill(this);
-<<<<<<< HEAD
-        }Destroy(this.gameObject);
-=======
-        }
+
+        } Destroy(this.gameObject);
         GameManager.instance.skillButton.ChangeAvatar();
         Destroy(this.gameObject);
->>>>>>> 3f7fda57859a022c34e6c22e565bf0534e5d3ab6
     }
+
+
+   
 }
