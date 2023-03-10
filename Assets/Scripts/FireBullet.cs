@@ -18,8 +18,6 @@ public class FireBullet : MonoBehaviour
         InvokeRepeating("BossShot", 0f, 3f);
     }
 
-
-
     public void BossShot()
     {
         int a = Random.Range(1, 4);
@@ -116,6 +114,16 @@ public class FireBullet : MonoBehaviour
             angle += 20f;
             yield return new WaitForSeconds(0.1f);
         }  
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null)
+        {
+            Destroy(gameObject);
+            GameManager.instance.player.TakeDamge(20);
+        }
     }
 
 }

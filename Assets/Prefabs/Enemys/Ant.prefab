@@ -158,5 +158,4 @@ MonoBehaviour:
   isBossAlive: 0
   isAlive: 0
   isHunt: 0
-  interval: 25
   bulletPrefabs: []
