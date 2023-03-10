@@ -196,6 +196,7 @@ public class Player : MonoBehaviour
     {
         if (curWeapon.style != newWeapon.style)
         {
+            Debug.Log("change");
             Destroy(curWeapon.gameObject);
             curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
             curWeapon.transform.SetParent(this.transform);

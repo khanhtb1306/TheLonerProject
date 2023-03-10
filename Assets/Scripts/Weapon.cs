@@ -178,44 +178,25 @@ public class Weapon : MonoBehaviour
 
     public void Bom()
     {
-        // Tạo một instance của prefab quả bom
         GameObject bombInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
-
-        // Lấy Rigidbody của quả bom
         Rigidbody bombRigidbody = bombInstance.GetComponent<Rigidbody>();
-
-        // Đặt tốc độ di chuyển cho quả bom
         bombRigidbody.velocity = transform.forward * 10;
-
-        // Thiết lập collider để phát hiện va chạm giữa quả bom và các đối tượng khác
         Collider bombCollider = bombInstance.GetComponent<Collider>();
         Physics.IgnoreCollision(GetComponent<Collider>(), bombCollider);
-
-        // Hủy quả bom sau khi đã tồn tại trong một khoảng thời gian nhất định
         //Destroy(bombInstance, 5f);
     }
 
     public void UltimateSkillBom()
     {
-        // Tạo 10 quả bom xung quanh người chơi
         for (int i = 0; i < 10; i++)
         {
-            // Tạo một instance của prefab quả bom
             GameObject bombInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
-
-            // Lấy Rigidbody của quả bom
             Rigidbody bombRigidbody = bombInstance.GetComponent<Rigidbody>();
-
-            // Đặt hướng di chuyển ngẫu nhiên cho quả bom
             Vector3 randomDirection = Random.insideUnitSphere;
             randomDirection.y = 0;
             bombRigidbody.velocity = randomDirection.normalized * 10;
-
-            // Thiết lập collider để phát hiện va chạm giữa quả bom và các đối tượng khác
             Collider bombCollider = bombInstance.GetComponent<Collider>();
             Physics.IgnoreCollision(GetComponent<Collider>(), bombCollider);
-
-            // Hủy quả bom sau khi đã tồn tại trong một khoảng thời gian nhất định
             //Destroy(bombInstance, 3f);
         }
     }
@@ -223,13 +204,11 @@ public class Weapon : MonoBehaviour
     private IEnumerator Explode(GameObject missile)
     {
         yield return new WaitForSeconds(3f);
-
         Collider2D[] colliders = Physics2D.OverlapCircleAll(missile.transform.position, explosionRadius);
         foreach (Collider2D collider in colliders)
         {
             // apply damage to colliders within the explosion radius
         }
-
         // create explosion effect
         Destroy(missile);
     }
@@ -257,5 +236,14 @@ public class Weapon : MonoBehaviour
         }
         
 
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        Player p = collision.gameObject.GetComponent<Player>();
+        if (p != null)
+        {
+            p.ChangeWeapon(this);
+        }
+        Destroy(this.gameObject);
     }
 }

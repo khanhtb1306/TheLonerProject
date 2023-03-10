@@ -30,9 +30,9 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        //InvokeRepeating("SpawnEnemies", 0f, 10f);
+        InvokeRepeating("SpawnEnemies", 0f, 10f);
         //InvokeRepeating("SpawnBoss", 50f, 50f);
-        SpawnBoss();
+        //SpawnBoss();
     }
     void Update()
     {
