@@ -38,4 +38,13 @@ public class BulletForBoss : MonoBehaviour
     {
         CancelInvoke();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            gameObject.SetActive(false);
+            GameManager.instance.player.TakeDamge(20);
+        }
+    }
 }
