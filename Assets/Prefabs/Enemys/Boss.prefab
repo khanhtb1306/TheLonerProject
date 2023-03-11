@@ -148,19 +148,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosivePrefabs: {fileID: 0}
-  rangedBulletPrefabs: {fileID: 0}
-  bossBulletPrefabs: {fileID: 0}
-  fireBullet: {fileID: 0}
+  rangedBulletPrefabs: {fileID: 3620500638246969039, guid: c62f9428e19cc7b479a6e258585f5ef4, type: 3}
   enemyType: 3
   currentHealth: 0
   maxHealth: 0
   damage: 0
   movementSpeed: 0
   attackSpeed: 0
-  isBossAlive: 0
   isAlive: 0
   isHunt: 0
-  bulletPrefabs: []
 --- !u!114 &-2940285969903947478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +172,4 @@ MonoBehaviour:
   bulletsAmount: 10
   startAngle: 0
   endAngle: 360
+  involkTime: 1

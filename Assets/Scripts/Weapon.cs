@@ -245,5 +245,6 @@ public class Weapon : MonoBehaviour
             p.ChangeWeapon(this);
         }
         Destroy(this.gameObject);
+       
     }
 }

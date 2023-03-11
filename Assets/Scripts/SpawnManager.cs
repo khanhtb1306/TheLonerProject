@@ -7,30 +7,31 @@ public class SpawnManager : Singleton<SpawnManager>
 {
 
     public List<Buff> buffPrefab;
-
     public List<Enemies> enemiesPrefab;
-    public static int totalEnemies = 10;
-    Timer timer;
     public List<Weapon> weaponsPrefab;
     public GameObject[] gunPrefabs; 
+
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
 
-
         int r = Random.Range(0, 10);
         if (r <= 2)
         {
-            Instantiate(buffPrefab[Random.Range(0, 2)], tf);
+            Debug.Log("buff Spawn1");
+
+            Instantiate(buffPrefab[0], tf);
         }
         else if (r <= 3)
         {
-            Instantiate(buffPrefab[Random.Range(0, 3)], tf);
+            Debug.Log("buff Spawn2");
+
+            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf);
         }
     }
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", 0f, 10f);
+        InvokeRepeating("SpawnEnemies", 0f, 1000f);
         //InvokeRepeating("SpawnBoss", 50f, 50f);
         //SpawnBoss();
     }
@@ -46,7 +47,7 @@ public class SpawnManager : Singleton<SpawnManager>
             {
                 if (item.enemyType == EnemyType.Bee)
                 {
-                    for (int i = 0; i < totalEnemies * 0.1; i++)
+                    for (int i = 0; i < GameManager.instance.totalEnemies * 0.1; i++)
                     {
                         Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
                     }
@@ -54,7 +55,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
                 if (item.enemyType == EnemyType.Ant)
                 {
-                    for (int i = 0; i < totalEnemies * 0.7; i++)
+                    for (int i = 0; i < GameManager.instance.totalEnemies * 0.7; i++)
                     {
                         Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
                     }
@@ -62,7 +63,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
                 if (item.enemyType == EnemyType.Ranged)
                 {
-                    for (int i = 0; i < totalEnemies * 0.2; i++)
+                    for (int i = 0; i < GameManager.instance.totalEnemies * 0.2; i++)
                     {
                         Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
                     }
@@ -82,18 +83,16 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
     }
-
-
     public void SpawnWeapon(Transform tf)
     {
         int r = Random.Range(0, 10);
         if (r <= 2)
         {
-            Instantiate(weaponsPrefab[Random.Range(0, 2)], tf);
+            Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf);
         }
         else if (r <= 3)
         {
-            Instantiate(weaponsPrefab[Random.Range(0, 3)], tf);
+            Instantiate(GameManager.instance.Weapons[Random.Range(0, 3)], tf);
         }
 
     }

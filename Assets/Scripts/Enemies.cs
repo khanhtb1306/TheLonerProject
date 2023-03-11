@@ -19,20 +19,16 @@ public class Enemies : MonoBehaviour
     //Attribute and Property
     [SerializeField] public GameObject explosivePrefabs;
     public BulletEnemies rangedBulletPrefabs;
-    [SerializeField] public GameObject bossBulletPrefabs;
-    //public FireBullet fireBullet;
     public EnemyType enemyType;
     public float currentHealth;
     public float maxHealth;
     public int damage;
     public float movementSpeed;
     public float attackSpeed = 0;
-    public bool isBossAlive;
     public bool isAlive;
     public bool isHunt;
     Vector3 endPoint;
 
-    public List<BulletEnemies> bulletPrefabs;
     Timer timer;
 
     void Start()
@@ -41,7 +37,6 @@ public class Enemies : MonoBehaviour
         SetUp();
         currentHealth = maxHealth;
         isAlive = true;
-        isBossAlive = false;
         isHunt = false;
         endPoint = Gennerate();
         timer.Duarion = 3;
@@ -65,11 +60,10 @@ public class Enemies : MonoBehaviour
             case EnemyType.Bee:
                 maxHealth = 20;
                 damage = 20;
-                movementSpeed = 1;
+                movementSpeed = 25;
                 attackSpeed= 50;
                 break;
             case EnemyType.Boss:
-                isBossAlive = true;
                 maxHealth = 50;
                 damage = 15;
                 movementSpeed = 2;
@@ -155,10 +149,15 @@ public class Enemies : MonoBehaviour
     {
         switch (enemyType)
         {
+            case EnemyType.Ant:
+                GameManager.instance.player.TakeDamge(damage);
+                break;
             case EnemyType.Ranged:
                     BulletEnemies bur = Instantiate(rangedBulletPrefabs, transform.position, Quaternion.identity);
                     Vector3 dir = GameManager.instance.player.transform.position - transform.position;
+                    Debug.Log("Da den Day1");
                     bur.Project(dir);
+                    Debug.Log("Da den Day2");
                 break;
             case EnemyType.Bee:
                 GameManager.instance.player.TakeDamge(damage);
@@ -287,10 +286,10 @@ public class Enemies : MonoBehaviour
                 AttackPlayer();
             }
         }
-
-        Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-        if (bullet != null)
+        
+        if (collision.gameObject.tag == "Pistol")
         {
+            Debug.Log("Enemies shooed");
             TakeDamage(10);
         }
     }
@@ -299,6 +298,6 @@ public class Enemies : MonoBehaviour
     {
         SpawnManager.instance.BuffSpawn(this.transform);
         SpawnManager.instance.SpawnWeapon(this.transform);
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
  }
