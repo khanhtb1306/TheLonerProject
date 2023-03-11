@@ -3521,7 +3521,11 @@ MonoBehaviour:
   - {fileID: 4616237553137073203, guid: 3f62cbf7f0ff9e8419405e23a9b1b3f2, type: 3}
   - {fileID: 4093389510451610994, guid: 720a8f653602bf04bbd60e98d3867db1, type: 3}
   - {fileID: 7662975080717929668, guid: 94164fec6ce9bcd46bbafafa4695f8bd, type: 3}
-  Weapons: []
+  Weapons:
+  - {fileID: 5925012683688565253, guid: 11be61dca2f4cf040947775287ce8d29, type: 3}
+  - {fileID: 8994965141330310703, guid: f74edae738cb2e740a234d616c1c13e6, type: 3}
+  - {fileID: 5925012683688565253, guid: 36b97a0354b47c243b44e692fb778953, type: 3}
+  - {fileID: 4570625582197103144, guid: 14a92ddf7b7e46241874b1198091aead, type: 3}
   player: {fileID: 0}
   totalEnemies: 10
   isBossAlive: 0

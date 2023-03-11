@@ -10,7 +10,6 @@ public enum BulletType
 
 public class BulletEnemies : MonoBehaviour
 {
-    //Attribute and Property
     [SerializeField]
     public GameObject explosivePrefab;
     public BulletType typeBullet;
@@ -21,7 +20,6 @@ public class BulletEnemies : MonoBehaviour
     {
         SetUp();
         rb2D = GetComponent<Rigidbody2D>();
-        //Physics2D.gravity = new Vector2(0, 0);
     }
 
     public void SetUp()
@@ -37,23 +35,23 @@ public class BulletEnemies : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
     }
 
     public void Project(Vector3 direction)
-    {
-        //rb2D.AddForce(direction * 9f * Time.deltaTime);
-        //Destroy(gameObject, 10f);
-        rb2D.velocity = direction * 1f;
+    { 
+        rb2D.velocity = direction * 10f * Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemys")
+        Player player = collision.gameObject.GetComponent<Player>();
+        if (player != null )
         {
             Destroy(gameObject);
+            Debug.Log("Da huy RangedBullet");
+            GameManager.instance.player.TakeDamge(damage);
         }
     }
 }
