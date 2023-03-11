@@ -116,11 +116,11 @@ public class Enemies : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position,
                         player, MovementSpeed * Time.deltaTime);
         }
-        if (enemyType == EnemyType.Ranged)
-        {
-            transform.position = Vector3.MoveTowards(transform.position,
-                        player, MovementSpeed * Time.deltaTime);
-        }
+        //if (enemyType == EnemyType.Ranged)
+        //{
+        //    transform.position = Vector3.MoveTowards(transform.position,
+        //                player, MovementSpeed * Time.deltaTime);
+        //}
         Vector3 po = player;
         if (enemyType== EnemyType.Bee)
         {
@@ -155,9 +155,8 @@ public class Enemies : MonoBehaviour
             case EnemyType.Ranged:
                     BulletEnemies bur = Instantiate(rangedBulletPrefabs, transform.position, Quaternion.identity);
                     Vector3 dir = GameManager.instance.player.transform.position - transform.position;
-                    Debug.Log("Da den Day1");
+                    Debug.Log(dir);
                     bur.Project(dir);
-                    Debug.Log("Da den Day2");
                 break;
             case EnemyType.Bee:
                 GameManager.instance.player.TakeDamge(damage);
@@ -296,8 +295,8 @@ public class Enemies : MonoBehaviour
 
     public void DestroyEnemies()
     {
-        SpawnManager.instance.BuffSpawn(this.transform);
-        SpawnManager.instance.SpawnWeapon(this.transform);
+        //SpawnManager.instance.BuffSpawn(this.transform);
+        //SpawnManager.instance.SpawnWeapon(this.transform);
         Destroy(this.gameObject);
     }
  }

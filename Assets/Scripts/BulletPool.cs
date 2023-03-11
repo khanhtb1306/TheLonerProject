@@ -24,7 +24,8 @@ public class BulletPool : MonoBehaviour
         bullets= new List<GameObject>();
     }
 
-    public GameObject GetBullet() {
+    public GameObject GetBullet()
+    {
         if (bullets.Count > 0)
         {
             for (int i = 0; i < bullets.Count; i++)
@@ -36,7 +37,7 @@ public class BulletPool : MonoBehaviour
             }
         }
 
-        if(notEnoughBulletsInPool)
+        if (notEnoughBulletsInPool)
         {
             GameObject bul = Instantiate(poolBullet);
             bul.SetActive(false);

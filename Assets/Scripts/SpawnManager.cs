@@ -30,9 +30,8 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", 0f, 1000f);
-        //InvokeRepeating("SpawnBoss", 50f, 50f);
-        //SpawnBoss();
+        InvokeRepeating("SpawnEnemies", 0f, 10f);
+        InvokeRepeating("SpawnBoss", 50f, 50f);
     }
     void Update()
     {
@@ -75,7 +74,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in enemiesPrefab)
         {
-            if (item.enemyType == EnemyType.Boss)
+            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false)
             {
                 GameManager.instance.isBossAlive = true;
                 Instantiate(item.gameObject, Gennerate(), Quaternion.identity);

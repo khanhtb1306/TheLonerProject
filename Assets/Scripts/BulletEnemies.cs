@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public enum BulletType
@@ -35,22 +36,16 @@ public class BulletEnemies : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-    }
-
     public void Project(Vector3 direction)
     { 
-        rb2D.velocity = direction * 10f * Time.deltaTime;
+        rb2D.velocity = direction * 5f;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null )
+        if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            Debug.Log("Da huy RangedBullet");
             GameManager.instance.player.TakeDamge(damage);
         }
     }

@@ -21,6 +21,7 @@ public class FireBullet : MonoBehaviour
     public void BossShot()
     {
         int a = Random.Range(1, 4);
+        Debug.Log(a);
         if (a == 1 )
         {
             Fire();  
@@ -39,7 +40,6 @@ public class FireBullet : MonoBehaviour
 
     public void Fire()
     {
-        involkTime = 1;
         float angleStep = (endAngle - startAngle) / bulletsAmount;
         float angle = startAngle;
 
@@ -62,30 +62,35 @@ public class FireBullet : MonoBehaviour
     }
 
 
-    // Check lại sau
     public void DoubleSpiral()
     {
-        involkTime = 10;
-        for (int i = 0; i <= 1; i++)
-        {
-            float bulDirX = transform.position.x + Mathf.Sin(((angle + 180f * i) * Mathf.PI) / 180f);
-            float bulDirY = transform.position.y + Mathf.Cos(((angle + 180f * i) * Mathf.PI) / 180f);
-            
-            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-            Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+        StartCoroutine(DoubleSpiralShoot());
+    }
 
-            GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
-            bul.transform.position = transform.position;
-            bul.transform.rotation = transform.rotation;
-            bul.SetActive(true);
-            bul.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
-
-           
-        }
-        angle += 10f;
-        if (angle >= 360f)
+    private IEnumerator DoubleSpiralShoot()
+    {
+        for (int j = 0; j < 18; j++)
         {
-            angle = 0f;
+            for (int i = 0; i <= 1; i++)
+            {
+                float bulDirX = transform.position.x + Mathf.Sin(((angle + 180f * i) * Mathf.PI) / 180f);
+                float bulDirY = transform.position.y + Mathf.Cos(((angle + 180f * i) * Mathf.PI) / 180f);
+
+                Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+                Vector2 bulDir = (bulMoveVector - transform.position).normalized;
+
+                GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
+                bul.transform.position = transform.position;
+                bul.transform.rotation = transform.rotation;
+                bul.SetActive(true);
+                bul.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
+            }
+            angle += 10f;
+            if (angle >= 360f)
+            {
+                angle = 0f;
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -115,15 +120,4 @@ public class FireBullet : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }  
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null)
-        {
-            Destroy(gameObject);
-            GameManager.instance.player.TakeDamge(20);
-        }
-    }
-
 }
