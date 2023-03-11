@@ -8,16 +8,21 @@ using UnityEngine.EventSystems;
 
 public enum BuffStyle
 {
-    health, strong, speed, dashSkill, immortalSkill, boomSkill
+    health, strong, speed
+}
+public enum BuffSkillStyle
+{
+    dashSkill, immortalSkill, boomSkill
 }
 public class Buff : MonoBehaviour
 {
- 
+
     public BuffStyle style;
-      public float quantity;
+    public BuffSkillStyle buffskill;
+    public float quantity;
     void Start()
     {
-         
+
     }
 
     // Update is called once per frame
@@ -38,14 +43,14 @@ public class Buff : MonoBehaviour
                 break;
             case BuffStyle.strong:
                 quantity = 2;
-                break; 
+                break;
             case BuffStyle.speed:
-                quantity  = 5;
+                quantity = 5;
                 break;
         }
     }
-    
-    
+
+
     public void UpHealth(Player player)
     {
         player.maxHealth += quantity;
@@ -62,11 +67,16 @@ public class Buff : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
-        if(p != null)
+
+        if (p != null)
         {
             p.ChangeBuffSkill(this);
-        }
+
+        } 
         GameManager.instance.skillButton.ChangeAvatar();
         Destroy(this.gameObject);
     }
+
+
+   
 }

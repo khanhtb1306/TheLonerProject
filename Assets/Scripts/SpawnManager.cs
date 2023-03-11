@@ -8,6 +8,9 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public List<Buff> buffPrefab;
     public List<Enemies> enemiesPrefab;
+
+    public static int totalEnemies = 10;
+   
     public List<Weapon> weaponsPrefab;
     public GameObject[] gunPrefabs; 
 
@@ -16,17 +19,13 @@ public class SpawnManager : Singleton<SpawnManager>
     {
 
         int r = Random.Range(0, 10);
-        if (r <= 2)
+        if (r < 2)
         {
-            Debug.Log("buff Spawn1");
-
-            Instantiate(buffPrefab[0], tf);
+            Instantiate(buffPrefab[Random.Range(0, 3)], tf);
         }
-        else if (r <= 3)
+        else if (r < 3)
         {
-            Debug.Log("buff Spawn2");
-
-            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf);
+            Instantiate(buffPrefab[Random.Range(3, 6)], tf);
         }
     }
     void Start()
