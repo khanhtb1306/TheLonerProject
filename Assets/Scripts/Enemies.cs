@@ -155,6 +155,7 @@ public class Enemies : MonoBehaviour
             case EnemyType.Ranged:
                     BulletEnemies bur = Instantiate(rangedBulletPrefabs, transform.position, Quaternion.identity);
                     Vector3 dir = GameManager.instance.player.transform.position - transform.position;
+                    Debug.Log(dir);
                     bur.Project(dir);
                 break;
             case EnemyType.Bee:
@@ -289,8 +290,8 @@ public class Enemies : MonoBehaviour
 
     public void DestroyEnemies()
     {
-        SpawnManager.instance.BuffSpawn(this.transform);
-        SpawnManager.instance.SpawnWeapon(this.transform);
+        //SpawnManager.instance.BuffSpawn(this.transform);
+        //SpawnManager.instance.SpawnWeapon(this.transform);
         Destroy(this.gameObject);
     }
  }
