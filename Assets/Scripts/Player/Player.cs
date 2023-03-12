@@ -119,7 +119,10 @@ public class Player : MonoBehaviour
     {
         curWeapon.Shoot();
     }
-
+    public void UltiShoot()
+    {
+        curWeapon.UltiShoot();
+    }
     public void BuffSkill()
     {
         if (curBuff != null)
