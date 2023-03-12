@@ -9,9 +9,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public enum EnemyType
 {
-    Ant, 
-    Ranged, 
-    Bee, 
+    Ant,
+    Ranged,
+    Bee,
     Boss
 }
 public class Enemies : MonoBehaviour
@@ -45,12 +45,12 @@ public class Enemies : MonoBehaviour
 
     public void SetUp()
     {
-        switch(enemyType)
+        switch (enemyType)
         {
             case EnemyType.Ant:
                 maxHealth = 50;
                 damage = 5;
-                movementSpeed= GameManager.instance.player.speed * 0.3f;
+                movementSpeed = GameManager.instance.player.speed * 0.3f;
                 break;
             case EnemyType.Ranged:
                 maxHealth = 40;
@@ -61,7 +61,7 @@ public class Enemies : MonoBehaviour
                 maxHealth = 20;
                 damage = 20;
                 movementSpeed = 25;
-                attackSpeed= 50;
+                attackSpeed = 50;
                 break;
             case EnemyType.Boss:
                 maxHealth = 50;
@@ -80,7 +80,7 @@ public class Enemies : MonoBehaviour
         if (enemyType == EnemyType.Ranged)
         {
             Patrol();
-        } 
+        }
 
         if (enemyType == EnemyType.Bee)
         {
@@ -122,21 +122,22 @@ public class Enemies : MonoBehaviour
         //                player, MovementSpeed * Time.deltaTime);
         //}
         Vector3 po = player;
-        if (enemyType== EnemyType.Bee)
+        if (enemyType == EnemyType.Bee)
         {
             transform.position = Vector3.MoveTowards(transform.position,
                        po, MovementSpeed * Time.deltaTime);
         }
 
         Vector3 po1 = transform.position;
-        
+
         if (enemyType == EnemyType.Boss)
         {
             if (Vector3.Distance(po1, player) < 10f)
             {
                 transform.position = po1;
-                
-            } else
+
+            }
+            else
             {
                 transform.position = Vector3.MoveTowards(po1,
                             player, MovementSpeed * Time.deltaTime);
@@ -153,10 +154,10 @@ public class Enemies : MonoBehaviour
                 GameManager.instance.player.TakeDamge(damage);
                 break;
             case EnemyType.Ranged:
-                    BulletEnemies bur = Instantiate(rangedBulletPrefabs, transform.position, Quaternion.identity);
-                    Vector3 dir = GameManager.instance.player.transform.position - transform.position;
-                    Debug.Log(dir);
-                    bur.Project(dir);
+                BulletEnemies bur = Instantiate(rangedBulletPrefabs, transform.position, Quaternion.identity);
+                Vector3 dir = GameManager.instance.player.transform.position - transform.position;
+                Debug.Log(dir);
+                bur.Project(dir);
                 break;
             case EnemyType.Bee:
                 GameManager.instance.player.TakeDamge(damage);
@@ -272,12 +273,12 @@ public class Enemies : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
-        if (p!=null) 
+        if (p != null)
         {
-            if(enemyType == EnemyType.Bee)
+            if (enemyType == EnemyType.Bee)
             {
                 DestroyEnemies();
-                AttackPlayer();    
+                AttackPlayer();
             }
 
             if (enemyType == EnemyType.Ant)
@@ -285,13 +286,13 @@ public class Enemies : MonoBehaviour
                 AttackPlayer();
             }
         }
-        
+
     }
 
     public void DestroyEnemies()
     {
-        //SpawnManager.instance.BuffSpawn(this.transform);
-        //SpawnManager.instance.SpawnWeapon(this.transform);
+        SpawnManager.instance.BuffSpawn(this.transform);
+        SpawnManager.instance.SpawnWeapon(this.transform);
         Destroy(this.gameObject);
     }
- }
+}

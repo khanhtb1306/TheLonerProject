@@ -45,8 +45,8 @@ public class Weapon : MonoBehaviour
                 ShootPistol();
                 break;
             case WeaponStyle.FartGun:
-                //ShootFast();
-                UltimateSkillFast();
+                ShootFast();
+                //UltimateSkillFast();
                 break;
             case WeaponStyle.StrongGun:
                 ShootStrong();
@@ -173,7 +173,7 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
-    public void OnTriggerEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
         if (p != null)
