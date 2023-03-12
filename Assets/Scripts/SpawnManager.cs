@@ -6,13 +6,8 @@ using UnityEngine;
 public class SpawnManager : Singleton<SpawnManager>
 {
 
-    public List<Buff> buffPrefab;
-    public List<Enemies> enemiesPrefab;
 
     public static int totalEnemies = 10;
-   
-    public List<Weapon> weaponsPrefab;
-    public GameObject[] gunPrefabs; 
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -21,11 +16,11 @@ public class SpawnManager : Singleton<SpawnManager>
         int r = Random.Range(0, 10);
         if (r < 2)
         {
-            Instantiate(buffPrefab[Random.Range(0, 3)], tf);
+            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf);
         }
         else if (r < 3)
         {
-            Instantiate(buffPrefab[Random.Range(3, 6)], tf);
+            Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf);
         }
     }
     void Start()
@@ -41,7 +36,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         if (GameManager.instance.isBossAlive == false)
         {
-            foreach (var item in enemiesPrefab)
+            foreach (var item in GameManager.instance.Enemies)
             {
                 if (item.enemyType == EnemyType.Bee)
                 {
@@ -72,7 +67,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnBoss()
     {
-        foreach (var item in enemiesPrefab)
+        foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false)
             {
