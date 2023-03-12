@@ -5,11 +5,7 @@ using UnityEngine;
 public class GunBullet : MonoBehaviour
 {
     public float bulletLifeTime = 3f;
-<<<<<<< Updated upstream
     public float damage = 10;
-=======
-    public float damage;
->>>>>>> Stashed changes
     // Update is called once per frame
     void Update()
     {
