@@ -16,16 +16,16 @@ public class SpawnManager : Singleton<SpawnManager>
         int r = Random.Range(0, 10);
         if (r < 2)
         {
-            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf);
+            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf.position,Quaternion.identity);
         }
         else if (r < 3)
         {
-            Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf);
+            Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf.position, Quaternion.identity);
         }
     }
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", 0f, 10f);
+        InvokeRepeating("SpawnEnemies", 0f, 100000f);
         InvokeRepeating("SpawnBoss", 50f, 50f);
     }
     void Update()
@@ -81,11 +81,11 @@ public class SpawnManager : Singleton<SpawnManager>
         int r = Random.Range(0, 10);
         if (r <= 2)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf);
+            Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf.position, Quaternion.identity);
         }
         else if (r <= 3)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(0, 3)], tf);
+            Instantiate(GameManager.instance.Weapons[Random.Range(0, 3)], tf.position, Quaternion.identity);
         }
 
     }
