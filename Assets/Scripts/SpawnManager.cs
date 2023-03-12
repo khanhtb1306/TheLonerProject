@@ -12,7 +12,6 @@ public class SpawnManager : Singleton<SpawnManager>
     public static int totalEnemies = 10;
    
     public List<Weapon> weaponsPrefab;
-    public GameObject[] gunPrefabs; 
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -32,6 +31,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         InvokeRepeating("SpawnEnemies", 0f, 10f);
         InvokeRepeating("SpawnBoss", 50f, 50f);
+        InvokeRepeating("SpawnWeapon", 10f, 3f);
     }
     void Update()
     {
@@ -94,6 +94,7 @@ public class SpawnManager : Singleton<SpawnManager>
         }
 
     }
+
     public Vector3 Gennerate()
     {
         float screenWidth = Screen.width;
