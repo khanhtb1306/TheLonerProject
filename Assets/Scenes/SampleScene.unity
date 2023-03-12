@@ -1011,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7230842613747717989, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7230842613747717989, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_TagString
@@ -1522,7 +1522,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1157202942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 559645062}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: UltiShoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1157202942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3745,6 +3757,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0a7468c5565216419a5f018030df2bf, type: 3}
+--- !u!1001 &5631010938382517613
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233897611939874630, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947410660241579015, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
+      propertyPath: m_Name
+      value: Pistol gun
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
 --- !u!1001 &8983720222432590709
 PrefabInstance:
   m_ObjectHideFlags: 0
