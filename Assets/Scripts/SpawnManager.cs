@@ -6,13 +6,13 @@ using UnityEngine;
 public class SpawnManager : Singleton<SpawnManager>
 {
 
+    public List<Buff> buffPrefab;
+    public List<Enemies> enemiesPrefab;
+
     public static int totalEnemies = 10;
-<<<<<<< Updated upstream
    
     public List<Weapon> weaponsPrefab;
     public GameObject[] gunPrefabs; 
-=======
->>>>>>> Stashed changes
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -21,26 +21,17 @@ public class SpawnManager : Singleton<SpawnManager>
         int r = Random.Range(0, 10);
         if (r < 2)
         {
-            Debug.Log("abc");
-            Instantiate(GameManager.instance.Buffs[Random.Range(0, 2)], tf.position,Quaternion.identity);
-            Debug.Log("ABC");
-
+            Instantiate(buffPrefab[Random.Range(0, 3)], tf);
         }
         else if (r < 3)
         {
-            Debug.Log("123");
-            Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf.position, Quaternion.identity);
+            Instantiate(buffPrefab[Random.Range(3, 6)], tf);
         }
     }
     void Start()
     {
-<<<<<<< Updated upstream
         InvokeRepeating("SpawnEnemies", 0f, 10f);
         InvokeRepeating("SpawnBoss", 50f, 50f);
-=======
-        InvokeRepeating("SpawnEnemies", 0f, 1000000f);
-        InvokeRepeating("SpawnBoss", 50f, 50f);       
->>>>>>> Stashed changes
     }
     void Update()
     {
@@ -50,7 +41,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         if (GameManager.instance.isBossAlive == false)
         {
-            foreach (var item in GameManager.instance.Enemies)
+            foreach (var item in enemiesPrefab)
             {
                 if (item.enemyType == EnemyType.Bee)
                 {
@@ -81,7 +72,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnBoss()
     {
-        foreach (var item in GameManager.instance.Enemies)
+        foreach (var item in enemiesPrefab)
         {
             if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false)
             {
@@ -95,11 +86,11 @@ public class SpawnManager : Singleton<SpawnManager>
         int r = Random.Range(0, 10);
         if (r <= 2)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf);
         }
         else if (r <= 3)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(0, 3)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.Weapons[Random.Range(0, 3)], tf);
         }
 
     }
