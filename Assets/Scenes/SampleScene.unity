@@ -993,7 +993,7 @@ PrefabInstance:
     - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: firstWeapon
       value: 
-      objectReference: {fileID: -4833847005105964476, guid: bb10adb16aa7c4a4f925483a3a48e452, type: 3}
+      objectReference: {fileID: -4833847005105964476, guid: c7903bf7ef1c9a147bf52175c9128bb6, type: 3}
     - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: gunSpawnPos
       value: 

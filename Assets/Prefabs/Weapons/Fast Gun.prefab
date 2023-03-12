@@ -101,7 +101,7 @@ MonoBehaviour:
   style: 1
   quantity: 0
   bulletPrefab: {fileID: 5121156366898255071, guid: 275869449dd9dfe4ab1e6ff82ab7759c, type: 3}
-  bulletForce: 40
+  bulletForce: 25
   ultimateBulletSpeed: 20
   missileSpeed: 10
   explosionRadius: 5

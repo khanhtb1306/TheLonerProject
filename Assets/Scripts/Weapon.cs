@@ -109,14 +109,16 @@ public class Weapon : MonoBehaviour
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
 
+
+
     public void UltimateSkillStrong()
     {
-        GameObject missile = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        Rigidbody2D rb = missile.GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.right * missileSpeed, ForceMode2D.Impulse);
-        // perform ultimate attack with high damage
-        StartCoroutine(Explode(missile));
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
+        StartCoroutine(FireBulletsStrong(bullet));
     }
+
 
 
     public void Bom()
@@ -144,18 +146,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private IEnumerator Explode(GameObject missile)
-    {
-        yield return new WaitForSeconds(3f);
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(missile.transform.position, explosionRadius);
-        foreach (Collider2D collider in colliders)
-        {
-            // apply damage to colliders within the explosion radius
-        }
-        // create explosion effect
-        Destroy(missile);
-    }
-
     private IEnumerator FireBulletsInCone()
     {
         float halfConeAngle = (6 - 1) * 6f / 2f;
@@ -173,6 +163,29 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
+
+    private IEnumerator FireBulletsStrong(GameObject bullet)
+    {
+        yield return new WaitForSeconds(1f);
+        float halfConeAngle = (10 - 1) * 10f / 2f;
+        Vector2 direction = transform.right;
+
+        bullet.GetComponent<Rigidbody2D>().velocity = direction * 15;
+
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                float angle = j * 36f - halfConeAngle;
+                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                Vector2 rotatedDirection = rotation * direction;
+                GameObject spawnedBullet = Instantiate(bulletPrefab, bullet.transform.position, Quaternion.identity);
+                spawnedBullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * 15;
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Player p = collision.gameObject.GetComponent<Player>();
