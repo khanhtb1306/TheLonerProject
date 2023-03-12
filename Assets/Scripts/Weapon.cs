@@ -173,11 +173,7 @@ public class Weapon : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
-<<<<<<< Updated upstream
-    public void OnTriggerEnter2D(Collision2D collision)
-=======
     public void OnTriggerEnter2D(Collider2D collision)
->>>>>>> Stashed changes
     {
         
         Player p = collision.gameObject.GetComponent<Player>();
@@ -186,14 +182,7 @@ public class Weapon : MonoBehaviour
         {
             Debug.Log("player");
             p.ChangeWeapon(this);
-<<<<<<< Updated upstream
-            Destroy(gameObject);
-        }
-=======
             Destroy(this.gameObject);
         }
-       
-       
->>>>>>> Stashed changes
     }
 }

@@ -7,12 +7,6 @@ public class SpawnManager : Singleton<SpawnManager>
 {
 
     public static int totalEnemies = 10;
-<<<<<<< Updated upstream
-   
-    public List<Weapon> weaponsPrefab;
-    public GameObject[] gunPrefabs; 
-=======
->>>>>>> Stashed changes
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -34,13 +28,8 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-<<<<<<< Updated upstream
-        InvokeRepeating("SpawnEnemies", 0f, 10f);
-        InvokeRepeating("SpawnBoss", 50f, 50f);
-=======
         InvokeRepeating("SpawnEnemies", 0f, 1000000f);
         InvokeRepeating("SpawnBoss", 50f, 50f);       
->>>>>>> Stashed changes
     }
     void Update()
     {
