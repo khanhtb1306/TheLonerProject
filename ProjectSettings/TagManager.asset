@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-
+  - RangedBullet
+  - Bee
+  - Ant
+  - Range
+  - Pistol
+  - Boss
   layers:
   - Default
   - TransparentFX
