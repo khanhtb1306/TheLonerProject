@@ -286,11 +286,6 @@ public class Enemies : MonoBehaviour
             }
         }
         
-        if (collision.gameObject.tag == "Pistol")
-        {
-            Debug.Log("Enemies shooed");
-            TakeDamage(10);
-        }
     }
 
     public void DestroyEnemies()

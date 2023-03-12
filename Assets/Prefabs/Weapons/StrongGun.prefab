@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4615340281690237611}
   - component: {fileID: 7529271937266463331}
   - component: {fileID: 4570625582197103144}
+  - component: {fileID: -6250202400791298058}
   m_Layer: 0
   m_Name: StrongGun
   m_TagString: Untagged
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   style: 0
   quantity: 0
-  bulletPrefab: {fileID: 7259167166110166308, guid: 93b2712f60779b04cae1f0f0bf63f062, type: 3}
+  bulletPrefab: {fileID: 5121156366898255071, guid: 04be8f92b76a6f645b12e79aac164e36, type: 3}
   firePos: {fileID: 4615340281690237611}
   TimeBtwFire: 0.2
   bulletForce: 15
@@ -114,3 +115,29 @@ MonoBehaviour:
   checkshoot: 0
   missileSpeed: 10
   explosionRadius: 5
+--- !u!61 &-6250202400791298058
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065940163886706056}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destroy : MonoBehaviour
+public class GunBullet : MonoBehaviour
 {
     public float bulletLifeTime = 3f;
-
+    public float damage = 10;
     // Update is called once per frame
     void Update()
     {
@@ -19,10 +19,11 @@ public class Destroy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ant" || collision.gameObject.tag == "Bee" ||collision.gameObject.tag == "Enemy"|| collision.gameObject.tag == "Range")
+        Enemies e = collision.gameObject.GetComponent<Enemies>();
+        if (e != null)
         {
+            e.TakeDamage(damage);
             Destroy(gameObject);
         }
-
     }
 }

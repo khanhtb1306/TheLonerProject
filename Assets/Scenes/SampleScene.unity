@@ -580,6 +580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FastGun
       objectReference: {fileID: 0}
+    - target: {fileID: 5580078744630034831, guid: f74edae738cb2e740a234d616c1c13e6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f74edae738cb2e740a234d616c1c13e6, type: 3}
 --- !u!1 &417992131
@@ -1159,7 +1163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_BodyType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_GravityScale
@@ -1494,7 +1498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1064542779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3553,7 +3557,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1761694312903971617, guid: 94957040a6bcf544e9f84261b715af19, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7888792153254264452, guid: 94957040a6bcf544e9f84261b715af19, type: 3}
       propertyPath: m_Name
@@ -3907,13 +3911,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffPrefab:
   - {fileID: 4616237553137073203, guid: 3f62cbf7f0ff9e8419405e23a9b1b3f2, type: 3}
-  - {fileID: 7662975080717929668, guid: 94164fec6ce9bcd46bbafafa4695f8bd, type: 3}
   - {fileID: 4093389510451610994, guid: 720a8f653602bf04bbd60e98d3867db1, type: 3}
-  - {fileID: 4093389510451610994, guid: b3f67a77c1caa534caad20c84014fcc6, type: 3}
-  - {fileID: 4616237553137073203, guid: cd8819aec9ea885418c937f0ff2d849a, type: 3}
-  - {fileID: 7662975080717929668, guid: 3c650fa32fb854a4e814b10493bc6591, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7662975080717929668, guid: 94164fec6ce9bcd46bbafafa4695f8bd, type: 3}
+  - {fileID: 1183380475476841374, guid: e85339403cf7b994bbb9f6041e85e3b1, type: 3}
+  - {fileID: 1411108269521875512, guid: 94957040a6bcf544e9f84261b715af19, type: 3}
+  - {fileID: 7998611312779929973, guid: 7b97543503a4da34ba52c59a18136f73, type: 3}
   enemiesPrefab:
   - {fileID: 8580815902667108611, guid: d9bed6ba2e3a7f0449abc06acc230522, type: 3}
   - {fileID: 7969016790558176023, guid: a2f56e0142cbf6b4ea1465fa61172bcd, type: 3}
@@ -3949,6 +3951,10 @@ PrefabInstance:
     - target: {fileID: 1065940163886706056, guid: 14a92ddf7b7e46241874b1198091aead, type: 3}
       propertyPath: m_Name
       value: StrongGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065940163886706056, guid: 14a92ddf7b7e46241874b1198091aead, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4615340281690237611, guid: 14a92ddf7b7e46241874b1198091aead, type: 3}
       propertyPath: m_RootOrder
