@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
                     Dash();
                     break;
                 case BuffSkillStyle.immortalSkill:
-                    Dead();
+                    Undead();
                     break;
             }
         }
