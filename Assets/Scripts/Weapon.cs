@@ -13,7 +13,6 @@ public class Weapon : MonoBehaviour
     public WeaponStyle style;
     public float quantity;
     public GameObject bulletPrefab;
-    public Transform firePos;
     public float bulletForce;
     public float ultimateBulletSpeed = 20f;
     public float missileSpeed = 10f;
@@ -51,10 +50,32 @@ public class Weapon : MonoBehaviour
                 break;
             case WeaponStyle.StrongGun:
                 ShootStrong();
-                UltimateSkillStrong();
+                //UltimateSkillStrong();
                 break;
             case WeaponStyle.Bom:
                 Bom();
+               // UltimateSkillBom();
+                break;
+        }
+    }
+
+    public void UltiShoot()
+    {
+        switch (style)
+        {
+            case WeaponStyle.Pistol:
+                ShootPistol();
+                break;
+            case WeaponStyle.FartGun:
+                //ShootFast();
+                UltimateSkillFast();
+                break;
+            case WeaponStyle.StrongGun:
+                //ShootStrong();
+                UltimateSkillStrong();
+                break;
+            case WeaponStyle.Bom:
+                //Bom();
                 UltimateSkillBom();
                 break;
         }
@@ -63,7 +84,7 @@ public class Weapon : MonoBehaviour
 
     public void ShootPistol()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
@@ -71,7 +92,7 @@ public class Weapon : MonoBehaviour
 
     public void ShootFast()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
@@ -83,14 +104,14 @@ public class Weapon : MonoBehaviour
 
     public void ShootStrong()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
 
     public void UltimateSkillStrong()
     {
-        GameObject missile = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject missile = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = missile.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * missileSpeed, ForceMode2D.Impulse);
         // perform ultimate attack with high damage
