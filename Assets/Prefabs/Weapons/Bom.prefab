@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7593436807454756621
+--- !u!1 &7177957747836775845
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream:Assets/Prefabs/Weapons/PistolGun.prefab
   - component: {fileID: 3268271841791814278}
   - component: {fileID: 372277644643709518}
   - component: {fileID: 5925012683688565253}
-  - component: {fileID: -6591694990679548479}
-=======
-  - component: {fileID: 7593436807454756619}
-  - component: {fileID: 7593436807454756618}
-  - component: {fileID: 5385429681737557935}
-  - component: {fileID: 4177468114695169740}
->>>>>>> Stashed changes:Assets/Prefabs/Weapons/Boom.prefab
+  - component: {fileID: -5770348135754885400}
   m_Layer: 0
-  m_Name: Boom
+  m_Name: Bom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7593436807454756619
+--- !u!4 &3268271841791814278
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593436807454756621}
+  m_GameObject: {fileID: 7177957747836775845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 0.5, y: 0.2, z: 1}
+  m_LocalPosition: {x: -6.226, y: 9.156, z: 0}
+  m_LocalScale: {x: 0.1963828, y: 0.44843748, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7593436807454756618
+--- !u!212 &372277644643709518
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593436807454756621}
+  m_GameObject: {fileID: 7177957747836775845}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -83,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.38137645, g: 0.8679245, b: 0.05322181, a: 1}
+  m_Color: {r: 0.26917925, g: 0.7264151, b: 0.11307406, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,40 +86,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5385429681737557935
+--- !u!114 &5925012683688565253
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7593436807454756621}
+  m_GameObject: {fileID: 7177957747836775845}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbba265e49a19954fa82656e428176f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  style: 3
+  style: 1
   quantity: 0
   bulletPrefab: {fileID: 5121156366898255071, guid: 04be8f92b76a6f645b12e79aac164e36, type: 3}
-  bulletForce: 40
+  firePos: {fileID: 0}
+  TimeBtwFire: 0.2
+  bulletForce: 0
+  timeBtwFireFastGun: 0.2
+  TimeBtwFireFastGun: 1
   ultimateBulletSpeed: 20
+  ultimateDuration: 5
+  Gun1: 0
+  Gun2: 0
+  Gun3: 0
+  Gun4: 1
+  checkshoot: 0
   missileSpeed: 10
   explosionRadius: 5
-<<<<<<< Updated upstream:Assets/Prefabs/Weapons/PistolGun.prefab
---- !u!61 &-6591694990679548479
-=======
---- !u!61 &4177468114695169740
->>>>>>> Stashed changes:Assets/Prefabs/Weapons/Boom.prefab
+--- !u!61 &-5770348135754885400
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Prefabs/Weapons/PistolGun.prefab
   m_GameObject: {fileID: 7177957747836775845}
-=======
-  m_GameObject: {fileID: 7593436807454756621}
->>>>>>> Stashed changes:Assets/Prefabs/Weapons/Boom.prefab
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}

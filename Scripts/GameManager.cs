@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     public List<Buff> Buffs;
     public List<Weapon> Weapons;
+    public List<Enemies> Enemies;
     public Player player;
     //public FireBullet fireBullet;
 
