@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 5580078744630034831, guid: f74edae738cb2e740a234d616c1c13e6, type: 3}
+    - target: {fileID: 8994965141330310703, guid: f74edae738cb2e740a234d616c1c13e6, type: 3}
+      propertyPath: ultimateBulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f74edae738cb2e740a234d616c1c13e6, type: 3}
 --- !u!1 &417992131

@@ -101,16 +101,7 @@ MonoBehaviour:
   quantity: 0
   bulletPrefab: {fileID: 5121156366898255071, guid: 04be8f92b76a6f645b12e79aac164e36, type: 3}
   firePos: {fileID: 3268271841791814278}
-  TimeBtwFire: 0.2
-  bulletForce: 40
-  timeBtwFireFastGun: 0.2
-  TimeBtwFireFastGun: 1
+  bulletForce: 20
   ultimateBulletSpeed: 20
-  ultimateDuration: 5
-  Gun1: 0
-  Gun2: 1
-  Gun3: 0
-  Gun4: 0
-  checkshoot: 0
   missileSpeed: 10
   explosionRadius: 5

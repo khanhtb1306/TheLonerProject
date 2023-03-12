@@ -119,7 +119,10 @@ public class Player : MonoBehaviour
     {
         curWeapon.Shoot();
     }
-
+    public void UltiShoot()
+    {
+        curWeapon.UltiShoot();
+    }
     public void BuffSkill()
     {
         if (curBuff != null)
@@ -179,6 +182,7 @@ public class Player : MonoBehaviour
 
     public void ChangeWeapon(Weapon newWeapon)
     {
+        Debug.Log("change");
         if (curWeapon.style != newWeapon.style)
         {
             Debug.Log("change");

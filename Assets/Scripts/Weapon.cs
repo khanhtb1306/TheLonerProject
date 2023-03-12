@@ -13,8 +13,7 @@ public class Weapon : MonoBehaviour
     public WeaponStyle style;
     public float quantity;
     public GameObject bulletPrefab;
-    public Transform firePos;
-    public float bulletForce;
+    public float bulletForce = 40f;
     public float ultimateBulletSpeed = 20f;
     public float missileSpeed = 10f;
     public float explosionRadius = 5f;
@@ -46,15 +45,37 @@ public class Weapon : MonoBehaviour
                 ShootPistol();
                 break;
             case WeaponStyle.FartGun:
+                ShootFast();
+                //UltimateSkillFast();
+                break;
+            case WeaponStyle.StrongGun:
+                ShootStrong();
+                //UltimateSkillStrong();
+                break;
+            case WeaponStyle.Bom:
+                Bom();
+                //UltimateSkillBom();
+                break;
+        }
+    }
+
+    public void UltiShoot()
+    {
+        switch (style)
+        {
+            case WeaponStyle.Pistol:
+                ShootPistol();
+                break;
+            case WeaponStyle.FartGun:
                 //ShootFast();
                 UltimateSkillFast();
                 break;
             case WeaponStyle.StrongGun:
-                ShootStrong();
+                //ShootStrong();
                 UltimateSkillStrong();
                 break;
             case WeaponStyle.Bom:
-                Bom();
+                //Bom();
                 UltimateSkillBom();
                 break;
         }
@@ -63,7 +84,7 @@ public class Weapon : MonoBehaviour
 
     public void ShootPistol()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
@@ -71,7 +92,7 @@ public class Weapon : MonoBehaviour
 
     public void ShootFast()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
@@ -83,18 +104,18 @@ public class Weapon : MonoBehaviour
 
     public void ShootStrong()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
 
     public void UltimateSkillStrong()
     {
-        GameObject missile = Instantiate(bulletPrefab, firePos.position, Quaternion.identity);
+        GameObject missile = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         Rigidbody2D rb = missile.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * missileSpeed, ForceMode2D.Impulse);
         // perform ultimate attack with high damage
-        StartCoroutine(Explode(missile));
+        //StartCoroutine(Explode(missile));
     }
 
 
@@ -139,7 +160,7 @@ public class Weapon : MonoBehaviour
     {
         float halfConeAngle = (6 - 1) * 6f / 2f;
         Vector2 direction = transform.right;
-        for(int i =0; i< 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 6; j++)
             {
@@ -150,16 +171,29 @@ public class Weapon : MonoBehaviour
                 bullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * 25;
             }
             yield return new WaitForSeconds(0.2f);
-        }  
+        }
     }
-    public void OnCollisionEnter2D(Collision2D collision)
+<<<<<<< Updated upstream
+    public void OnTriggerEnter2D(Collision2D collision)
+=======
+    public void OnTriggerEnter2D(Collider2D collision)
+>>>>>>> Stashed changes
     {
+        
         Player p = collision.gameObject.GetComponent<Player>();
+
         if (p != null)
         {
+            Debug.Log("player");
             p.ChangeWeapon(this);
+<<<<<<< Updated upstream
+            Destroy(gameObject);
         }
-        Destroy(this.gameObject);
+=======
+            Destroy(this.gameObject);
+        }
        
+       
+>>>>>>> Stashed changes
     }
 }

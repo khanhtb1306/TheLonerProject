@@ -64,17 +64,24 @@ public class Buff : MonoBehaviour
         player.bonusdame += quantity;
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.gameObject.name);
         Player p = collision.gameObject.GetComponent<Player>();
 
         if (p != null)
         {
             p.ChangeBuffSkill(this);
+<<<<<<< Updated upstream
+            Destroy(this.gameObject);
 
-        } 
+        }
         GameManager.instance.skillButton.ChangeAvatar();
-        Destroy(this.gameObject);
+=======
+            GameManager.instance.skillButton.ChangeAvatar();
+            Destroy(this.gameObject);
+        }        
+>>>>>>> Stashed changes
     }
 
 
