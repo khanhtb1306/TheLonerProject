@@ -28,6 +28,7 @@ public class Enemies : MonoBehaviour
     public bool isAlive;
     public bool isHunt;
     Vector3 endPoint;
+    public float popular;
 
     Timer timer;
 
@@ -45,19 +46,23 @@ public class Enemies : MonoBehaviour
 
     public void SetUp()
     {
+        //HP player: 200
         switch (enemyType)
         {
             case EnemyType.Ant:
+                popular = 0.7f;
                 maxHealth = 50;
-                damage = 5;
-                movementSpeed = GameManager.instance.player.speed * 0.3f;
+                damage = 2;
+                movementSpeed = GameManager.instance.player.speed * 0.1f;
                 break;
             case EnemyType.Ranged:
+                popular = 0.2f;
                 maxHealth = 40;
-                damage = 15;
+                damage = 10;
                 movementSpeed = 5;
                 break;
             case EnemyType.Bee:
+                popular = 0.1f;
                 maxHealth = 20;
                 damage = 20;
                 movementSpeed = 25;
@@ -103,7 +108,7 @@ public class Enemies : MonoBehaviour
             if (enemyType == EnemyType.Boss)
             {
                 GameManager.instance.isBossAlive = false;
-                UpgradeAttribute();
+                GameManager.instance.UpgradeAttribute();
             }
             DestroyEnemies();
         }
@@ -116,11 +121,6 @@ public class Enemies : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position,
                         player, MovementSpeed * Time.deltaTime);
         }
-        //if (enemyType == EnemyType.Ranged)
-        //{
-        //    transform.position = Vector3.MoveTowards(transform.position,
-        //                player, MovementSpeed * Time.deltaTime);
-        //}
         Vector3 po = player;
         if (enemyType == EnemyType.Bee)
         {
@@ -166,11 +166,20 @@ public class Enemies : MonoBehaviour
     }
     public void Patrol()
     {
+        Vector3 po = transform.position;
         if (enemyType == EnemyType.Bee)
         {
             if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < 10f)
             {
-                Hunt(GameManager.instance.player.transform.position, movementSpeed);
+                Vector3 pl = GameManager.instance.transform.position;
+                timer.Duarion = 2;
+                timer.Run();
+                if (timer.Finished)
+                {
+                    Hunt(pl, movementSpeed);
+                    timer.Duarion = 2;
+                    timer.Run();
+                }   
             }
             else
             {
@@ -186,7 +195,7 @@ public class Enemies : MonoBehaviour
                 }
             }
         }
-        Vector3 po = transform.position;
+        
         if (enemyType == EnemyType.Ranged)
         {
             if (Vector3.Distance(po, GameManager.instance.player.transform.position) < 10f)
@@ -219,38 +228,6 @@ public class Enemies : MonoBehaviour
             }
         }
 
-    }
-
-    public void UpgradeAttribute()
-    {
-        GameManager.instance.totalEnemies = (int)Mathf.Round(GameManager.instance.totalEnemies * 1.3f);
-        if (enemyType == EnemyType.Ant)
-        {
-            maxHealth += maxHealth * 0.1f;
-            damage += (int)Mathf.Round(damage * 0.1f);
-            movementSpeed += movementSpeed * 0.1f;
-        }
-
-        if (enemyType == EnemyType.Bee)
-        {
-            maxHealth += maxHealth * 0.1f;
-            damage += (int)Mathf.Round(damage * 0.1f);
-            movementSpeed += movementSpeed * 0.1f;
-        }
-
-        if (enemyType == EnemyType.Ranged)
-        {
-            maxHealth += maxHealth * 0.1f;
-            damage += (int)Mathf.Round(damage * 0.1f);
-            movementSpeed += movementSpeed * 0.1f;
-        }
-
-        if (enemyType == EnemyType.Boss)
-        {
-            maxHealth += maxHealth * 0.2f;
-            damage += (int)Mathf.Round(damage * 0.2f);
-            movementSpeed += movementSpeed * 0.1f;
-        }
     }
 
     public Vector3 Gennerate()
