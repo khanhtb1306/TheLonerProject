@@ -156,3 +156,4 @@ MonoBehaviour:
   attackSpeed: 0
   isAlive: 0
   isHunt: 0
+  popular: 0.7

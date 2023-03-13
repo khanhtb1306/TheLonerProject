@@ -157,6 +157,7 @@ MonoBehaviour:
   attackSpeed: 0
   isAlive: 0
   isHunt: 0
+  popular: 0.2
 --- !u!1 &4744035246011936513
 GameObject:
   m_ObjectHideFlags: 0

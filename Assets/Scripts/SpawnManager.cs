@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class SpawnManager : Singleton<SpawnManager>
 {
 
 
-    public static int totalEnemies = 10;
+    Timer timer;
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -16,7 +17,7 @@ public class SpawnManager : Singleton<SpawnManager>
         int r = Random.Range(0, 10);
         if (r < 2)
         {
-            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf.position,Quaternion.identity);
+            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf.position, Quaternion.identity);
         }
         else if (r < 3)
         {
@@ -25,42 +26,44 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", 0f, 10f);
-        InvokeRepeating("SpawnBoss", 50f, 50f);
+        //InvokeRepeating("SpawnEnemies", 0f, 10f);
+        timer = gameObject.AddComponent<Timer>();
+        timer.Duarion = 5;
+        timer.Run();
+
+
+        StartCoroutine(SpawnBosses());
+
     }
+
     void Update()
     {
+        
+    }
+
+    public float AmountEnemy(Enemies enemyType)
+    {
+        return enemyType.popular * GameManager.instance.totalEnemies;
     }
 
     public void SpawnEnemies()
     {
+        foreach (var item in GameManager.instance.Enemies)
+        {
+            if (item.enemyType != EnemyType.Boss)
+            {
+                SpawnEachEnemy(item, AmountEnemy(item));
+            }
+        }
+    }
+
+    public void SpawnEachEnemy(Enemies enemyType, float amount)
+    {
         if (GameManager.instance.isBossAlive == false)
         {
-            foreach (var item in GameManager.instance.Enemies)
+            for (int i = 0; i < amount; i++)
             {
-                if (item.enemyType == EnemyType.Bee)
-                {
-                    for (int i = 0; i < GameManager.instance.totalEnemies * 0.1; i++)
-                    {
-                        Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
-                    }
-                }
-
-                if (item.enemyType == EnemyType.Ant)
-                {
-                    for (int i = 0; i < GameManager.instance.totalEnemies * 0.7; i++)
-                    {
-                        Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
-                    }
-                }
-
-                if (item.enemyType == EnemyType.Ranged)
-                {
-                    for (int i = 0; i < GameManager.instance.totalEnemies * 0.2; i++)
-                    {
-                        Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
-                    }
-                }
+                Instantiate(enemyType, Gennerate(), Quaternion.identity);
             }
         }
     }
@@ -76,6 +79,33 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
     }
+
+    private IEnumerator SpawnBosses()
+    {
+        while (true)
+        {
+            // Wait until the boss is destroyed
+            yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
+
+            // Wait for the spawn delay before spawning another boss
+            yield return new WaitForSeconds(10);
+            SpawnBoss();
+        }
+    }
+
+    //private IEnumerator SpawnBoss()
+    //{
+    //    foreach (var item in GameManager.instance.Enemies)
+    //    {
+    //        if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false)
+    //        {
+    //            GameManager.instance.isBossAlive = true;
+    //            Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
+    //        }
+    //    }
+    //    yield return new WaitForSeconds(50);
+    //}
+
     public void SpawnWeapon(Transform tf)
     {
         int r = Random.Range(0, 10);

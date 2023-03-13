@@ -13,6 +13,18 @@ public class BulletPool : MonoBehaviour
 
     private List<GameObject> bullets;
 
+    public float bulletLifeTime = 1f;
+    // Update is called once per frame
+    void Update()
+    {
+        DestroyBullet();
+    }
+
+    public void DestroyBullet()
+    {
+        Destroy(gameObject, bulletLifeTime);
+    }
+
     private void Awake()
     {
         bulletPoolInstance= this;
