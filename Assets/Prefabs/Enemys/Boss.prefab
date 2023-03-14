@@ -157,6 +157,7 @@ MonoBehaviour:
   attackSpeed: 0
   isAlive: 0
   isHunt: 0
+  popular: 0
 --- !u!114 &-2940285969903947478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb1c058f5441214a90811c5f115a673, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossBulletPrefab: {fileID: 8983720221459613865, guid: b1a3b4bb2a4b0fc46a6eff6032d0b68a, type: 3}
   bulletsAmount: 10
   startAngle: 0
   endAngle: 360

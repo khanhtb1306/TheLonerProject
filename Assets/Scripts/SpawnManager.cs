@@ -26,7 +26,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        InvokeRepeating("SpawnEnemies", 0f, 10f);
+        //InvokeRepeating("SpawnEnemies", 0f, 10f);
       
 
 
@@ -86,7 +86,7 @@ public class SpawnManager : Singleton<SpawnManager>
             yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
             // Wait for the spawn delay before spawning another boss
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(5);
             SpawnBoss();
         }
     }
