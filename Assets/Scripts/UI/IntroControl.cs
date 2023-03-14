@@ -9,7 +9,6 @@ public class IntroControl : Singleton<IntroControl>
     private Image introImage;
 
     public List<Sprite> introImages;
-    public Button skip;
 
     private void Start()
     {
