@@ -3285,6 +3285,9 @@ MonoBehaviour:
   player: {fileID: 0}
   totalEnemies: 10
   isBossAlive: 0
+  isAntAliveIntro: 1
+  isBeeAliveIntro: 1
+  isRangedAliveIntro: 1
   skillButton: {fileID: 0}
 --- !u!114 &1970587382
 MonoBehaviour:

@@ -24,8 +24,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        IntroGame();
-        
+        IntroGame(); 
         InvokeRepeating("SpawnEnemies", 0f, 10f);
         StartCoroutine(SpawnBosses());
 
@@ -67,7 +66,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false)
+            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false && isIntro == false)
             {
                 GameManager.instance.isBossAlive = true;
                 Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
@@ -103,7 +102,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 SpawnEachEnemy(item, 1);
             }
         }
-        yield return new WaitUntil(() => GameManager.instance.isAntAlive == false);
+        yield return new WaitUntil(() => GameManager.instance.isAntAliveIntro == false);
 
         foreach (var item in GameManager.instance.Enemies)
         {
@@ -112,7 +111,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 SpawnEachEnemy(item, 1);
             }
         }
-        yield return new WaitUntil(() => GameManager.instance.isBeeAlive == false);
+        yield return new WaitUntil(() => GameManager.instance.isBeeAliveIntro == false);
 
         foreach (var item in GameManager.instance.Enemies)
         {
@@ -121,7 +120,17 @@ public class SpawnManager : Singleton<SpawnManager>
                 SpawnEachEnemy(item, 1);
             }
         }
-        yield return new WaitUntil(() => GameManager.instance.isRangedAlive == false);
+        yield return new WaitUntil(() => GameManager.instance.isRangedAliveIntro == false);
+
+        foreach (var item in GameManager.instance.Enemies)
+        {
+            if (item.enemyType == EnemyType.Boss)
+            {
+                SpawnEachEnemy(item, 1);
+            }
+        }
+        yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
+
         isIntro = false;
     }
 
