@@ -13,17 +13,7 @@ public class BulletPool : MonoBehaviour
 
     private List<GameObject> bullets;
 
-    public float bulletLifeTime = 1f;
     // Update is called once per frame
-    void Update()
-    {
-        DestroyBullet();
-    }
-
-    public void DestroyBullet()
-    {
-        Destroy(gameObject, bulletLifeTime);
-    }
 
     private void Awake()
     {
@@ -36,26 +26,26 @@ public class BulletPool : MonoBehaviour
         bullets= new List<GameObject>();
     }
 
-    public GameObject GetBullet()
-    {
-        if (bullets.Count > 0)
-        {
-            for (int i = 0; i < bullets.Count; i++)
-            {
-                if (!bullets[i].activeInHierarchy)
-                {
-                    return bullets[i];
-                }
-            }
-        }
+    //public GameObject GetBullet()
+    //{
+    //    if (bullets.Count > 0)
+    //    {
+    //        for (int i = 0; i < bullets.Count; i++)
+    //        {
+    //            if (!bullets[i].activeInHierarchy)
+    //            {
+    //                return bullets[i];
+    //            }
+    //        }
+    //    }
 
-        if (notEnoughBulletsInPool)
-        {
-            GameObject bul = Instantiate(poolBullet);
-            bul.SetActive(false);
-            bullets.Add(bul);
-            return bul;
-        }
-        return null;
-    }
+    //    if (notEnoughBulletsInPool)
+    //    {
+    //        GameObject bul = Instantiate(poolBullet);
+    //        bul.SetActive(false);
+    //        bullets.Add(bul);
+    //        return bul;
+    //    }
+    //    return null;
+    //}
 }
