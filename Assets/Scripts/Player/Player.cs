@@ -219,7 +219,7 @@ public class Player : MonoBehaviour
     {
         if (curHealth <= 0)
         {
-            GameManager.instance.EndGame();
+            ButtonControl.instance.GameOver();
         }
     }
 

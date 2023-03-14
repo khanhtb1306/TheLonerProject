@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonControl : MonoBehaviour
+public class ButtonControl : Singleton<ButtonControl>
 {
     public GameObject pauseMenuScreen;
     public GameObject gameOverScreen;
@@ -30,6 +30,13 @@ public class ButtonControl : MonoBehaviour
         Time.timeScale = 0;
         pauseMenuScreen.SetActive(true);
     }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        gameOverScreen.SetActive(true);
+    }
+
     public void HandleResumeButtonOnClickEvent()
     {
         Time.timeScale = 1;
