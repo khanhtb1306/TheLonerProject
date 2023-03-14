@@ -4,25 +4,51 @@ using UnityEngine;
 
 public enum BulletStyle
 {
-    BulletPistol,
-    BulletFast,
-    BulletStrong,
+    bulletPistol,
+    bulletFart,
+    bulletStrong,
     Bom,
 }
 
 public class GunBullet : MonoBehaviour
 {
+
+    public BulletStyle style;
+
     public float bulletLifeTime = 3f;
     public float damage = 10;
-    // Update is called once per frame
+    public float bulletForce;
 
-    public float bulletForce = 10;
-
-    public void Fire()
+    public void SetUp()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
+        switch (style)
+        {
+            case BulletStyle.bulletPistol:
+                damage = 10;
+                bulletForce = 25;
+                break;
+            case BulletStyle.bulletFart:
+                damage = 15;
+                bulletForce = 40;
+                break;
+            case BulletStyle.bulletStrong:
+                damage = 30;
+                bulletForce = 15;
+                break;
+            case BulletStyle.Bom:
+                damage = 100;
+                bulletForce = 40;
+                break;
+        }
     }
+
+    public void Fire(Vector3 direction)
+    {
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
+    }
+
 
     void Update()
     {

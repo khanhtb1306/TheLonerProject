@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     public WeaponStyle style;
     public float quantity;
     public GameObject bulletPrefab;
+    public GunBullet gunBullet;
     public float bulletForce;
     public float ultimateBulletSpeed = 20f;
     public float missileSpeed = 10f;
@@ -88,7 +89,17 @@ public class Weapon : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(transform.right * bulletForce, ForceMode2D.Impulse);
     }
+    //public void ShootPistol()
+    //{
+    //    if (bulletPrefab == null)
+    //    {
+    //        Debug.LogError("bulletPrefab has not been assigned!");
+    //        return;
+    //    }
 
+    //    GunBullet bullet = Instantiate(gunBullet, transform.position, transform.rotation);
+    //    bullet.GetComponent<GunBullet>().Fire(transform.forward);
+    //}
 
     public void ShootFast()
     {

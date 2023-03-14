@@ -11,6 +11,7 @@ public class GameManager : Singleton<GameManager>
     public List<Buff> Buffs;
     public List<Weapon> Weapons;
     public List<Enemies> Enemies;
+    public List<GunBullet> Bullet;
     public Player player;
 
     public int totalEnemies = 10;

@@ -993,7 +993,7 @@ PrefabInstance:
     - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: firstWeapon
       value: 
-      objectReference: {fileID: -4833847005105964476, guid: bb10adb16aa7c4a4f925483a3a48e452, type: 3}
+      objectReference: {fileID: -4833847005105964476, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
     - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: gunSpawnPos
       value: 
@@ -3323,6 +3323,11 @@ MonoBehaviour:
   - {fileID: 7969016790558176023, guid: a2f56e0142cbf6b4ea1465fa61172bcd, type: 3}
   - {fileID: 4061026008096901555, guid: e0a7468c5565216419a5f018030df2bf, type: 3}
   - {fileID: 7794859326587936032, guid: ff1348f693639ce4ca9d7a861d6b16d2, type: 3}
+  Bullet:
+  - {fileID: 3585432991636945113, guid: 04be8f92b76a6f645b12e79aac164e36, type: 3}
+  - {fileID: 3585432991636945113, guid: 5f3b3c1c10d67da41bdaa63f86b1da95, type: 3}
+  - {fileID: 3585432991636945113, guid: d7c4df7ef69e1ed47a965753c197d58d, type: 3}
+  - {fileID: 3585432991636945113, guid: 47ab14ebc80673f4787981ddd0ad364c, type: 3}
   player: {fileID: 0}
   totalEnemies: 10
   isBossAlive: 0
