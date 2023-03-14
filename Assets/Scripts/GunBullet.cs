@@ -46,7 +46,7 @@ public class GunBullet : MonoBehaviour
                 StrongUltimateBullet(Time);
                 break;
             case BulletStyle.Bom:
-                Destroy(gameObject, Time);
+                BoomBullet(Time);
                 break;
         }
     }
@@ -71,16 +71,16 @@ public class GunBullet : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         GunBullet extraBullet = GameManager.instance.Bullet[0];
-        float halfConeAngle = (10 - 1) * 10f / 2f;
+        float halfConeAngle = (20 - 1) * 20f / 2f;
         //Vector2 direction = transform.right;
 
         GetComponent<Rigidbody2D>().velocity = transform.up * 0;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 20; j++)
             {
-                float angle = j * 36f - halfConeAngle;
+                float angle = j * 18f - halfConeAngle;
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 Vector2 rotatedDirection = rotation * transform.up;
                 GunBullet bullet = Instantiate(extraBullet, transform.position, Quaternion.identity);
@@ -92,31 +92,26 @@ public class GunBullet : MonoBehaviour
 
     }
 
+    public void BoomBullet(float time)
+    {
+        StartCoroutine(Boom(time));
+    }
+    private IEnumerator Boom(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GetComponent<Rigidbody2D>().velocity = transform.up * 0;
+        Collider2D[] colliders = Physics2D.OverlapAreaAll(gameObject.transform.position, gameObject.transform.position + new Vector3(10, 10,0));
+        foreach(Collider2D collider in colliders)
+        {
+            Enemies e = collider.gameObject.GetComponent<Enemies>();
+            if (e != null)
+            {
+                e.TakeDamage(damage);
+                //Destroy(e.gameObject);
+            }
+        }
+        Destroy(gameObject);
+    }
 
-
-
-   
-
-    //private IEnumerator FireBulletsStrong()
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    float halfConeAngle = (10 - 1) * 10f / 2f;
-    //    Vector2 direction = transform.right;
-
-    //    GetComponent<Rigidbody2D>().velocity = direction * 15;
-
-    //    for (int i = 0; i < 10; i++)
-    //    {
-    //        for (int j = 0; j < 10; j++)
-    //        {
-    //            float angle = j * 36f - halfConeAngle;
-    //            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    //            Vector2 rotatedDirection = rotation * direction;
-    //            GameObject spawnedBullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-    //            spawnedBullet.GetComponent<Rigidbody2D>().velocity = rotatedDirection * 15;
-    //        }
-    //        yield return new WaitForSeconds(0.1f);
-    //    }
-    //}
 
 }
