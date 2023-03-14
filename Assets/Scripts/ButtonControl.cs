@@ -10,7 +10,7 @@ public class ButtonControl : Singleton<ButtonControl>
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
     public void HandlePlayButtonOnClickEvent()
     {
@@ -23,8 +23,10 @@ public class ButtonControl : Singleton<ButtonControl>
     }
     public void ReplayLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SampleScene");
     }
+   
     public void HandlePauseButtonOnClickEvent()
     {
         Time.timeScale = 0;
@@ -49,6 +51,6 @@ public class ButtonControl : Singleton<ButtonControl>
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
