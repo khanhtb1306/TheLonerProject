@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MapController : MonoBehaviour
+public class MapController : Singleton<MapController>
 {
     public GameObject[] mapPrefabs;
     public Camera cameraObject;
@@ -22,7 +22,7 @@ public class MapController : MonoBehaviour
         mapHeight = mapPrefabs[0].GetComponent<Renderer>().bounds.size.y;
         SetupMap();
     }
-    private void SetupMap()
+    public void SetupMap()
     {
         float xPos = cameraObject.transform.position.x;
         float yPos = cameraObject.transform.position.y;

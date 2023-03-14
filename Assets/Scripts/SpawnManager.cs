@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
-    private static bool isIntro = true;
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -44,7 +43,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType != EnemyType.Boss && isIntro == false)
+            if (item.enemyType != EnemyType.Boss && GameManager.instance.isIntro == false)
             {
                 SpawnEachEnemy(item, AmountEnemy(item));
             }
@@ -66,7 +65,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false && isIntro == false)
+            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false && GameManager.instance.isIntro == false)
             {
                 GameManager.instance.isBossAlive = true;
                 Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
@@ -79,7 +78,7 @@ public class SpawnManager : Singleton<SpawnManager>
         while (true)
         {
             // Wait until the boss is destroyed
-            yield return new WaitUntil(() => isIntro == false);
+            yield return new WaitUntil(() => GameManager.instance.isIntro == false);
             yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
             // Wait for the spawn delay before spawning another boss
@@ -95,6 +94,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private IEnumerator Intro()
     {
+        yield return new WaitForSeconds(1f);
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Ant)
@@ -127,19 +127,19 @@ public class SpawnManager : Singleton<SpawnManager>
         }
         yield return new WaitUntil(() => GameManager.instance.isRangedAliveIntro == false);
         Debug.Log("Ranged Done");
-
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Boss)
             {
                 SpawnEachEnemy(item, 1);
+                GameManager.instance.isBossAlive = true;
                 GameManager.instance.introControl.SetIntro(3);
 
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
-        isIntro = false;
+        GameManager.instance.isIntro = false;
     }
 
 
