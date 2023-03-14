@@ -53,12 +53,6 @@ public class FireBullet : MonoBehaviour
             Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
             Vector2 bulDir = (bulMoveVector - transform.position).normalized;
 
-            //GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
-
-            //bul.transform.position = transform.position;
-            //bul.transform.rotation = transform.rotation;
-            //bul.SetActive(true);
-            //bul.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
             GameObject a = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
             a.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
 
@@ -84,11 +78,6 @@ public class FireBullet : MonoBehaviour
                 Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
                 Vector2 bulDir = (bulMoveVector - transform.position).normalized;
 
-                //GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
-                //bul.transform.position = transform.position;
-                //bul.transform.rotation = transform.rotation;
-                //bul.SetActive(true);
-                //bul.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
                 GameObject a = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
                 a.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
 
@@ -117,12 +106,6 @@ public class FireBullet : MonoBehaviour
 
             Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
             Vector2 bulDir = (bulMoveVector - transform.position).normalized;
-
-            //GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
-            //bul.transform.position = transform.position;
-            //bul.transform.rotation = transform.rotation;
-            //bul.SetActive(true);
-            //bul.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);
 
             GameObject a = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
             a.GetComponent<BulletForBoss>().SetMoveDirection(bulDir);

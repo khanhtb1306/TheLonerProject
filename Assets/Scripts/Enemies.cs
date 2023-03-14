@@ -105,6 +105,14 @@ public class Enemies : MonoBehaviour
         {
             isAlive = false;
 
+            if (enemyType == EnemyType.Ant)
+            {
+                GameManager.instance.isAntAlive = false;
+            }
+            if (enemyType == EnemyType.Ranged)
+            {
+                GameManager.instance.isRangedAlive = false;
+            }
             if (enemyType == EnemyType.Boss)
             {
                 GameManager.instance.isBossAlive = false;
@@ -255,6 +263,7 @@ public class Enemies : MonoBehaviour
             if (enemyType == EnemyType.Bee)
             {
                 DestroyEnemies();
+                GameManager.instance.isBeeAlive = false;
                 AttackPlayer();
             }
 

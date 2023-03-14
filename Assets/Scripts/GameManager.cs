@@ -16,6 +16,9 @@ public class GameManager : Singleton<GameManager>
 
     public int totalEnemies = 10;
     public bool isBossAlive = false;
+    public bool isAntAlive = true;
+    public bool isBeeAlive = true;
+    public bool isRangedAlive = true;
     public SkillButton skillButton;
 
     

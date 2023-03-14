@@ -6,9 +6,7 @@ using UnityEngine;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
-
-
-    Timer timer;
+    private static bool isIntro = true;
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -26,10 +24,9 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        //InvokeRepeating("SpawnEnemies", 0f, 10f);
-      
-
-
+        IntroGame();
+        
+        InvokeRepeating("SpawnEnemies", 0f, 10f);
         StartCoroutine(SpawnBosses());
 
     }
@@ -48,7 +45,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType != EnemyType.Boss)
+            if (item.enemyType != EnemyType.Boss && isIntro == false)
             {
                 SpawnEachEnemy(item, AmountEnemy(item));
             }
@@ -83,26 +80,51 @@ public class SpawnManager : Singleton<SpawnManager>
         while (true)
         {
             // Wait until the boss is destroyed
+            yield return new WaitUntil(() => isIntro == false);
             yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
             // Wait for the spawn delay before spawning another boss
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(50);
             SpawnBoss();
         }
     }
 
-    //private IEnumerator SpawnBoss()
-    //{
-    //    foreach (var item in GameManager.instance.Enemies)
-    //    {
-    //        if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false)
-    //        {
-    //            GameManager.instance.isBossAlive = true;
-    //            Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
-    //        }
-    //    }
-    //    yield return new WaitForSeconds(50);
-    //}
+    private void IntroGame()
+    {
+        StartCoroutine(Intro());
+    }
+
+    private IEnumerator Intro()
+    {
+        foreach (var item in GameManager.instance.Enemies)
+        {
+            if (item.enemyType == EnemyType.Ant)
+            {
+                SpawnEachEnemy(item, 1);
+            }
+        }
+        yield return new WaitUntil(() => GameManager.instance.isAntAlive == false);
+
+        foreach (var item in GameManager.instance.Enemies)
+        {
+            if (item.enemyType == EnemyType.Bee)
+            {
+                SpawnEachEnemy(item, 1);
+            }
+        }
+        yield return new WaitUntil(() => GameManager.instance.isBeeAlive == false);
+
+        foreach (var item in GameManager.instance.Enemies)
+        {
+            if (item.enemyType == EnemyType.Ranged)
+            {
+                SpawnEachEnemy(item, 1);
+            }
+        }
+        yield return new WaitUntil(() => GameManager.instance.isRangedAlive == false);
+        isIntro = false;
+    }
+
 
     public void SpawnWeapon(Transform tf)
     {
