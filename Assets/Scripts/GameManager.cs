@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
     public bool isBeeAliveIntro = true;
     public bool isRangedAliveIntro = true;
     public SkillButton skillButton;
+    public IntroControl introControl;
 
     
     // Update is called once per frame

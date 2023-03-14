@@ -113,6 +113,10 @@ public class Enemies : MonoBehaviour
             {
                 GameManager.instance.isRangedAliveIntro = false;
             }
+            if (enemyType == EnemyType.Bee)
+            {
+                GameManager.instance.isBeeAliveIntro = false;
+            }
             if (enemyType == EnemyType.Boss)
             {
                 GameManager.instance.isBossAlive = false;
