@@ -482,7 +482,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297527029}
   m_CullTransparentMesh: 1
-
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,7 +2252,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488739188}
   m_CullTransparentMesh: 1
-
 --- !u!1 &1509173244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3518,6 +3516,7 @@ MonoBehaviour:
   isBeeAliveIntro: 1
   isRangedAliveIntro: 1
   skillButton: {fileID: 0}
+  introControl: {fileID: 2142679572}
 --- !u!114 &1970587382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3865,7 +3864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2142679569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3937,7 +3936,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b33eb9f51968e4ead6b9d5afec59d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  introImage: {fileID: 2142679570}
   introImages:
-  - {fileID: 21300000, guid: 2e254104d6a46ee4e876b862ba46723e, type: 3}
   - {fileID: 21300000, guid: 2da6c0d1ffb94c84ea3e5003a959e722, type: 3}
-  skip: {fileID: 1302799515}
+  - {fileID: 21300000, guid: 2e254104d6a46ee4e876b862ba46723e, type: 3}
+  - {fileID: 21300000, guid: c440dd60c10b91e4b86d3eae81934a36, type: 3}
+  - {fileID: 21300000, guid: 1225aefc273e1d04ca7cba36d2491e27, type: 3}

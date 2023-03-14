@@ -100,33 +100,41 @@ public class SpawnManager : Singleton<SpawnManager>
             if (item.enemyType == EnemyType.Ant)
             {
                 SpawnEachEnemy(item, 1);
+                GameManager.instance.introControl.SetIntro(0);
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isAntAliveIntro == false);
-
+        Debug.Log("Ant Done");
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Bee)
             {
                 SpawnEachEnemy(item, 1);
+                GameManager.instance.introControl.SetIntro(1);
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBeeAliveIntro == false);
+        Debug.Log("Bee Done");
 
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Ranged)
             {
                 SpawnEachEnemy(item, 1);
+                GameManager.instance.introControl.SetIntro(2);
+
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isRangedAliveIntro == false);
+        Debug.Log("Ranged Done");
 
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Boss)
             {
                 SpawnEachEnemy(item, 1);
+                GameManager.instance.introControl.SetIntro(3);
+
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);

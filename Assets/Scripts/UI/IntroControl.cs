@@ -3,23 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IntroControl : Singleton<IntroControl> 
+public class IntroControl : MonoBehaviour
 {
 
-    private Image introImage;
+    public Image introImage;
 
     public List<Sprite> introImages;
 
-    private void Start()
-    {
-        introImage = GetComponent<Image>();
-        SkipIntro();
-    }
     public void SetIntro(int index)
     {
-        Time.timeScale = 0;
         this.gameObject.SetActive(true);
-        introImage.sprite = introImages[index];
+        introImage.sprite = 
+            introImages[index];
+        Time.timeScale = 0;
+
     }
     public void SkipIntro()
     {
