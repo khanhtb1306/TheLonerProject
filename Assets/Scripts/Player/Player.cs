@@ -117,12 +117,12 @@ public class Player : MonoBehaviour
 
     public void Shoot()
     {
-        curWeapon.Shoot();
+        curWeapon.Shoot(transform.up);
     }
 
     public void UltiShoot()
     {
-        curWeapon.UltiShoot();
+        curWeapon.UltiShoot(transform.up);
     }
 
     public void BuffSkill()

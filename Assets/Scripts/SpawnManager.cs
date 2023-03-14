@@ -26,10 +26,8 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        //InvokeRepeating("SpawnEnemies", 0f, 10f);
-        timer = gameObject.AddComponent<Timer>();
-        timer.Duarion = 5;
-        timer.Run();
+        InvokeRepeating("SpawnEnemies", 0f, 10f);
+      
 
 
         StartCoroutine(SpawnBosses());
