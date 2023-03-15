@@ -35,13 +35,7 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    // Update is called once per frame
-    public void StartGame() { }
-    public void PauseGame() { }
-    public void EndGame()
-    {
-
-    }
+ 
     private void Awake()
     {
         ResetState();

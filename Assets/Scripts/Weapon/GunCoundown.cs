@@ -18,9 +18,10 @@ public class GunCoundown : MonoBehaviour
     {
         if (!GameManager.instance.player.curWeapon.norReady)
         {
-            imageCount.fillAmount -= 1 / cooldown * Time.deltaTime;
-            if(imageCount.fillAmount <= 0)
+            imageCount.fillAmount -= Time.deltaTime / cooldown;
+            if (imageCount.fillAmount <= 0)
             {
+                GameManager.instance.player.curWeapon.norReady = true;
                 imageCount.fillAmount = 1;
             }
         }

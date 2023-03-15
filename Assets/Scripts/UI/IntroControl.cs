@@ -30,7 +30,7 @@ public class IntroControl : MonoBehaviour
         {
             Time.timeScale = 1;
             gameObject.SetActive(false);
-            ButtonControl.instance.isShowIntro = true;
+            ButtonControl.instance.isShowIntro = false;
         }
     }
     public void SetIntro1()

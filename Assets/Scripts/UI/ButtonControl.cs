@@ -35,7 +35,7 @@ public class ButtonControl : Singleton<ButtonControl>
     }
     private void Update()
     {
-        if(isGamePause)
+        if(isGamePause || isShowIntro)
         {
             Time.timeScale = 0;
         }
