@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MapController : Singleton<MapController>
+public class MapController : MonoBehaviour
 {
     public GameObject[] mapPrefabs;
     public Camera cameraObject;
