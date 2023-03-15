@@ -19,7 +19,5 @@ public class CountBarControl : MonoBehaviour
     {
        
            imageCount.fillAmount -= 1 / cooldown * Time.unscaledDeltaTime;
-        
-        
     }
 }
