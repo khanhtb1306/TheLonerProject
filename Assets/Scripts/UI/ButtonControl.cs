@@ -7,11 +7,12 @@ public class ButtonControl : Singleton<ButtonControl>
 {
     public GameObject pauseMenuScreen;
     public GameObject gameOverScreen;
+    public GameObject pauseButton;
+
+
     // Start is called before the first frame update
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+
+
     public void HandlePlayButtonOnClickEvent()
     {
         StartCoroutine(WaitForStart());
@@ -21,15 +22,17 @@ public class ButtonControl : Singleton<ButtonControl>
     IEnumerator WaitForStart()
     {
 
+      
+
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 0;
+       
         SoundController.instance.PlayGameStart();
-        Debug.Log("123");
 
-        yield return new WaitForSecondsRealtime(3);
-        Debug.Log("abc");
+       
+        yield return new WaitForSecondsRealtime(SoundController.instance.GameStart.length);
+        pauseButton.SetActive(true);
         Time.timeScale = 1;
-
     }
     public void HandleQuitButtonOnClickEvent()
     {
@@ -37,30 +40,43 @@ public class ButtonControl : Singleton<ButtonControl>
     }
     public void ReplayLevel()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("SampleScene");
-    }
 
+        pauseMenuScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
+        HandlePlayButtonOnClickEvent();
+       
+
+    }
     public void HandlePauseButtonOnClickEvent()
     {
-        Time.timeScale = 0;
         pauseMenuScreen.SetActive(true);
+        GameManager.instance.isGamePause = true;
+        Time.timeScale = 0;
     }
-
     public void GameOver()
     {
-        Time.timeScale = 0;
         gameOverScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void HandleResumeButtonOnClickEvent()
     {
-        Time.timeScale = 1;
+        
+        if(GameManager.instance.showIntro == false)
+        {
+            Time.timeScale = 1;
+        }
+        GameManager.instance.isGamePause = false;
         pauseMenuScreen.SetActive(false);
     }
     public void GoToMenu()
     {
+
+        pauseButton.SetActive(false);
+        gameOverScreen.SetActive(false);
+        pauseMenuScreen.SetActive(false);
         SceneManager.LoadScene("MenuScenes");
+
     }
     // Update is called once per frame
     void Update()
