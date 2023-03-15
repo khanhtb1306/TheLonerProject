@@ -133,7 +133,8 @@ public class Weapon : MonoBehaviour
                 float angle = j * 6f - halfConeAngle;
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 Vector2 rotatedDirection = rotation * direction;
-                Shoot(rotatedDirection);
+                GunBullet bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+                bullet.Fire(rotatedDirection, bulletForce);
             }
             yield return new WaitForSeconds(0.2f);
         }
