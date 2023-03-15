@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         healthBar.value = curHealth;
+        if (curWeapon.quantity <= 0)
+        {
+            ChangeWeapon(firstWeapon);
+        }
     }
 
     private void LateUpdate()
@@ -185,15 +189,11 @@ public class Player : MonoBehaviour
     public void ChangeWeapon(Weapon newWeapon)
     {
         Debug.Log("change");
-        if (curWeapon.style != newWeapon.style)
-        {
             Debug.Log("change");
             Destroy(curWeapon.gameObject);
             curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
             curWeapon.transform.SetParent(this.transform);
             UtilCountDown.instance.cooldown = curWeapon.ultCd;
-        }
-
     }
 
     public void ChangeBuffSkill(Buff newBuff)
