@@ -22,8 +22,6 @@ public class ButtonControl : Singleton<ButtonControl>
     IEnumerator WaitForStart()
     {
 
-      
-
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 0;
        
@@ -32,6 +30,7 @@ public class ButtonControl : Singleton<ButtonControl>
        
         yield return new WaitForSecondsRealtime(SoundController.instance.GameStart.length);
         pauseButton.SetActive(true);
+
         Time.timeScale = 1;
     }
     public void HandleQuitButtonOnClickEvent()
@@ -40,6 +39,7 @@ public class ButtonControl : Singleton<ButtonControl>
     }
     public void ReplayLevel()
     {
+
 
         pauseMenuScreen.SetActive(false);
         gameOverScreen.SetActive(false);
