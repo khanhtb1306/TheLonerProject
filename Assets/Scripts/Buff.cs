@@ -71,6 +71,7 @@ public class Buff : MonoBehaviour
 
         if (p != null)
         {
+
             if(GameManager.instance.isStrongInfo && style == BuffStyle.strong)
             {
                 GameManager.instance.introControl.SetIntro(0);
@@ -93,6 +94,7 @@ public class Buff : MonoBehaviour
             {
                 GameManager.instance.introControl.SetIntro(0);
                 GameManager.instance.isImmortalInfo = false;
+
             }
             p.ChangeBuffSkill(this);
             GameManager.instance.skillButton.ChangeAvatar();

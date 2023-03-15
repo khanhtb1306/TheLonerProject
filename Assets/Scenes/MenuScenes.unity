@@ -467,7 +467,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 387958627}
   m_Enabled: 1
   m_EditorHideFlags: 0
+
   m_Script: {fileID: 11500000, guid: 7cd71b4d736b6f74885760b72277f972, type: 3}
+
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &462074237
@@ -828,7 +830,9 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2046308398}
         m_TargetAssemblyTypeName: ButtonControl, Assembly-CSharp
+
         m_MethodName: ReplayLevel
+
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1966,6 +1970,10 @@ GameObject:
   - component: {fileID: 1726521537}
   - component: {fileID: 1726521536}
   - component: {fileID: 1726521539}
+
+
+ 
+
   m_Layer: 0
   m_Name: Sound Controller
   m_TagString: Untagged
@@ -2109,7 +2117,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1726521535}
   m_Enabled: 1
   m_EditorHideFlags: 0
+
   m_Script: {fileID: 11500000, guid: 7cd71b4d736b6f74885760b72277f972, type: 3}
+
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1826463951
@@ -2686,7 +2696,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2046308397}
   m_Enabled: 1
   m_EditorHideFlags: 0
+
   m_Script: {fileID: 11500000, guid: 7cd71b4d736b6f74885760b72277f972, type: 3}
+
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2133594411
