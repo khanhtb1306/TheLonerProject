@@ -71,6 +71,11 @@ public class Buff : MonoBehaviour
 
         if (p != null)
         {
+            if (GameManager.instance.isDashIntro && buffskill == BuffSkillStyle.dashSkill)
+            {
+                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.isDashIntro = false;
+            }
             p.ChangeBuffSkill(this);
             GameManager.instance.skillButton.ChangeAvatar();
 

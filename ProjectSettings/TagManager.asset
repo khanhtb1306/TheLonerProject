@@ -10,6 +10,8 @@ TagManager:
   - Range
   - Pistol
   - Boss
+  - pauseMenu
+  - endMenu
   layers:
   - Default
   - TransparentFX

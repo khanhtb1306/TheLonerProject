@@ -13,7 +13,7 @@ public class SoundController : Singleton<SoundController>
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        
         AudioSource = GetComponent<AudioSource>();
     }
     public void PlayEnemyDead()
