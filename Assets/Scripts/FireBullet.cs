@@ -68,7 +68,7 @@ public class FireBullet : MonoBehaviour
 
     private IEnumerator DoubleSpiralShoot()
     {
-        for (int j = 0; j < 18; j++)
+        for (int j = 0; j < 20; j++)
         {
             for (int i = 0; i <= 1; i++)
             {
@@ -99,7 +99,7 @@ public class FireBullet : MonoBehaviour
 
     private IEnumerator SpiralShoot()
     {
-        for (int i = 0; i < 18; i++)
+        for (int i = 0; i < 20; i++)
         {
             float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
             float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);

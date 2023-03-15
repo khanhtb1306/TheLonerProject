@@ -108,7 +108,7 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isAntAliveIntro == false);
-        //Debug.Log("Ant Done");
+     
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Bee)
@@ -118,7 +118,6 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBeeAliveIntro == false);
-        //Debug.Log("Bee Done");
 
         foreach (var item in GameManager.instance.Enemies)
         {
@@ -130,7 +129,6 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isRangedAliveIntro == false);
-        //Debug.Log("Ranged Done");
 
         foreach (var item in GameManager.instance.Enemies)
         {
@@ -142,7 +140,6 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
-        Debug.Log("vao game");
         isIntro = false;
     }
 

@@ -32,8 +32,6 @@ public class ButtonControl : Singleton<ButtonControl>
        
         yield return new WaitForSecondsRealtime(SoundController.instance.GameStart.length);
         pauseButton.SetActive(true);
-
-r
         Time.timeScale = 1;
     }
     public void HandleQuitButtonOnClickEvent()

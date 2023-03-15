@@ -40,7 +40,7 @@ public class Enemies : MonoBehaviour
         isAlive = true;
         isHunt = false;
         endPoint = Gennerate();
-        timer.Duarion = 3;
+        timer.Duarion = 2;
         timer.Run();
     }
 
@@ -184,8 +184,12 @@ public class Enemies : MonoBehaviour
             if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < 10f)
             {
                 Vector3 pl = GameManager.instance.player.transform.position;
-                Hunt(pl, movementSpeed);
-                
+                if (timer.Finished)
+                {
+                    Hunt(pl, movementSpeed);
+
+                }
+                    
             }
             else
             {
@@ -214,7 +218,7 @@ public class Enemies : MonoBehaviour
                 if (timer.Finished)
                 {
                     AttackPlayer();
-                    timer.Duarion = 3;
+                    timer.Duarion = 2;
                     timer.Run();
                 }
 
