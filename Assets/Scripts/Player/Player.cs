@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
-    [SerializeField] private Weapon curWeapon;
+    [SerializeField] public Weapon curWeapon;
     [SerializeField] private Buff curBuff;
 
     private Vector2 movementInput;
