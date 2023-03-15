@@ -468,6 +468,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
 
+
   m_Script: {fileID: 11500000, guid: 7cd71b4d736b6f74885760b72277f972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -829,13 +830,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2046308398}
         m_TargetAssemblyTypeName: ButtonControl, Assembly-CSharp
-
-        m_MethodName: ReplayLevel
-
-        m_Mode: 1
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

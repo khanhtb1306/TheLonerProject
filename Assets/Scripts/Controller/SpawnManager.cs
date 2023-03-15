@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
-    private static bool isIntro = true;
 
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
@@ -24,7 +23,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        IntroGame(); 
+        IntroGame();
         InvokeRepeating("SpawnEnemies", 0f, 10f);
         StartCoroutine(SpawnBosses());
 
@@ -32,7 +31,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     void Update()
     {
-        
+
     }
 
     public float AmountEnemy(Enemies enemyType)
@@ -44,33 +43,29 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType != EnemyType.Boss && GameManager.instance.isBossAlive == false)
+            if (item.enemyType != EnemyType.Boss && GameManager.instance.isIntro == false)
             {
-                if (isIntro == false)
-                {
-                    SpawnEachEnemy(item, AmountEnemy(item));
-                } 
-                
+                SpawnEachEnemy(item, AmountEnemy(item));
             }
         }
     }
 
     public void SpawnEachEnemy(Enemies enemyType, float amount)
     {
-        //if (GameManager.instance.isBossAlive == false)
-        //{
+        if (GameManager.instance.isBossAlive == false)
+        {
             for (int i = 0; i < amount; i++)
             {
                 Instantiate(enemyType, Gennerate(), Quaternion.identity);
             }
-        //}
+        }
     }
 
     public void SpawnBoss()
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false && isIntro == false)
+            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false && GameManager.instance.isIntro == false)
             {
                 GameManager.instance.isBossAlive = true;
                 Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
@@ -83,7 +78,7 @@ public class SpawnManager : Singleton<SpawnManager>
         while (true)
         {
             // Wait until the boss is destroyed
-            yield return new WaitUntil(() => isIntro == false);
+            yield return new WaitUntil(() => GameManager.instance.isIntro == false);
             yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
             // Wait for the spawn delay before spawning another boss
@@ -99,6 +94,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private IEnumerator Intro()
     {
+        yield return new WaitForSeconds(1f);
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Ant)
@@ -108,7 +104,7 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isAntAliveIntro == false);
-     
+        Debug.Log("Ant Done");
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Bee)
@@ -118,6 +114,7 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBeeAliveIntro == false);
+        Debug.Log("Bee Done");
 
         foreach (var item in GameManager.instance.Enemies)
         {
@@ -129,18 +126,20 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isRangedAliveIntro == false);
-
+        Debug.Log("Ranged Done");
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Boss)
             {
                 SpawnEachEnemy(item, 1);
+                GameManager.instance.isBossAlive = true;
                 GameManager.instance.introControl.SetIntro(3);
 
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
-        isIntro = false;
+
+        GameManager.instance.isIntro = false;
     }
 
 
@@ -159,24 +158,18 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public Vector3 Gennerate()
     {
-        Vector3 a = Vector3.zero;
-        do
-        {
-            float screenWidth = Screen.width;
-            float screenHeight = Screen.height;
-            // save screen edges in world coordinates
-            float screenZ = -Camera.main.transform.position.z;
-            Vector3 lowerLeftCornerScreen = new Vector3(0, 0, screenZ);
-            Vector3 upperRightCornerScreen = new Vector3(screenWidth, screenHeight, screenZ);
-            Vector3 lowerLeftCornerWorld = Camera.main.ScreenToWorldPoint(lowerLeftCornerScreen);
-            Vector3 upperRightCornerWorld = Camera.main.ScreenToWorldPoint(upperRightCornerScreen);
-            float screenLeft = lowerLeftCornerWorld.x;
-            float screenRight = upperRightCornerWorld.x;
-            float screenTop = upperRightCornerWorld.y;
-            float screenBottom = lowerLeftCornerWorld.y;
-            a = new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -1);
-        } while (Vector3.Distance(a, GameManager.instance.player.transform.position) < 15f);
-
-        return a;
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+        // save screen edges in world coordinates
+        float screenZ = -Camera.main.transform.position.z;
+        Vector3 lowerLeftCornerScreen = new Vector3(0, 0, screenZ);
+        Vector3 upperRightCornerScreen = new Vector3(screenWidth, screenHeight, screenZ);
+        Vector3 lowerLeftCornerWorld = Camera.main.ScreenToWorldPoint(lowerLeftCornerScreen);
+        Vector3 upperRightCornerWorld = Camera.main.ScreenToWorldPoint(upperRightCornerScreen);
+        float screenLeft = lowerLeftCornerWorld.x;
+        float screenRight = upperRightCornerWorld.x;
+        float screenTop = upperRightCornerWorld.y;
+        float screenBottom = lowerLeftCornerWorld.y;
+        return new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -1);
     }
 }
