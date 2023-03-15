@@ -821,11 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_Mass
-      value: 0.1
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_BodyType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_GravityScale
@@ -3510,13 +3510,14 @@ MonoBehaviour:
   - {fileID: 3585432991636945113, guid: d7c4df7ef69e1ed47a965753c197d58d, type: 3}
   - {fileID: 3585432991636945113, guid: 47ab14ebc80673f4787981ddd0ad364c, type: 3}
   player: {fileID: 0}
+  skillButton: {fileID: 0}
+  introControl: {fileID: 2142679572}
   totalEnemies: 10
   isBossAlive: 0
   isAntAliveIntro: 1
   isBeeAliveIntro: 1
   isRangedAliveIntro: 1
-  skillButton: {fileID: 0}
-  introControl: {fileID: 2142679572}
+  isIntro: 0
 --- !u!114 &1970587382
 MonoBehaviour:
   m_ObjectHideFlags: 0
