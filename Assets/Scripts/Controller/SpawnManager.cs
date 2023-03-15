@@ -134,6 +134,7 @@ public class SpawnManager : Singleton<SpawnManager>
         {
             if (item.enemyType == EnemyType.Boss)
             {
+                GameManager.instance.isBossAlive = true;
                 SpawnEachEnemy(item, 1);
                 GameManager.instance.introControl.SetIntro(3);
 
