@@ -14,6 +14,14 @@ public class ButtonControl : Singleton<ButtonControl>
     }
     public void HandlePlayButtonOnClickEvent()
     {
+        StartCoroutine(WaitForStart());
+        
+    }
+
+    IEnumerator WaitForStart()
+    {
+        SoundController.instance.PlayGameStart();
+        yield return new WaitForSeconds(SoundController.instance.GameStart.length);
         Time.timeScale = 1;
         SceneManager.LoadScene("SampleScene");
     }

@@ -282,6 +282,7 @@ public class Enemies : MonoBehaviour
 
     public void DestroyEnemies()
     {
+        SoundController.instance.PlayEnemyDead();
         SpawnManager.instance.BuffSpawn(this.transform);
         SpawnManager.instance.SpawnWeapon(this.transform);
         Destroy(this.gameObject);
