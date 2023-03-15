@@ -94,8 +94,6 @@ public class Buff : MonoBehaviour
             {
                 GameManager.instance.introControl.SetIntro(0);
                 GameManager.instance.isImmortalInfo = false;
-
-
             }
             p.ChangeBuffSkill(this);
             GameManager.instance.skillButton.ChangeAvatar();

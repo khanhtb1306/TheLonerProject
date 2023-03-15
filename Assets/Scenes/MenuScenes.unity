@@ -832,8 +832,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ButtonControl, Assembly-CSharp
 
         m_MethodName: ReplayLevel
-
-
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

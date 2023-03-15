@@ -21,7 +21,6 @@ public class GameManager : Singleton<GameManager>
     public bool isAntAliveIntro ;
     public bool isBeeAliveIntro ;
     public bool isRangedAliveIntro ;
-
     public bool isDashInfo;
     public bool isImmortalInfo;
     public bool isBoomInfo;
@@ -52,7 +51,7 @@ public class GameManager : Singleton<GameManager>
     public void ResetState()
     {
         totalEnemies = 10;
-        isBossAlive = false;
+        isBossAlive = true;
         isAntAliveIntro = true;
         isBeeAliveIntro = true;
         isRangedAliveIntro = true;
@@ -63,7 +62,6 @@ public class GameManager : Singleton<GameManager>
         isSpeedInfo= true;
         isStrongInfo=true;
         isIntro = true;
-
         isGamePause = false;
         showIntro = false;
 
