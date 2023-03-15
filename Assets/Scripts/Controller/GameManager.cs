@@ -21,7 +21,17 @@ public class GameManager : Singleton<GameManager>
     public bool isAntAliveIntro ;
     public bool isBeeAliveIntro ;
     public bool isRangedAliveIntro ;
-    public bool isDashIntro;
+
+     public bool isDashInfo;
+    public bool isImmortalInfo;
+    public bool isBoomInfo;
+    public bool isSpeedInfo;
+    public bool isHealthInfo;
+    public bool isStrongInfo;
+
+
+
+
     public bool isIntro;
 
     public bool isGamePause;
@@ -46,8 +56,16 @@ public class GameManager : Singleton<GameManager>
         isAntAliveIntro = true;
         isBeeAliveIntro = true;
         isRangedAliveIntro = true;
+        isDashInfo = true;
+        isImmortalInfo = true;
+        isBoomInfo = true;
+        isHealthInfo= true;
+        isSpeedInfo= true;
+        isStrongInfo=true;
         isIntro = true;
-        isDashIntro = true;
+
+      
+
         isGamePause = false;
         showIntro = false;
 

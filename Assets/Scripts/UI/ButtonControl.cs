@@ -9,6 +9,7 @@ public class ButtonControl : Singleton<ButtonControl>
     public GameObject gameOverScreen;
     public GameObject pauseButton;
 
+
     // Start is called before the first frame update
 
 
@@ -20,13 +21,19 @@ public class ButtonControl : Singleton<ButtonControl>
 
     IEnumerator WaitForStart()
     {
+
+      
+
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 0;
+       
         SoundController.instance.PlayGameStart();
 
-        yield return new WaitForSecondsRealtime(3);
+       
+        yield return new WaitForSecondsRealtime(SoundController.instance.GameStart.length);
         pauseButton.SetActive(true);
 
+r
         Time.timeScale = 1;
     }
     public void HandleQuitButtonOnClickEvent()
@@ -35,16 +42,19 @@ public class ButtonControl : Singleton<ButtonControl>
     }
     public void ReplayLevel()
     {
-        HandlePlayButtonOnClickEvent();
-    }
 
+        pauseMenuScreen.SetActive(false);
+        gameOverScreen.SetActive(false);
+        HandlePlayButtonOnClickEvent();
+       
+
+    }
     public void HandlePauseButtonOnClickEvent()
     {
         pauseMenuScreen.SetActive(true);
         GameManager.instance.isGamePause = true;
         Time.timeScale = 0;
     }
-
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
