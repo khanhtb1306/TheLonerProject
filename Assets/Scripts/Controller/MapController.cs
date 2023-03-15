@@ -22,7 +22,7 @@ public class MapController : MonoBehaviour
         mapHeight = mapPrefabs[0].GetComponent<Renderer>().bounds.size.y;
         SetupMap();
     }
-    private void SetupMap()
+    public void SetupMap()
     {
         float xPos = cameraObject.transform.position.x;
         float yPos = cameraObject.transform.position.y;

@@ -12,20 +12,25 @@ public class IntroControl : MonoBehaviour
 
     public void SetIntro(int index)
     {
+        GameManager.instance.showIntro = true;
         this.gameObject.SetActive(true);
-        introImage.sprite = 
+        introImage.sprite =
             introImages[index];
         Time.timeScale = 0;
 
     }
     public void SkipIntro()
     {
-        Time.timeScale = 1;
-        this.gameObject.SetActive(false);
+        if (!GameManager.instance.isGamePause)
+        {
+            Time.timeScale = 1;
+            gameObject.SetActive(false);
+            GameManager.instance.showIntro = false;
+        }
     }
     public void SetIntro1()
     {
         SetIntro(1);
     }
-  
+
 }

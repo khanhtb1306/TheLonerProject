@@ -13,21 +13,62 @@ public class GameManager : Singleton<GameManager>
     public List<Enemies> Enemies;
     public List<GunBullet> Bullet;
     public Player player;
-
-    public int totalEnemies = 10;
-    public bool isBossAlive = true;
-    public bool isAntAliveIntro = true;
-    public bool isBeeAliveIntro = true;
-    public bool isRangedAliveIntro = true;
     public SkillButton skillButton;
     public IntroControl introControl;
 
-    
+    public int totalEnemies ;
+    public bool isBossAlive ;
+    public bool isAntAliveIntro ;
+    public bool isBeeAliveIntro ;
+    public bool isRangedAliveIntro ;
+
+     public bool isDashInfo;
+    public bool isImmortalInfo;
+    public bool isBoomInfo;
+    public bool isSpeedInfo;
+    public bool isHealthInfo;
+    public bool isStrongInfo;
+
+
+
+
+    public bool isIntro;
+
+    public bool isGamePause;
+    public bool showIntro;
+
+
     // Update is called once per frame
     public void StartGame() { }
     public void PauseGame() { }
-    public void EndGame() { 
-        
+    public void EndGame()
+    {
+
+    }
+    private void Awake()
+    {
+        ResetState();
+    }
+    public void ResetState()
+    {
+        totalEnemies = 10;
+        isBossAlive = false;
+        isAntAliveIntro = true;
+        isBeeAliveIntro = true;
+        isRangedAliveIntro = true;
+        isDashInfo = true;
+        isImmortalInfo = true;
+        isBoomInfo = true;
+        isHealthInfo= true;
+        isSpeedInfo= true;
+        isStrongInfo=true;
+        isIntro = true;
+
+      
+
+        isGamePause = false;
+        showIntro = false;
+
     }
 
     public void UpgradeAttribute()
@@ -45,19 +86,20 @@ public class GameManager : Singleton<GameManager>
                 enemyType.maxHealth += enemyType.maxHealth * 0.1f;
                 enemyType.damage += (int)Mathf.Round(enemyType.damage * 0.1f);
                 enemyType.movementSpeed += enemyType.movementSpeed * 0.1f;
-            } else
+            }
+            else
             {
                 enemyType.maxHealth += enemyType.maxHealth * 0.2f;
                 enemyType.damage += (int)Mathf.Round(enemyType.damage * 0.2f);
                 enemyType.movementSpeed += enemyType.movementSpeed * 0.1f;
 
             }
-           
+
         }
     }
 
     public void UpdateBuffAttribute()
     {
-       
+
     }
 }
