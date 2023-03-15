@@ -191,7 +191,9 @@ public class Player : MonoBehaviour
             Destroy(curWeapon.gameObject);
             curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
             curWeapon.transform.SetParent(this.transform);
+            UtilCountDown.instance.cooldown = curWeapon.ultCd;
         }
+
     }
 
     public void ChangeBuffSkill(Buff newBuff)

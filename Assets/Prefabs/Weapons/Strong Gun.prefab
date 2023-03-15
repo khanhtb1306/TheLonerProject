@@ -100,9 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   style: 2
   quantity: 0
-  normalBullet: {fileID: 3585432991636945113, guid: 04be8f92b76a6f645b12e79aac164e36, type: 3}
-  ultiBullet: {fileID: 3585432991636945113, guid: d7c4df7ef69e1ed47a965753c197d58d, type: 3}
-  bulletForce: 10
+  normalBullet: {fileID: 3585432991636945113, guid: b4d7ab5c55f36eb4c9d2ea0d8499982c, type: 3}
+  ultiBullet: {fileID: 3585432991636945113, guid: 04be8f92b76a6f645b12e79aac164e36, type: 3}
+  bulletForce: 15
   norCd: 0.6
   ultCd: 4
   norReady: 1
