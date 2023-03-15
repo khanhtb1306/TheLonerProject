@@ -101,7 +101,7 @@ MonoBehaviour:
   style: 3
   quantity: 0
   normalBullet: {fileID: 3585432991636945113, guid: 9ebf1be1956f4d34e82c44127d253358, type: 3}
-  ultiBullet: {fileID: 3585432991636945113, guid: 47ab14ebc80673f4787981ddd0ad364c, type: 3}
+  ultiBullet: {fileID: 3585432991636945113, guid: 9ebf1be1956f4d34e82c44127d253358, type: 3}
   bulletForce: 20
   norCd: 0.5
   ultCd: 10
