@@ -71,10 +71,30 @@ public class Buff : MonoBehaviour
 
         if (p != null)
         {
-            if (GameManager.instance.isDashIntro && buffskill == BuffSkillStyle.dashSkill)
+
+            if(GameManager.instance.isStrongInfo && style == BuffStyle.strong)
             {
                 GameManager.instance.introControl.SetIntro(0);
-                GameManager.instance.isDashIntro = false;
+                GameManager.instance.isStrongInfo= false;
+            }else if(GameManager.instance.isSpeedInfo && style == BuffStyle.speed) {
+                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.isSpeedInfo = false;
+            }else if(GameManager.instance.isHealthInfo && style == BuffStyle.health) {
+                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.isHealthInfo = false;
+            }else if (GameManager.instance.isDashInfo && buffskill == BuffSkillStyle.dashSkill)
+            {
+                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.isDashInfo = false;
+            }else if (GameManager.instance.isBoomInfo && buffskill == BuffSkillStyle.boomSkill)
+            {
+                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.isBoomInfo = false;
+            }else if (GameManager.instance.isImmortalInfo && buffskill == BuffSkillStyle.immortalSkill)
+            {
+                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.isImmortalInfo = false;
+
             }
             p.ChangeBuffSkill(this);
             GameManager.instance.skillButton.ChangeAvatar();
