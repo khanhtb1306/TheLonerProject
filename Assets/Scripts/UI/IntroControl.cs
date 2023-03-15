@@ -10,9 +10,14 @@ public class IntroControl : MonoBehaviour
 
     public List<Sprite> introImages;
 
+    private void Start()
+    {
+        GameManager.instance.introControl = this;
+        gameObject.SetActive(false);
+    }
     public void SetIntro(int index)
     {
-        GameManager.instance.showIntro = true;
+        ButtonControl.instance.isShowIntro = true;
         this.gameObject.SetActive(true);
         introImage.sprite =
             introImages[index];
@@ -21,11 +26,11 @@ public class IntroControl : MonoBehaviour
     }
     public void SkipIntro()
     {
-        if (!GameManager.instance.isGamePause)
+        if (!ButtonControl.instance.isGamePause)
         {
             Time.timeScale = 1;
             gameObject.SetActive(false);
-            GameManager.instance.showIntro = false;
+            ButtonControl.instance.isShowIntro = true;
         }
     }
     public void SetIntro1()

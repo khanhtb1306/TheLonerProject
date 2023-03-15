@@ -33,8 +33,6 @@ public class GameManager : Singleton<GameManager>
 
     public bool isIntro;
 
-    public bool isGamePause;
-    public bool showIntro;
 
 
     // Update is called once per frame
@@ -62,8 +60,6 @@ public class GameManager : Singleton<GameManager>
         isSpeedInfo= true;
         isStrongInfo=true;
         isIntro = true;
-        isGamePause = false;
-        showIntro = false;
 
     }
 

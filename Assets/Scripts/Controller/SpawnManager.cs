@@ -21,7 +21,8 @@ public class SpawnManager : Singleton<SpawnManager>
             Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf.position, Quaternion.identity);
         }
     }
-    void Start()
+
+     void  Start()
     {
         IntroGame();
         InvokeRepeating("SpawnEnemies", 0f, 10f);
@@ -29,10 +30,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
     }
 
-    void Update()
-    {
-
-    }
 
     public float AmountEnemy(Enemies enemyType)
     {
