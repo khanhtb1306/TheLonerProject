@@ -44,22 +44,26 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType != EnemyType.Boss && isIntro == false)
+            if (item.enemyType != EnemyType.Boss && GameManager.instance.isBossAlive == false)
             {
-                SpawnEachEnemy(item, AmountEnemy(item));
+                if (isIntro == false)
+                {
+                    SpawnEachEnemy(item, AmountEnemy(item));
+                } 
+                
             }
         }
     }
 
     public void SpawnEachEnemy(Enemies enemyType, float amount)
     {
-        if (GameManager.instance.isBossAlive == false)
-        {
+        //if (GameManager.instance.isBossAlive == false)
+        //{
             for (int i = 0; i < amount; i++)
             {
                 Instantiate(enemyType, Gennerate(), Quaternion.identity);
             }
-        }
+        //}
     }
 
     public void SpawnBoss()
@@ -104,7 +108,7 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isAntAliveIntro == false);
-        Debug.Log("Ant Done");
+        //Debug.Log("Ant Done");
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Bee)
@@ -114,7 +118,7 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBeeAliveIntro == false);
-        Debug.Log("Bee Done");
+        //Debug.Log("Bee Done");
 
         foreach (var item in GameManager.instance.Enemies)
         {
@@ -126,7 +130,7 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isRangedAliveIntro == false);
-        Debug.Log("Ranged Done");
+        //Debug.Log("Ranged Done");
 
         foreach (var item in GameManager.instance.Enemies)
         {
@@ -138,7 +142,7 @@ public class SpawnManager : Singleton<SpawnManager>
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
-
+        Debug.Log("vao game");
         isIntro = false;
     }
 
@@ -158,18 +162,24 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public Vector3 Gennerate()
     {
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
-        // save screen edges in world coordinates
-        float screenZ = -Camera.main.transform.position.z;
-        Vector3 lowerLeftCornerScreen = new Vector3(0, 0, screenZ);
-        Vector3 upperRightCornerScreen = new Vector3(screenWidth, screenHeight, screenZ);
-        Vector3 lowerLeftCornerWorld = Camera.main.ScreenToWorldPoint(lowerLeftCornerScreen);
-        Vector3 upperRightCornerWorld = Camera.main.ScreenToWorldPoint(upperRightCornerScreen);
-        float screenLeft = lowerLeftCornerWorld.x;
-        float screenRight = upperRightCornerWorld.x;
-        float screenTop = upperRightCornerWorld.y;
-        float screenBottom = lowerLeftCornerWorld.y;
-        return new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -1);
+        Vector3 a = Vector3.zero;
+        do
+        {
+            float screenWidth = Screen.width;
+            float screenHeight = Screen.height;
+            // save screen edges in world coordinates
+            float screenZ = -Camera.main.transform.position.z;
+            Vector3 lowerLeftCornerScreen = new Vector3(0, 0, screenZ);
+            Vector3 upperRightCornerScreen = new Vector3(screenWidth, screenHeight, screenZ);
+            Vector3 lowerLeftCornerWorld = Camera.main.ScreenToWorldPoint(lowerLeftCornerScreen);
+            Vector3 upperRightCornerWorld = Camera.main.ScreenToWorldPoint(upperRightCornerScreen);
+            float screenLeft = lowerLeftCornerWorld.x;
+            float screenRight = upperRightCornerWorld.x;
+            float screenTop = upperRightCornerWorld.y;
+            float screenBottom = lowerLeftCornerWorld.y;
+            a = new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -1);
+        } while (Vector3.Distance(a, GameManager.instance.player.transform.position) < 15f);
+
+        return a;
     }
 }

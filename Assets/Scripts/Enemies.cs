@@ -184,15 +184,8 @@ public class Enemies : MonoBehaviour
             if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < 10f)
             {
                 Vector3 pl = GameManager.instance.player.transform.position;
-                timer.Duarion = 2;
-                timer.Run();
-                if (timer.Finished)
-                {
-                    Hunt(pl, movementSpeed);
-                    Debug.Log("Here Bee come");
-                    timer.Duarion = 2;
-                    timer.Run();
-                }   
+                Hunt(pl, movementSpeed);
+                
             }
             else
             {
