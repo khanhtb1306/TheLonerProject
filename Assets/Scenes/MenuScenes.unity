@@ -467,7 +467,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 387958627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7893862a6a6160841920124d2c4ee5a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cd71b4d736b6f74885760b72277f972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &462074237
@@ -1966,7 +1966,6 @@ GameObject:
   - component: {fileID: 1726521537}
   - component: {fileID: 1726521536}
   - component: {fileID: 1726521539}
-  - component: {fileID: 1726521540}
   m_Layer: 0
   m_Name: Sound Controller
   m_TagString: Untagged
@@ -2110,19 +2109,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1726521535}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7893862a6a6160841920124d2c4ee5a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1726521540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726521535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7893862a6a6160841920124d2c4ee5a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cd71b4d736b6f74885760b72277f972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1826463951
@@ -2699,7 +2686,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2046308397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7893862a6a6160841920124d2c4ee5a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cd71b4d736b6f74885760b72277f972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2133594411
