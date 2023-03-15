@@ -21,8 +21,11 @@ public class GameManager : Singleton<GameManager>
     public bool isAntAliveIntro ;
     public bool isBeeAliveIntro ;
     public bool isRangedAliveIntro ;
+    public bool isDashIntro;
     public bool isIntro;
 
+    public bool isGamePause;
+    public bool showIntro;
 
 
     // Update is called once per frame
@@ -44,8 +47,12 @@ public class GameManager : Singleton<GameManager>
         isBeeAliveIntro = true;
         isRangedAliveIntro = true;
         isIntro = true;
+        isDashIntro = true;
+        isGamePause = false;
+        showIntro = false;
+
     }
-    
+
     public void UpgradeAttribute()
     {
         UpdateEnemyAttribute();
