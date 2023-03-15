@@ -51,7 +51,7 @@ public class GameManager : Singleton<GameManager>
     public void ResetState()
     {
         totalEnemies = 10;
-        isBossAlive = true;
+        isBossAlive = false;
         isAntAliveIntro = true;
         isBeeAliveIntro = true;
         isRangedAliveIntro = true;
