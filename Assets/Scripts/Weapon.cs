@@ -11,7 +11,7 @@ public enum WeaponStyle
 public class Weapon : MonoBehaviour
 {
     public WeaponStyle style;
-    public float quantity;
+    public int quantity;
     public GunBullet normalBullet;
     public GunBullet ultiBullet;
 
@@ -22,6 +22,11 @@ public class Weapon : MonoBehaviour
 
     public bool norReady;
     public bool ultReady;
+
+    private void Awake()
+    {
+        SetUp();
+    }
 
     public void SetUp()
     {
@@ -43,12 +48,15 @@ public class Weapon : MonoBehaviour
     }
 
 
+
+
     public void Shoot(Vector2 direction)
     {
         if (norReady)
         {
             GunBullet bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
             bullet.Fire(direction, bulletForce);
+            quantity -= 1;
             norReady = false;
             StartCoroutine(CountDownShoot(norCd));
         }
@@ -133,7 +141,8 @@ public class Weapon : MonoBehaviour
                 float angle = j * 6f - halfConeAngle;
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 Vector2 rotatedDirection = rotation * direction;
-                Shoot(rotatedDirection);
+                GunBullet bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+                bullet.Fire(rotatedDirection, bulletForce);
             }
             yield return new WaitForSeconds(0.2f);
         }

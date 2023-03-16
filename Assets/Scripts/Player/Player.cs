@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
-    [SerializeField] private Weapon curWeapon;
+    [SerializeField] public Weapon curWeapon;
     [SerializeField] private Buff curBuff;
 
     private Vector2 movementInput;
@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         healthBar.value = curHealth;
+        if (curWeapon.quantity <= 0)
+        {
+            ChangeWeapon(firstWeapon);
+        }
     }
 
     private void LateUpdate()
@@ -184,14 +188,11 @@ public class Player : MonoBehaviour
 
     public void ChangeWeapon(Weapon newWeapon)
     {
-        Debug.Log("change");
-        if (curWeapon.style != newWeapon.style)
-        {
             Debug.Log("change");
             Destroy(curWeapon.gameObject);
             curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
             curWeapon.transform.SetParent(this.transform);
-        }
+            UtilCountDown.instance.cooldown = curWeapon.ultCd;
     }
 
     public void ChangeBuffSkill(Buff newBuff)

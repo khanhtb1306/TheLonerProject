@@ -71,6 +71,7 @@ public class Buff : MonoBehaviour
 
         if (p != null)
         {
+
             if(GameManager.instance.isStrongInfo && style == BuffStyle.strong)
             {
                 GameManager.instance.introControl.SetIntro(0);

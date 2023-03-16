@@ -23,7 +23,7 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     void Start()
     {
-        IntroGame(); 
+        IntroGame();
         InvokeRepeating("SpawnEnemies", 0f, 10f);
         StartCoroutine(SpawnBosses());
 
@@ -31,7 +31,7 @@ public class SpawnManager : Singleton<SpawnManager>
 
     void Update()
     {
-        
+
     }
 
     public float AmountEnemy(Enemies enemyType)
