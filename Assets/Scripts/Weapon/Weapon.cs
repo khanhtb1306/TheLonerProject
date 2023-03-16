@@ -33,16 +33,16 @@ public class Weapon : MonoBehaviour
         switch (style)
         {
             case WeaponStyle.Pistol:
-                quantity = 20;
+                quantity = 100000;
                 break;
             case WeaponStyle.FartGun:
-                quantity = 20;
+                quantity = 500;
                 break;
             case WeaponStyle.StrongGun:
-                quantity = 20;
+                quantity = 500;
                 break;
             case WeaponStyle.Bom:
-                quantity = 20;
+                quantity = 10;
                 break;
         }
     }
@@ -77,7 +77,7 @@ public class Weapon : MonoBehaviour
                     StronngShotUlti(direction);
                     break;
                 case WeaponStyle.Bom:
-                    BoomShotUlti(direction);
+                    UltimateSkillBom();
                     break;
             }
             ultReady = false;
@@ -115,20 +115,31 @@ public class Weapon : MonoBehaviour
 
 
 
-    //public void UltimateSkillBom()
-    //{
-    //    for (int i = 0; i < 10; i++)
-    //    {
-    //        GameObject bombInstance = Instantiate(bulletPrefab, transform.position, transform.rotation);
-    //        Rigidbody bombRigidbody = bombInstance.GetComponent<Rigidbody>();
-    //        Vector3 randomDirection = Random.insideUnitSphere;
-    //        randomDirection.y = 0;
-    //        bombRigidbody.velocity = randomDirection.normalized * 10;
-    //        Collider bombCollider = bombInstance.GetComponent<Collider>();
-    //        Physics.IgnoreCollision(GetComponent<Collider>(), bombCollider);
-    //        //Destroy(bombInstance, 3f);
-    //    }
-    //}
+    public void UltimateSkillBom()
+    {
+        Collider2D[] colliders = FindObjectsOfType<Collider2D>();
+        foreach (Collider2D collider in colliders)
+        {
+            Debug.Log("1");
+            Enemies e = collider.gameObject.GetComponent<Enemies>();
+            if(e!= null)
+            {
+                if(e.enemyType != EnemyType.Boss)
+                {
+                    e.TakeDamage(10000);
+                }
+                else
+                {
+                    e.TakeDamage(20);
+                }
+
+            }
+        }
+        GameManager.instance.player.TakeDamge(20);
+        quantity = 0;
+
+
+    }
 
     private IEnumerator FireBulletsInCone()
     {

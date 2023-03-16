@@ -157,17 +157,23 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnWeapon(Transform tf)
     {
-        int r = Random.Range(0, 10);
-        if (r <= 2)
+        int r = Random.Range(0, 15);
+        if (r <= 5)
         {
             Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf.position, Quaternion.identity);
         }
-        else if (r <= 3)
+        else if (r <= 2)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(0, 3)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.Weapons[Random.Range(1, 3)], tf.position, Quaternion.identity);
+        }
+        else if (r <= 1)
+        {
+            Instantiate(GameManager.instance.Weapons[Random.Range(3, 4)], tf.position, Quaternion.identity);
         }
 
     }
+
+
     public Vector3 Gennerate()
     {
         Vector3 position;
