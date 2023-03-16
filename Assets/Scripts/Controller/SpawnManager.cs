@@ -18,7 +18,7 @@ public class SpawnManager : Singleton<SpawnManager>
         }
         else if (r < 3)
         {
-            Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.BuffSkill[Random.Range(0, 3)], tf.position, Quaternion.identity);
         }
     }
 

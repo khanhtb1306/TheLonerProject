@@ -10,15 +10,12 @@ public enum BuffStyle
 {
     health, strong, speed
 }
-public enum BuffSkillStyle
-{
-    dashSkill, immortalSkill, boomSkill
-}
+
 public class Buff : MonoBehaviour
 {
 
     public BuffStyle style;
-    public BuffSkillStyle buffskill;
+   
     public float quantity;
     void Start()
     {
@@ -82,20 +79,8 @@ public class Buff : MonoBehaviour
             }else if(GameManager.instance.isHealthInfo && style == BuffStyle.health) {
                 GameManager.instance.introControl.SetIntro(0);
                 GameManager.instance.isHealthInfo = false;
-            }else if (GameManager.instance.isDashInfo && buffskill == BuffSkillStyle.dashSkill)
-            {
-                GameManager.instance.introControl.SetIntro(0);
-                GameManager.instance.isDashInfo = false;
-            }else if (GameManager.instance.isBoomInfo && buffskill == BuffSkillStyle.boomSkill)
-            {
-                GameManager.instance.introControl.SetIntro(0);
-                GameManager.instance.isBoomInfo = false;
-            }else if (GameManager.instance.isImmortalInfo && buffskill == BuffSkillStyle.immortalSkill)
-            {
-                GameManager.instance.introControl.SetIntro(0);
-                GameManager.instance.isImmortalInfo = false;
             }
-            p.ChangeBuffSkill(this);
+            p.ChangeBuff(this);
             GameManager.instance.skillButton.ChangeAvatar();
 
             Destroy(this.gameObject);
