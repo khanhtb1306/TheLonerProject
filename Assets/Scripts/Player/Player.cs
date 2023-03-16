@@ -17,33 +17,37 @@ public class Player : MonoBehaviour
 
     public Weapon firstWeapon;
     public Buff firtBuff;
+    public bool isVisible;
     //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
     [SerializeField] public Weapon curWeapon;
+
     [SerializeField] private Buff curBuff;
+
 
     private Vector2 movementInput;
     private Vector2 movementInputSmooth;
     private Vector2 velocityInputSmooth;
 
-
+    public delegate void WeaponChangedHandler();
+    public static event WeaponChangedHandler OnWeaponChanged;
     private void Awake()
     {
+        isVisible = false;
         GameManager.instance.player = this;
         healthBar.maxValue = maxHealth;
-    }
-    private void Start()
-    {
         mainCamera = Camera.main;
         rb2d = GetComponent<Rigidbody2D>();
         curHealth = maxHealth;
         curWeapon = Instantiate(firstWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
         curWeapon.transform.SetParent(this.transform);
     }
+
     private void Update()
     {
         healthBar.value = curHealth;
+
         if (curWeapon.quantity <= 0)
         {
             ChangeWeapon(firstWeapon);
@@ -188,11 +192,12 @@ public class Player : MonoBehaviour
 
     public void ChangeWeapon(Weapon newWeapon)
     {
-            Debug.Log("change");
-            Destroy(curWeapon.gameObject);
-            curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
-            curWeapon.transform.SetParent(this.transform);
-            UtilCountDown.instance.cooldown = curWeapon.ultCd;
+        Debug.Log("change");
+        Destroy(curWeapon.gameObject);
+        curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
+        curWeapon.transform.SetParent(this.transform);
+        OnWeaponChanged?.Invoke();
+
     }
 
     public void ChangeBuffSkill(Buff newBuff)

@@ -21,7 +21,8 @@ public class SpawnManager : Singleton<SpawnManager>
             Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf.position, Quaternion.identity);
         }
     }
-    void Start()
+
+     void  Start()
     {
         IntroGame();
         InvokeRepeating("SpawnEnemies", 0f, 10f);
@@ -29,10 +30,6 @@ public class SpawnManager : Singleton<SpawnManager>
 
     }
 
-    void Update()
-    {
-
-    }
 
     public float AmountEnemy(Enemies enemyType)
     {
@@ -45,7 +42,22 @@ public class SpawnManager : Singleton<SpawnManager>
         {
             if (item.enemyType != EnemyType.Boss && GameManager.instance.isIntro == false)
             {
-                SpawnEachEnemy(item, AmountEnemy(item));
+                if (GameManager.instance.totalEnemies < 7)
+                {
+                    if (item.enemyType != EnemyType.Ranged && item.enemyType != EnemyType.Bee)
+                    {
+                        SpawnEachEnemy(item, AmountEnemy(item));
+                    }  
+                } else if (GameManager.instance.totalEnemies < 9)
+                {
+                    if (item.enemyType != EnemyType.Bee)
+                    {
+                        SpawnEachEnemy(item, AmountEnemy(item));
+                    }
+                } else if (GameManager.instance.totalEnemies >= 10)
+                {
+                    SpawnEachEnemy(item, AmountEnemy(item));
+                }   
             }
         }
     }
@@ -158,18 +170,24 @@ public class SpawnManager : Singleton<SpawnManager>
     }
     public Vector3 Gennerate()
     {
-        float screenWidth = Screen.width;
-        float screenHeight = Screen.height;
-        // save screen edges in world coordinates
-        float screenZ = -Camera.main.transform.position.z;
-        Vector3 lowerLeftCornerScreen = new Vector3(0, 0, screenZ);
-        Vector3 upperRightCornerScreen = new Vector3(screenWidth, screenHeight, screenZ);
-        Vector3 lowerLeftCornerWorld = Camera.main.ScreenToWorldPoint(lowerLeftCornerScreen);
-        Vector3 upperRightCornerWorld = Camera.main.ScreenToWorldPoint(upperRightCornerScreen);
-        float screenLeft = lowerLeftCornerWorld.x;
-        float screenRight = upperRightCornerWorld.x;
-        float screenTop = upperRightCornerWorld.y;
-        float screenBottom = lowerLeftCornerWorld.y;
-        return new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -1);
+        Vector3 position;
+        do
+        {
+            float screenWidth = Screen.width;
+            float screenHeight = Screen.height;
+            // save screen edges in world coordinates
+            float screenZ = -Camera.main.transform.position.z;
+            Vector3 lowerLeftCornerScreen = new Vector3(0, 0, screenZ);
+            Vector3 upperRightCornerScreen = new Vector3(screenWidth, screenHeight, screenZ);
+            Vector3 lowerLeftCornerWorld = Camera.main.ScreenToWorldPoint(lowerLeftCornerScreen);
+            Vector3 upperRightCornerWorld = Camera.main.ScreenToWorldPoint(upperRightCornerScreen);
+            float screenLeft = lowerLeftCornerWorld.x;
+            float screenRight = upperRightCornerWorld.x;
+            float screenTop = upperRightCornerWorld.y;
+            float screenBottom = lowerLeftCornerWorld.y;
+            position = new Vector3(Random.Range(screenLeft, screenRight), Random.Range(screenBottom, screenTop), -1);
+        } while (Vector3.Distance(position, GameManager.instance.player.transform.position) < 10f);
+
+        return position;
     }
 }

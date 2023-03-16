@@ -33,24 +33,16 @@ public class GameManager : Singleton<GameManager>
 
     public bool isIntro;
 
-    public bool isGamePause;
-    public bool showIntro;
 
 
-    // Update is called once per frame
-    public void StartGame() { }
-    public void PauseGame() { }
-    public void EndGame()
-    {
-
-    }
+ 
     private void Awake()
     {
         ResetState();
     }
     public void ResetState()
     {
-        totalEnemies = 10;
+        totalEnemies = 5;
         isBossAlive = false;
         isAntAliveIntro = true;
         isBeeAliveIntro = true;
@@ -62,8 +54,6 @@ public class GameManager : Singleton<GameManager>
         isSpeedInfo= true;
         isStrongInfo=true;
         isIntro = true;
-        isGamePause = false;
-        showIntro = false;
 
     }
 
