@@ -18,7 +18,7 @@ public class SpawnManager : Singleton<SpawnManager>
         }
         else if (r < 3)
         {
-            Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.BuffSkill[Random.Range(0, 3)], tf.position, Quaternion.identity);
         }
     }
 
@@ -46,7 +46,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 {
                     if (item.enemyType != EnemyType.Ranged && item.enemyType != EnemyType.Bee)
                     {
-                        SpawnEachEnemy(item, AmountEnemy(item));
+                        SpawnEachEnemy(item, 5);
                     }  
                 } else if (GameManager.instance.totalEnemies < 9)
                 {

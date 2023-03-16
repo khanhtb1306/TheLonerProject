@@ -18,11 +18,13 @@ public class Player : MonoBehaviour
     public Weapon firstWeapon;
     public Buff firtBuff;
     public bool isVisible;
+    public bool isUndead;
     //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
     [SerializeField] public Weapon curWeapon;
 
+    [SerializeField] private BuffSkill curBuffSkill;
     [SerializeField] private Buff curBuff;
 
 
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         isVisible = false;
+        isUndead = false;
         GameManager.instance.player = this;
         healthBar.maxValue = maxHealth;
         mainCamera = Camera.main;
@@ -51,6 +54,10 @@ public class Player : MonoBehaviour
         if (curWeapon.quantity <= 0)
         {
             ChangeWeapon(firstWeapon);
+        }
+        if (isUndead)
+        {
+            if (curHealth <= 1)curHealth = 1;
         }
     }
 
@@ -77,6 +84,10 @@ public class Player : MonoBehaviour
     public Buff GetCurBuff()
     {
         return curBuff;
+    }
+    public BuffSkill GetCurBuffSkill()
+    {
+        return curBuffSkill;
     }
     public float GetCurHealth()
     {
@@ -135,12 +146,12 @@ public class Player : MonoBehaviour
 
     public void BuffSkill()
     {
-        if (curBuff != null)
+        if (curBuffSkill != null)
         {
-            switch (curBuff.buffskill)
+            switch (curBuffSkill.buffskill)
             {
                 case BuffSkillStyle.boomSkill:
-                    Boom();
+                    Invisible();
                     break;
                 case BuffSkillStyle.dashSkill:
                     Dash();
@@ -169,10 +180,24 @@ public class Player : MonoBehaviour
             }
         }
     }
-    private void Boom()
+    
+    private IEnumerator IEInvisible(float timeDuration)
     {
 
+        isVisible = true;
+        Debug.Log("IEInvisible");
+        this.gameObject.GetComponent<Renderer>().material.color = Color.green;
+        //this.gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+        yield return new WaitForSeconds(timeDuration);
+        isVisible = false;
+        this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
     }
+
+    private void Invisible()
+    {
+        StartCoroutine(IEInvisible(5));
+    }
+
     private void Dash()
     {
         Debug.Log("dash");
@@ -181,13 +206,6 @@ public class Player : MonoBehaviour
         rb2d.AddForce(force);
     }
 
-
-    float undeadDuration = 5.0f;
-    bool isUndead = true;
-    private void Undead()
-    {
-        StartCoroutine(Undead(undeadDuration, this));
-    }
 
 
     public void ChangeWeapon(Weapon newWeapon)
@@ -200,7 +218,23 @@ public class Player : MonoBehaviour
 
     }
 
-    public void ChangeBuffSkill(Buff newBuff)
+    public void ChangeBuffSkill(BuffSkill newBuff)
+    {
+        if (curBuffSkill == null || (curBuffSkill.buffskill != newBuff.buffskill))
+        {
+            Debug.Log("change");
+            foreach (BuffSkill buff in GameManager.instance.BuffSkill)
+            {
+                if (buff.buffskill == newBuff.buffskill)
+                {
+                    curBuffSkill = buff;
+                    break;
+                }
+            }
+        }
+    }
+
+    public void ChangeBuff(Buff newBuff)
     {
         if (curBuff == null || (curBuff.style != newBuff.style))
         {
@@ -230,21 +264,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator Undead(float timeDuration, Player player)
+    private IEnumerator IEUndead(float timeDuration)
     {
         isUndead = true;
-        float timeCount = timeDuration;
-        while (timeCount > 0)
-        {
-            Debug.Log(isUndead);
-            timeCount -= Time.deltaTime;
-            if (isUndead)
-            {
-                if (player.curHealth <= 160) player.curHealth = 160;
-            }
-            yield return null;
-        }
-        isUndead = false;
-    }
+        Debug.Log("Undead");
+        this.gameObject.GetComponent<Renderer>().material.color = Color.black;
 
+        yield return new WaitForSeconds(timeDuration);
+        isUndead = false;
+        this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+    }
+    private void Undead()
+    {
+
+        StartCoroutine(IEUndead(5));
+    }
 }

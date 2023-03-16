@@ -29,7 +29,7 @@ public class UltCoundown : MonoBehaviour
         {
             float a = cooldown;
             imageCount.fillAmount += Time.deltaTime / a;
-            if (imageCount.fillAmount >= 1)
+            if (imageCount.fillAmount >=1)
             {
                 GameManager.instance.player.curWeapon.ultReady = true;
                 imageCount.fillAmount = 0;
