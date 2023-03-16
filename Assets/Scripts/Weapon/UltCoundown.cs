@@ -32,7 +32,7 @@ public class UltCoundown : MonoBehaviour
             if (imageCount.fillAmount <= 0)
             {
                 GameManager.instance.player.curWeapon.ultReady = true;
-                imageCount.fillAmount = 1;
+                imageCount.fillAmount = 0;
             }
         }
     }

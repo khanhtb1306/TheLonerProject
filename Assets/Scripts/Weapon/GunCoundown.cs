@@ -32,7 +32,7 @@ public class GunCoundown : MonoBehaviour
             if (imageCount.fillAmount <= 0)
             {
                 GameManager.instance.player.curWeapon.norReady = true;
-                imageCount.fillAmount = 1;
+                imageCount.fillAmount = 0;
             }
         }
     }
