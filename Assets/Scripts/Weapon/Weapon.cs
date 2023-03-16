@@ -23,7 +23,10 @@ public class Weapon : MonoBehaviour
     public bool norReady;
     public bool ultReady;
 
-    
+    private void Awake()
+    {
+        SetUp();
+    }
 
     public void SetUp()
     {

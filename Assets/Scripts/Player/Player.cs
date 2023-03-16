@@ -36,12 +36,18 @@ public class Player : MonoBehaviour
         mainCamera = Camera.main;
         rb2d = GetComponent<Rigidbody2D>();
         curHealth = maxHealth;
-        ChangeWeapon(firstWeapon);
+        curWeapon = Instantiate(firstWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
+        curWeapon.transform.SetParent(this.transform);
     }
 
     private void Update()
     {
         healthBar.value = curHealth;
+
+        if (curWeapon.quantity <= 0)
+        {
+            ChangeWeapon(firstWeapon);
+        }
     }
 
     private void LateUpdate()
@@ -184,10 +190,7 @@ public class Player : MonoBehaviour
     {
         
         Debug.Log("change");
-        if (curWeapon != null) { 
-            Destroy(curWeapon.gameObject);
-
-        }
+        Destroy(curWeapon.gameObject);
         curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
         curWeapon.transform.SetParent(this.transform);
         OnWeaponChanged?.Invoke();
