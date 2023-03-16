@@ -762,6 +762,7 @@ MonoBehaviour:
   pauseMenuScreen: {fileID: 1666547339}
   gameOverScreen: {fileID: 1158025330}
   pauseButton: {fileID: 382697486}
+  countBar: {fileID: 1958161201}
 --- !u!4 &475976141
 Transform:
   m_ObjectHideFlags: 0
@@ -3181,7 +3182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1852975911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3736,7 +3737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2104174060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3799,11 +3800,10 @@ RectTransform:
   m_Father: {fileID: 1586195573}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-
-  m_AnchoredPosition: {x: 23.942139, y: 20.564941}
-  m_SizeDelta: {x: -851.928, y: -466.949}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 25.99701, y: 20.565002}
+  m_SizeDelta: {x: 1235.7291, y: 750.2018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142679570
 MonoBehaviour:
@@ -3856,8 +3856,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introImage: {fileID: 2142679570}
-  introImages:
-  - {fileID: 21300000, guid: 2da6c0d1ffb94c84ea3e5003a959e722, type: 3}
-  - {fileID: 21300000, guid: 2e254104d6a46ee4e876b862ba46723e, type: 3}
-  - {fileID: 21300000, guid: c440dd60c10b91e4b86d3eae81934a36, type: 3}
-  - {fileID: 21300000, guid: 1225aefc273e1d04ca7cba36d2491e27, type: 3}
+  introEnemyImages:
+  - {fileID: 21300000, guid: ba042080a4579664db75c04ff027b2fa, type: 3}
+  - {fileID: 21300000, guid: 1a953e7aeca3b4a4db5c82b2748fff7b, type: 3}
+  - {fileID: 21300000, guid: 0f819c29bb636fe4f80fb0efe317be78, type: 3}
+  - {fileID: 21300000, guid: 5b531699c8fe96a4a8557f0178de18e5, type: 3}
+  introBuffImages:
+  - {fileID: 21300000, guid: 4fb5484ae1c41704eb7cc5b5e2e404d5, type: 3}
+  - {fileID: 21300000, guid: d7bead043192cb24bba31bccfaad1151, type: 3}
+  - {fileID: 21300000, guid: 609b8987ef4914742a97cba8ba64178c, type: 3}
+  - {fileID: 21300000, guid: 8348e896f8acabc4fb014b32cfe78341, type: 3}
+  - {fileID: 21300000, guid: 48371953a82b9c94f90ac3d7142ba0ea, type: 3}
+  - {fileID: 21300000, guid: 689c5eb68b159e146aa8a3b79038ed1c, type: 3}
+  introWeaponImages: []

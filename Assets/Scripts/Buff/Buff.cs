@@ -19,7 +19,7 @@ public class Buff : MonoBehaviour
     public float quantity;
     void Start()
     {
-
+        Setup();
     }
 
     // Update is called once per frame
@@ -27,11 +27,9 @@ public class Buff : MonoBehaviour
     {
 
     }
-
-    public void upGrade(int amount)
-    {
-    }
-    public void BuffEffect()
+    
+    
+    public void Setup()
     {
         switch (style)
         {
@@ -39,27 +37,16 @@ public class Buff : MonoBehaviour
                 quantity = 20;
                 break;
             case BuffStyle.strong:
-                quantity = 2;
+                quantity = 10;
                 break;
             case BuffStyle.speed:
-                quantity = 5;
+                quantity = 1;
                 break;
         }
     }
 
 
-    public void UpHealth(Player player)
-    {
-        player.maxHealth += quantity;
-    }
-    public void UpSpeed(Player player)
-    {
-        player.speed += quantity;
-    }
-    public void upDame(Player player)
-    {
-        player.bonusdame += quantity;
-    }
+   
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -71,18 +58,17 @@ public class Buff : MonoBehaviour
 
             if(GameManager.instance.isStrongInfo && style == BuffStyle.strong)
             {
-                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.introControl.SetIntroBuff(0);
                 GameManager.instance.isStrongInfo= false;
             }else if(GameManager.instance.isSpeedInfo && style == BuffStyle.speed) {
-                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.introControl.SetIntroBuff(1);
                 GameManager.instance.isSpeedInfo = false;
             }else if(GameManager.instance.isHealthInfo && style == BuffStyle.health) {
-                GameManager.instance.introControl.SetIntro(0);
+                GameManager.instance.introControl.SetIntroBuff(2);
                 GameManager.instance.isHealthInfo = false;
             }
-            p.ChangeBuff(this);
-            GameManager.instance.skillButton.ChangeAvatar();
-
+            p.BuffUpdate(this);
+            
             Destroy(this.gameObject);
 
         }

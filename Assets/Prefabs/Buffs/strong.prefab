@@ -99,8 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   style: 1
-  buffskill: 0
-  quantity: 0
+  quantity: 12
 --- !u!61 &-5765818226542602863
 BoxCollider2D:
   m_ObjectHideFlags: 0
