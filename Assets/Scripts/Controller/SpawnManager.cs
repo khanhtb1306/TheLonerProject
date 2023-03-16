@@ -46,7 +46,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 {
                     if (item.enemyType != EnemyType.Ranged && item.enemyType != EnemyType.Bee)
                     {
-                        SpawnEachEnemy(item, AmountEnemy(item));
+                        SpawnEachEnemy(item, 5);
                     }  
                 } else if (GameManager.instance.totalEnemies < 9)
                 {
