@@ -20,7 +20,7 @@ public class UltCoundown : MonoBehaviour
         // Get the current weapon
 
         cooldown = GameManager.instance.player.curWeapon.ultCd;
-        imageCount.fillAmount = 1;
+        imageCount.fillAmount = 0;
     }
     // Update is called once per frame
     void Update()
@@ -28,11 +28,11 @@ public class UltCoundown : MonoBehaviour
         if (!GameManager.instance.player.curWeapon.ultReady)
         {
             float a = cooldown;
-            imageCount.fillAmount -= Time.deltaTime / a;
-            if (imageCount.fillAmount <= 0)
+            imageCount.fillAmount += Time.deltaTime / a;
+            if (imageCount.fillAmount >=1)
             {
                 GameManager.instance.player.curWeapon.ultReady = true;
-                imageCount.fillAmount = 1;
+                imageCount.fillAmount = 0;
             }
         }
     }

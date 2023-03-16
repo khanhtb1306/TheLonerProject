@@ -69,7 +69,7 @@ public class Enemies : MonoBehaviour
                 attackSpeed = 50;
                 break;
             case EnemyType.Boss:
-                maxHealth = 50;
+                maxHealth = 250;
                 damage = 15;
                 movementSpeed = 2;
                 break;
@@ -121,9 +121,10 @@ public class Enemies : MonoBehaviour
             }
             if (enemyType == EnemyType.Boss)
             {
+                Instantiate<GameObject>(explosivePrefabs, transform.position, Quaternion.identity);
                 ScoreController.instance.Addpoint(4);
                 GameManager.instance.isBossAlive = false;
-                GameManager.instance.UpgradeAttribute();
+                GameManager.instance.UpgradeAttribute();      
             }
             DestroyEnemies();
         }
@@ -285,6 +286,7 @@ public class Enemies : MonoBehaviour
                 ScoreController.instance.Addpoint(3);
                 GameManager.instance.isBeeAliveIntro = false;
                 AttackPlayer();
+               
             }
 
             if (enemyType == EnemyType.Ant)

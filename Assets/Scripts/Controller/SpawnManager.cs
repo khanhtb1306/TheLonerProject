@@ -18,7 +18,7 @@ public class SpawnManager : Singleton<SpawnManager>
         }
         else if (r < 3)
         {
-            Instantiate(GameManager.instance.Buffs[Random.Range(3, 5)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.BuffSkill[Random.Range(0, 3)], tf.position, Quaternion.identity);
         }
     }
 
@@ -46,7 +46,7 @@ public class SpawnManager : Singleton<SpawnManager>
                 {
                     if (item.enemyType != EnemyType.Ranged && item.enemyType != EnemyType.Bee)
                     {
-                        SpawnEachEnemy(item, AmountEnemy(item));
+                        SpawnEachEnemy(item, 5);
                     }  
                 } else if (GameManager.instance.totalEnemies < 9)
                 {
@@ -157,17 +157,23 @@ public class SpawnManager : Singleton<SpawnManager>
 
     public void SpawnWeapon(Transform tf)
     {
-        int r = Random.Range(0, 10);
-        if (r <= 2)
+        int r = Random.Range(0, 15);
+        if (r <= 5)
         {
             Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf.position, Quaternion.identity);
         }
-        else if (r <= 3)
+        else if (r <= 2)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(0, 3)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.Weapons[Random.Range(1, 3)], tf.position, Quaternion.identity);
+        }
+        else if (r <= 1)
+        {
+            Instantiate(GameManager.instance.Weapons[Random.Range(3, 4)], tf.position, Quaternion.identity);
         }
 
     }
+
+
     public Vector3 Gennerate()
     {
         Vector3 position;

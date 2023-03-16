@@ -20,7 +20,8 @@ public class GunCoundown : MonoBehaviour
         // Get the current weapon
 
         cooldown = GameManager.instance.player.curWeapon.norCd;
-        imageCount.fillAmount = 1;
+
+        imageCount.fillAmount = 0;
     }
     // Update is called once per frame
     void Update()
@@ -28,11 +29,12 @@ public class GunCoundown : MonoBehaviour
         if (!GameManager.instance.player.curWeapon.norReady)
         {
             float a = cooldown;
-            imageCount.fillAmount -= Time.deltaTime / a;
-            if (imageCount.fillAmount <= 0)
+            imageCount.fillAmount += Time.deltaTime / a;
+            if (imageCount.fillAmount >= 1)
+
             {
                 GameManager.instance.player.curWeapon.norReady = true;
-                imageCount.fillAmount = 1;
+                imageCount.fillAmount = 0;
             }
         }
     }
