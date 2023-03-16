@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonControl : Singleton<ButtonControl>
 {
+    public bool isGameStart;
+    public bool isGamePause;
+    public bool isShowIntro;
+
+    public GameObject startMenu;
     public GameObject pauseMenuScreen;
     public GameObject gameOverScreen;
     public GameObject pauseButton;
@@ -12,72 +18,55 @@ public class ButtonControl : Singleton<ButtonControl>
 
     // Start is called before the first frame update
 
-
-    public void HandlePlayButtonOnClickEvent()
+    private void Awake()
     {
-        StartCoroutine(WaitForStart());
-
-    }
-
-    IEnumerator WaitForStart()
-    {
-
-        SceneManager.LoadScene("SampleScene");
-        Time.timeScale = 0;
-       
-        SoundController.instance.PlayGameStart();
-
-       
-        yield return new WaitForSecondsRealtime(SoundController.instance.GameStart.length);
-        pauseButton.SetActive(true);
-        Time.timeScale = 1;
-    }
-    public void HandleQuitButtonOnClickEvent()
-    {
-        Application.Quit();
-    }
-    public void ReplayLevel()
-    {
+        isGameStart = false;
+        isGamePause = true;
+        isShowIntro = false;
+        startMenu.SetActive(true);
         pauseMenuScreen.SetActive(false);
         gameOverScreen.SetActive(false);
-        HandlePlayButtonOnClickEvent();
-       
+        pauseButton.SetActive(false);
+    }
 
-    }
-    public void HandlePauseButtonOnClickEvent()
+    public void Reset()
     {
-        pauseMenuScreen.SetActive(true);
-        GameManager.instance.isGamePause = true;
-        Time.timeScale = 0;
+        SceneManager.LoadScene("SampleScene");
     }
+    private void Update()
+    {
+        if(isGamePause || isShowIntro)
+        {
+            Time.timeScale = 0;
+        }
+        else Time.timeScale = 1;
+    }
+    public void StartGame()
+    {
+        StartCoroutine(ReadyToStartGame());
+    }
+    public IEnumerator ReadyToStartGame()
+    {
+        startMenu.SetActive(false);
+        SoundController.instance.PlayGameStart();
+        isGameStart = true;
+        yield return new  WaitForSecondsRealtime(SoundController.instance.GameStart.length);
+        pauseButton.SetActive(true);
+        isGamePause = false;
+    }
+    public void PauseGame() {
+        isGamePause = true;
+        pauseMenuScreen.SetActive(true);
+    }
+    public void ResumeGame()
+    {
+        isGamePause = false;
+        pauseMenuScreen.SetActive(false);
+    }
+
     public void GameOver()
     {
+        isGamePause = true;
         gameOverScreen.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    public void HandleResumeButtonOnClickEvent()
-    {
-        
-        if(GameManager.instance.showIntro == false)
-        {
-            Time.timeScale = 1;
-        }
-        GameManager.instance.isGamePause = false;
-        pauseMenuScreen.SetActive(false);
-    }
-    public void GoToMenu()
-    {
-
-        pauseButton.SetActive(false);
-        gameOverScreen.SetActive(false);
-        pauseMenuScreen.SetActive(false);
-        SceneManager.LoadScene("MenuScenes");
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

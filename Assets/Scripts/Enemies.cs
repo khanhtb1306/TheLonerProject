@@ -107,10 +107,12 @@ public class Enemies : MonoBehaviour
 
             if (enemyType == EnemyType.Ant)
             {
+                ScoreController.instance.Addpoint(1);
                 GameManager.instance.isAntAliveIntro = false;
             }
             if (enemyType == EnemyType.Ranged)
             {
+                ScoreController.instance.Addpoint(2);
                 GameManager.instance.isRangedAliveIntro = false;
             }
             if (enemyType == EnemyType.Bee)
@@ -119,6 +121,7 @@ public class Enemies : MonoBehaviour
             }
             if (enemyType == EnemyType.Boss)
             {
+                ScoreController.instance.Addpoint(4);
                 GameManager.instance.isBossAlive = false;
                 GameManager.instance.UpgradeAttribute();
             }
@@ -128,11 +131,19 @@ public class Enemies : MonoBehaviour
 
     public void Hunt(Vector3 player, float MovementSpeed)
     {
-        if (enemyType == EnemyType.Ant)
+        if (enemyType == EnemyType.Ant && GameManager.instance.player.isVisible == false) 
         {
             transform.position = Vector3.MoveTowards(transform.position,
                         player, MovementSpeed * Time.deltaTime);
-        }
+        } else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endPoint, MovementSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+            {
+                endPoint = Gennerate();
+            }
+        } 
+
         Vector3 po = player;
         if (enemyType == EnemyType.Bee)
         {
@@ -142,17 +153,23 @@ public class Enemies : MonoBehaviour
 
         Vector3 po1 = transform.position;
 
-        if (enemyType == EnemyType.Boss)
+        if (enemyType == EnemyType.Boss && GameManager.instance.player.isVisible == false)
         {
             if (Vector3.Distance(po1, player) < 10f)
             {
                 transform.position = po1;
-
             }
             else
             {
                 transform.position = Vector3.MoveTowards(po1,
                             player, MovementSpeed * Time.deltaTime);
+            }
+        } else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endPoint, MovementSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+            {
+                endPoint = Gennerate();
             }
         }
     }
@@ -181,7 +198,7 @@ public class Enemies : MonoBehaviour
         Vector3 po = transform.position;
         if (enemyType == EnemyType.Bee)
         {
-            if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < 10f)
+            if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < 10f && GameManager.instance.player.isVisible == false)
             {
                 Vector3 pl = GameManager.instance.player.transform.position;
                 if (timer.Finished)
@@ -204,11 +221,11 @@ public class Enemies : MonoBehaviour
                     endPoint = Gennerate();
                 }
             }
-        }
+        } 
         
         if (enemyType == EnemyType.Ranged)
         {
-            if (Vector3.Distance(po, GameManager.instance.player.transform.position) < 10f)
+            if (Vector3.Distance(po, GameManager.instance.player.transform.position) < 10f && GameManager.instance.player.isVisible == false)
             {
                 transform.position = po;
                 Vector2 dir = endPoint - transform.position;
@@ -236,7 +253,7 @@ public class Enemies : MonoBehaviour
                     endPoint = Gennerate();
                 }
             }
-        }
+        } 
 
     }
 
@@ -265,6 +282,7 @@ public class Enemies : MonoBehaviour
             if (enemyType == EnemyType.Bee)
             {
                 DestroyEnemies();
+                ScoreController.instance.Addpoint(3);
                 GameManager.instance.isBeeAliveIntro = false;
                 AttackPlayer();
             }
