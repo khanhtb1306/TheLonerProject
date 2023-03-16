@@ -23,6 +23,8 @@ public class Weapon : MonoBehaviour
     public bool norReady;
     public bool ultReady;
 
+    
+
     public void SetUp()
     {
         switch (style)
