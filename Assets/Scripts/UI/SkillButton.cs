@@ -19,16 +19,30 @@ public class SkillButton : MonoBehaviour
 
     public void ChangeAvatar()
     {
-        if (GameManager.instance.player.GetCurBuff() == null) 
+        if (GameManager.instance.player.GetCurBuffSkill() == null) 
             buttonImage.sprite = null;
         for (int i = 0; i < 3; i++)
         {
-            if (GameManager.instance.Buffs[i] == GameManager.instance.player.GetCurBuff())
+            if (GameManager.instance.BuffSkill[i] == GameManager.instance.player.GetCurBuffSkill())
             {
                 buttonImage.sprite = buttonAvas[i];
                 break;
             }
         }
     }
+
+    //public void ChangeAvatarSkill()
+    //{
+    //    if (GameManager.instance.player.GetCurBuff() == null)
+    //        buttonImage.sprite = null;
+    //    for (int i = 3; i < 3; i++)
+    //    {
+    //        if (GameManager.instance.BuffSkill[i] == GameManager.instance.player.GetCurBuffSkill())
+    //        {
+    //            buttonImage.sprite = buttonAvas[i];
+    //            break;
+    //        }
+    //    }
+    //}
 
 }
