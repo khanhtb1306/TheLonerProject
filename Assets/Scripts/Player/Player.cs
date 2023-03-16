@@ -192,12 +192,11 @@ public class Player : MonoBehaviour
 
     public void ChangeWeapon(Weapon newWeapon)
     {
-
-            Debug.Log("change");
-            Destroy(curWeapon.gameObject);
-            curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
-            curWeapon.transform.SetParent(this.transform);
-            UtilCountDown.instance.cooldown = curWeapon.ultCd;
+        Debug.Log("change");
+        Destroy(curWeapon.gameObject);
+        curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
+        curWeapon.transform.SetParent(this.transform);
+        OnWeaponChanged?.Invoke();
 
     }
 
