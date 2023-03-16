@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 
     public Weapon firstWeapon;
     public Buff firtBuff;
+    public bool isVisible;
     //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     public static event WeaponChangedHandler OnWeaponChanged;
     private void Awake()
     {
+        isVisible = false;
         GameManager.instance.player = this;
         healthBar.maxValue = maxHealth;
         mainCamera = Camera.main;
