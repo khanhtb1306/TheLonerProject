@@ -106,6 +106,9 @@ public class SpawnManager : Singleton<SpawnManager>
 
     private IEnumerator Intro()
     {
+
+        yield return new WaitForSeconds(1f);
+        GameManager.instance.introControl.SetIntroWeapon(0);
         yield return new WaitForSeconds(1f);
         foreach (var item in GameManager.instance.Enemies)
         {

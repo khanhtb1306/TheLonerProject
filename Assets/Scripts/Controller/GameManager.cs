@@ -28,6 +28,10 @@ public class GameManager : Singleton<GameManager>
     public bool isSpeedInfo;
     public bool isHealthInfo;
     public bool isStrongInfo;
+    public bool isPistoGun;
+    public bool isFastGun;
+    public bool isStrongGun;
+    public bool isBoomGun;
 
 
 
@@ -55,6 +59,10 @@ public class GameManager : Singleton<GameManager>
         isSpeedInfo= true;
         isStrongInfo=true;
         isIntro = true;
+        isFastGun= true;
+        isStrongGun=true;
+        isBoomGun=true;
+        isPistoGun=true;
 
     }
 
