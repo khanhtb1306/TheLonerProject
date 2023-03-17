@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : Singleton<SpawnManager>
 {
@@ -165,7 +166,7 @@ public class SpawnManager : Singleton<SpawnManager>
         }
         yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
-        GameSave.instance.isIntro = false;
+        ButtonControl.instance.toggle.GetComponent<Toggle>().isOn = false;
         GameManager.instance.player.SetCurHealth(GameManager.instance.player.maxHealth);
     }
 
@@ -173,11 +174,7 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         Weapon w = null;
         int r = Random.Range(0, 12);
-        if (r <= 1)
-        {
-            w = Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf.position, Quaternion.identity);
-        }
-        else if (r <= 4)
+        if (r <= 4)
         {
             w = Instantiate(GameManager.instance.Weapons[Random.Range(1, 3)], tf.position, Quaternion.identity);
         }

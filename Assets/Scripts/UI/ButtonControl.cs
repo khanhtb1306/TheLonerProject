@@ -46,6 +46,7 @@ public class ButtonControl : Singleton<ButtonControl>
         else Time.timeScale = 1;
         GameSave.instance.isIntro = toggle.GetComponent<Toggle>().isOn;
     }
+
     public void StartGame()
     {
         StartCoroutine(ReadyToStartGame());
