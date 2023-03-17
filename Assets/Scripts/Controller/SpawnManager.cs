@@ -10,21 +10,29 @@ public class SpawnManager : Singleton<SpawnManager>
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
-
+        Buff f = null;
+        BuffSkill bf = null;
         int r = Random.Range(0, 10);
         if (r < 2)
         {
-            Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf.position, Quaternion.identity);
+            f = Instantiate(GameManager.instance.Buffs[Random.Range(0, 3)], tf.position, Quaternion.identity);
         }
         else if (r < 3)
         {
-            Instantiate(GameManager.instance.BuffSkill[Random.Range(0, 3)], tf.position, Quaternion.identity);
+            bf = Instantiate(GameManager.instance.BuffSkill[Random.Range(0, 3)], tf.position, Quaternion.identity);
         }
+        if (f != null)
+            Destroy(f.gameObject, 10f);
+        if (bf != null)
+            Destroy(bf.gameObject, 10f);
     }
 
-     void  Start()
+    public void StartSpawn()
     {
-        IntroGame();
+        if (GameSave.instance.isIntro)
+        {
+            IntroGame();
+        }
         InvokeRepeating("SpawnEnemies", 0f, 10f);
         StartCoroutine(SpawnBosses());
 
@@ -40,24 +48,26 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType != EnemyType.Boss && GameManager.instance.isIntro == false)
+            if (item.enemyType != EnemyType.Boss && GameSave.instance.isIntro == false)
             {
                 if (GameManager.instance.totalEnemies < 7)
                 {
                     if (item.enemyType != EnemyType.Ranged && item.enemyType != EnemyType.Bee)
                     {
                         SpawnEachEnemy(item, 5);
-                    }  
-                } else if (GameManager.instance.totalEnemies < 9)
+                    }
+                }
+                else if (GameManager.instance.totalEnemies < 9)
                 {
                     if (item.enemyType != EnemyType.Bee)
                     {
                         SpawnEachEnemy(item, AmountEnemy(item));
                     }
-                } else if (GameManager.instance.totalEnemies >= 10)
+                }
+                else if (GameManager.instance.totalEnemies >= 10)
                 {
                     SpawnEachEnemy(item, AmountEnemy(item));
-                }   
+                }
             }
         }
     }
@@ -77,9 +87,10 @@ public class SpawnManager : Singleton<SpawnManager>
     {
         foreach (var item in GameManager.instance.Enemies)
         {
-            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false && GameManager.instance.isIntro == false)
+            if (item.enemyType == EnemyType.Boss && GameManager.instance.isBossAlive == false && GameSave.instance.isIntro == false)
             {
                 GameManager.instance.isBossAlive = true;
+                GameManager.instance.isUpgrade = false;
                 Instantiate(item.gameObject, Gennerate(), Quaternion.identity);
             }
         }
@@ -90,7 +101,7 @@ public class SpawnManager : Singleton<SpawnManager>
         while (true)
         {
             // Wait until the boss is destroyed
-            yield return new WaitUntil(() => GameManager.instance.isIntro == false);
+            yield return new WaitUntil(() => GameSave.instance.isIntro == false);
             yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
             // Wait for the spawn delay before spawning another boss
@@ -154,25 +165,29 @@ public class SpawnManager : Singleton<SpawnManager>
         }
         yield return new WaitUntil(() => GameManager.instance.isBossAlive == false);
 
-        GameManager.instance.isIntro = false;
+        GameSave.instance.isIntro = false;
+        GameManager.instance.player.SetCurHealth(GameManager.instance.player.maxHealth);
     }
-
 
     public void SpawnWeapon(Transform tf)
     {
-        int r = Random.Range(0, 15);
-        if (r <= 5)
+        Weapon w = null;
+        int r = Random.Range(0, 12);
+        if (r <= 1)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf.position, Quaternion.identity);
+            w = Instantiate(GameManager.instance.Weapons[Random.Range(0, 2)], tf.position, Quaternion.identity);
         }
-        else if (r <= 2)
+        else if (r <= 4)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(1, 3)], tf.position, Quaternion.identity);
+            w = Instantiate(GameManager.instance.Weapons[Random.Range(1, 3)], tf.position, Quaternion.identity);
         }
-        else if (r <= 1)
+        else if (r <= 5)
         {
-            Instantiate(GameManager.instance.Weapons[Random.Range(3, 4)], tf.position, Quaternion.identity);
+            Instantiate(GameManager.instance.Weapons[3], tf.position, Quaternion.identity);
         }
+        if (w != null)
+
+            Destroy(w.gameObject, 10f);
 
     }
 
