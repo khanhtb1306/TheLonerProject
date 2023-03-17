@@ -14,7 +14,7 @@ public class ButtonControl : Singleton<ButtonControl>
     public GameObject pauseMenuScreen;
     public GameObject gameOverScreen;
     public GameObject pauseButton;
-
+    public GameObject countBar;
 
     // Start is called before the first frame update
 
@@ -23,6 +23,7 @@ public class ButtonControl : Singleton<ButtonControl>
         isGameStart = false;
         isGamePause = true;
         isShowIntro = false;
+        countBar.SetActive(false);
         startMenu.SetActive(true);
         pauseMenuScreen.SetActive(false);
         gameOverScreen.SetActive(false);
@@ -48,9 +49,11 @@ public class ButtonControl : Singleton<ButtonControl>
     public IEnumerator ReadyToStartGame()
     {
         startMenu.SetActive(false);
+        countBar.SetActive(true);
         SoundController.instance.PlayGameStart();
         isGameStart = true;
         yield return new  WaitForSecondsRealtime(SoundController.instance.GameStart.length);
+        countBar.SetActive(false);
         pauseButton.SetActive(true);
         isGamePause = false;
     }

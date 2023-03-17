@@ -8,22 +8,46 @@ public class IntroControl : MonoBehaviour
 
     public Image introImage;
 
-    public List<Sprite> introImages;
+    public List<Sprite> introEnemyImages;
+    public List<Sprite> introBuffImages;
+    public List<Sprite> introWeaponImages;
 
     private void Start()
     {
         GameManager.instance.introControl = this;
         gameObject.SetActive(false);
+
+
     }
-    public void SetIntro(int index)
+    public void SetIntroEnemy(int index)
     {
         ButtonControl.instance.isShowIntro = true;
         this.gameObject.SetActive(true);
         introImage.sprite =
-            introImages[index];
+            introEnemyImages[index];
         Time.timeScale = 0;
 
     }
+    public void SetIntroBuff(int index)
+    {
+        ButtonControl.instance.isShowIntro = true;
+        this.gameObject.SetActive(true);
+        introImage.sprite =
+            introBuffImages[index];
+        Time.timeScale = 0;
+
+    }
+    public void SetIntroWeapon(int index)
+    {
+        ButtonControl.instance.isShowIntro = true;
+        this.gameObject.SetActive(true);
+        introImage.sprite =
+            introWeaponImages[index];
+        Time.timeScale = 0;
+
+    }
+
+
     public void SkipIntro()
     {
         if (!ButtonControl.instance.isGamePause)
@@ -33,9 +57,8 @@ public class IntroControl : MonoBehaviour
             ButtonControl.instance.isShowIntro = false;
         }
     }
-    public void SetIntro1()
-    {
-        SetIntro(1);
-    }
+
+
+   
 
 }

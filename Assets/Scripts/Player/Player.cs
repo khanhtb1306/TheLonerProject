@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField] public Weapon curWeapon;
 
     [SerializeField] private BuffSkill curBuffSkill;
-    [SerializeField] private Buff curBuff;
+  
 
 
     private Vector2 movementInput;
@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
         {
             if (curHealth <= 1)curHealth = 1;
         }
+
+        if(curHealth > maxHealth)curHealth = maxHealth;
     }
 
     private void LateUpdate()
@@ -81,10 +83,7 @@ public class Player : MonoBehaviour
     {
         return movementInputSmooth;
     }
-    public Buff GetCurBuff()
-    {
-        return curBuff;
-    }
+    
     public BuffSkill GetCurBuffSkill()
     {
         return curBuffSkill;
@@ -162,23 +161,25 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void BuffUpdate()
+
+    public void BuffUpdate(Buff b)
     {
-        if (curBuff != null)
-        {
-            switch (curBuff.style)
+
+            
+            switch (b.style)
             {
                 case BuffStyle.health:
-                    curHealth += curBuff.quantity;
+                    curHealth += b.quantity;
                     break;
                 case BuffStyle.speed:
-                    speed += curBuff.quantity;
+                    speed += b.quantity;
                     break;
                 case BuffStyle.strong:
-                    bonusdame += curBuff.quantity;
-                    break;
+                   maxHealth += b.quantity;
+                   curHealth += b.quantity;
+                     break;
             }
-        }
+       
     }
     
     private IEnumerator IEInvisible(float timeDuration)
@@ -234,21 +235,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ChangeBuff(Buff newBuff)
-    {
-        if (curBuff == null || (curBuff.style != newBuff.style))
-        {
-            Debug.Log("change");
-            foreach (Buff buff in GameManager.instance.Buffs)
-            {
-                if (buff.style == newBuff.style)
-                {
-                    curBuff = buff;
-                    break;
-                }
-            }
-        }
-    }
+   
 
     public void TakeDamge(float damage)
     {

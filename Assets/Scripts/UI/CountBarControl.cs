@@ -12,7 +12,7 @@ public class CountBarControl : MonoBehaviour
     private void Awake()
     {
         cooldown = SoundController.instance.GameStart.length;
-        gameObject.SetActive(false);
+       
     }
     // Update is called once per frame
     void Update()
@@ -20,7 +20,7 @@ public class CountBarControl : MonoBehaviour
 
         if (ButtonControl.instance.isGameStart)
         {
-            gameObject.SetActive(true);
+           
             imageCount.fillAmount -= 1 / cooldown * Time.unscaledDeltaTime;
 
         }
