@@ -127,3 +127,5 @@ MonoBehaviour:
   cdBuff: 10
   buffskill: 2
   buffReady: 1
+  intro: {fileID: 21300000, guid: 48371953a82b9c94f90ac3d7142ba0ea, type: 3}
+  Avatar: {fileID: 21300000, guid: 0ed95203d2a693e4ea35ece70e4ba1ab, type: 3}

@@ -11,7 +11,10 @@ public class BuffSkill : MonoBehaviour
 
     public float cdBuff;
     public BuffSkillStyle buffskill;
-    public bool buffReady = true;
+    public bool buffReady;
+    public Sprite intro;
+    public Sprite avatar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,21 +37,23 @@ public class BuffSkill : MonoBehaviour
            
             if (GameManager.instance.isDashInfo && buffskill == BuffSkillStyle.dashSkill)
             {
-                GameManager.instance.introControl.SetIntroBuff(3);
+                GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isDashInfo = false;
             }
             else if (GameManager.instance.isBoomInfo && buffskill == BuffSkillStyle.boomSkill)
             {
-                GameManager.instance.introControl.SetIntroBuff(4);
+                GameManager.instance.introControl.SetIntro(intro);
+
                 GameManager.instance.isBoomInfo = false;
             }
             else if (GameManager.instance.isImmortalInfo && buffskill == BuffSkillStyle.immortalSkill)
             {
-                GameManager.instance.introControl.SetIntroBuff(5);
+                GameManager.instance.introControl.SetIntro(intro);
+
                 GameManager.instance.isImmortalInfo = false;
             }
             p.ChangeBuffSkill(this);
-            GameManager.instance.skillButton.ChangeAvatar();
+            GameManager.instance.skillButton.ChangeAvatar(avatar);
             Destroy(this.gameObject);
 
         }

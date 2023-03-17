@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         isVisible = false;
         isUndead = false;
         GameManager.instance.player = this;
-        healthBar.maxValue = maxHealth;
+        healthBar.maxValue = 1;
         mainCamera = Camera.main;
         rb2d = GetComponent<Rigidbody2D>();
         curHealth = maxHealth;
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        healthBar.value = curHealth;
+        healthBar.value = curHealth/maxHealth;
 
         if (curWeapon.quantity <= 0)
         {
@@ -198,7 +198,6 @@ public class Player : MonoBehaviour
     {
 
         isVisible = true;
-        Debug.Log("IEInvisible");
         this.gameObject.GetComponent<Renderer>().material.color = Color.green;
         //this.gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
         yield return new WaitForSeconds(timeDuration);
@@ -213,17 +212,14 @@ public class Player : MonoBehaviour
     
     private void Dash()
     {
-        Debug.Log("dash");
-        Vector3 force = transform.up + new Vector3(0, 2,0);
-        Debug.Log(force);
-         transform.position = force;
+        Vector2 force = 1000 * transform.up;
+        rb2d.AddForce(force);
     }
 
 
 
     public void ChangeWeapon(Weapon newWeapon)
     {
-        Debug.Log("change");
         Destroy(curWeapon.gameObject);
         curWeapon = Instantiate(newWeapon, gunSpawnPos.position, gunSpawnPos.rotation);
         curWeapon.transform.SetParent(this.transform);
@@ -233,7 +229,6 @@ public class Player : MonoBehaviour
 
     public void ChangeBuffSkill(BuffSkill newBuff)
     {
-         Debug.Log("change");
             foreach (BuffSkill buff in GameManager.instance.BuffSkill)
             {
                 if (buff.buffskill == newBuff.buffskill)
@@ -265,7 +260,6 @@ public class Player : MonoBehaviour
     private IEnumerator IEUndead(float timeDuration)
     {
         isUndead = true;
-        Debug.Log("Undead");
         this.gameObject.GetComponent<Renderer>().material.color = Color.black;
 
         yield return new WaitForSeconds(timeDuration);

@@ -12,6 +12,7 @@ TagManager:
   - Boss
   - pauseMenu
   - endMenu
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Character
+  - Character Block
   - 
   - 
   - 

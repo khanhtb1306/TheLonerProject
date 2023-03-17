@@ -17,17 +17,13 @@ public class Buff : MonoBehaviour
     public BuffStyle style;
    
     public float quantity;
+    public Sprite intro;
+
     void Start()
     {
         Setup();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    
     
     public void Setup()
     {
@@ -55,16 +51,15 @@ public class Buff : MonoBehaviour
 
         if (p != null)
         {
-
             if(GameManager.instance.isStrongInfo && style == BuffStyle.strong)
             {
-                GameManager.instance.introControl.SetIntroBuff(0);
+                GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isStrongInfo= false;
             }else if(GameManager.instance.isSpeedInfo && style == BuffStyle.speed) {
-                GameManager.instance.introControl.SetIntroBuff(1);
+                GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isSpeedInfo = false;
             }else if(GameManager.instance.isHealthInfo && style == BuffStyle.health) {
-                GameManager.instance.introControl.SetIntroBuff(2);
+                GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isHealthInfo = false;
             }
             p.BuffUpdate(this);

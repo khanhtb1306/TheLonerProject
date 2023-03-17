@@ -70,6 +70,47 @@ public class GameManager : Singleton<GameManager>
         UpdateEnemyAttribute();
     }
 
+    public Enemies GetEnemy(EnemyType type)
+    {
+        foreach(var e in Enemies)
+        {
+            if (e.enemyType == type)
+                return e;
+            break;
+        }
+        return null;
+    }
+    public Buff GetBuff(BuffStyle type)
+    {
+        foreach (var b in Buffs)
+        {
+            if (b.style == type)
+                return b;
+            break;
+        }
+        return null;
+    }
+    public BuffSkill GetBuffSkill(BuffSkillStyle type)
+    {
+        foreach (var b in BuffSkill)
+        {
+            if (b.buffskill == type)
+                return b;
+            break;
+        }
+        return null;
+    }
+    public Weapon GetWeapon(WeaponStyle type)
+    {
+        foreach (var w in Weapons)
+        {
+            if (w.style == type)
+                return w;
+            break;
+        }
+        return null;
+    }
+
     public void UpdateEnemyAttribute()
     {
         Debug.Log(totalEnemies);

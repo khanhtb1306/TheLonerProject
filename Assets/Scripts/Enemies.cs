@@ -16,6 +16,8 @@ public enum EnemyType
 }
 public class Enemies : MonoBehaviour
 {
+    public Sprite intro;
+
     //Attribute and Property
     [SerializeField] public GameObject explosivePrefabs;
     public BulletEnemies rangedBulletPrefabs;

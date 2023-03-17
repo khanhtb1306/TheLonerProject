@@ -119,14 +119,14 @@ public class SpawnManager : Singleton<SpawnManager>
     {
 
         yield return new WaitForSeconds(1f);
-        GameManager.instance.introControl.SetIntroWeapon(0);
+        GameManager.instance.introControl.SetIntro(GameManager.instance.player.firstWeapon.intro);
         yield return new WaitForSeconds(1f);
         foreach (var item in GameManager.instance.Enemies)
         {
             if (item.enemyType == EnemyType.Ant)
             {
                 SpawnEachEnemy(item, 1);
-                GameManager.instance.introControl.SetIntroEnemy(0);
+                GameManager.instance.introControl.SetIntro(item.intro);
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isAntAliveIntro == false);
@@ -136,7 +136,7 @@ public class SpawnManager : Singleton<SpawnManager>
             if (item.enemyType == EnemyType.Bee)
             {
                 SpawnEachEnemy(item, 1);
-                GameManager.instance.introControl.SetIntroEnemy(1);
+                GameManager.instance.introControl.SetIntro(item.intro);
             }
         }
         yield return new WaitUntil(() => GameManager.instance.isBeeAliveIntro == false);
@@ -147,7 +147,7 @@ public class SpawnManager : Singleton<SpawnManager>
             if (item.enemyType == EnemyType.Ranged)
             {
                 SpawnEachEnemy(item, 1);
-                GameManager.instance.introControl.SetIntroEnemy(2);
+                GameManager.instance.introControl.SetIntro(item.intro);
 
             }
         }
@@ -159,7 +159,7 @@ public class SpawnManager : Singleton<SpawnManager>
             {
                 SpawnEachEnemy(item, 1);
                 GameManager.instance.isBossAlive = true;
-                GameManager.instance.introControl.SetIntroEnemy(3);
+                GameManager.instance.introControl.SetIntro(item.intro);
 
             }
         }

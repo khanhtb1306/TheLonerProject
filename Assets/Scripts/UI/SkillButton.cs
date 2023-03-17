@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour
 {
-    [SerializeField] private List<Sprite> buttonAvas;
     private Button button;
     private Image buttonImage;
 
@@ -17,18 +16,9 @@ public class SkillButton : MonoBehaviour
     }
     // Start is called before the first frame update
 
-    public void ChangeAvatar()
+    public void ChangeAvatar(Sprite ava)
     {
-        if (GameManager.instance.player.GetCurBuffSkill() == null) 
-            buttonImage.sprite = null;
-        for (int i = 0; i < 3; i++)
-        {
-            if (GameManager.instance.BuffSkill[i] == GameManager.instance.player.GetCurBuffSkill())
-            {
-                buttonImage.sprite = buttonAvas[i];
-                break;
-            }
-        }
+        buttonImage.sprite = ava;
     }
 
     //public void ChangeAvatarSkill()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public enum WeaponStyle
 {
     Pistol,
@@ -14,6 +15,7 @@ public class Weapon : MonoBehaviour
     public int quantity;
     public GunBullet normalBullet;
     public GunBullet ultiBullet;
+    public Sprite intro;
 
     public float bulletForce;
 
@@ -169,17 +171,17 @@ public class Weapon : MonoBehaviour
             
             if (GameManager.instance.isFastGun && style == WeaponStyle.FartGun)
             {
-                GameManager.instance.introControl.SetIntroWeapon(1);
+                GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isFastGun = false;
             }
             else if (GameManager.instance.isStrongGun && style == WeaponStyle.StrongGun)
             {
-                GameManager.instance.introControl.SetIntroWeapon(2);
+                GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isStrongGun = false;
             }
             else if (GameManager.instance.isBoomGun && style == WeaponStyle.Bom)
             {
-                GameManager.instance.introControl.SetIntroWeapon(3);
+                GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isBoomGun = false;
             }
             p.ChangeWeapon(this);

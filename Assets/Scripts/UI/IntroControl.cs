@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,6 @@ public class IntroControl : MonoBehaviour
 
     public Image introImage;
 
-    public List<Sprite> introEnemyImages;
-    public List<Sprite> introBuffImages;
-    public List<Sprite> introWeaponImages;
-
     private void Start()
     {
         GameManager.instance.introControl = this;
@@ -19,34 +16,14 @@ public class IntroControl : MonoBehaviour
 
 
     }
-    public void SetIntroEnemy(int index)
+    public void SetIntro(Sprite image)
     {
         ButtonControl.instance.isShowIntro = true;
         this.gameObject.SetActive(true);
-        introImage.sprite =
-            introEnemyImages[index];
+        introImage.sprite = image;
         Time.timeScale = 0;
-
     }
-    public void SetIntroBuff(int index)
-    {
-        ButtonControl.instance.isShowIntro = true;
-        this.gameObject.SetActive(true);
-        introImage.sprite =
-            introBuffImages[index];
-        Time.timeScale = 0;
-
-    }
-    public void SetIntroWeapon(int index)
-    {
-        ButtonControl.instance.isShowIntro = true;
-        this.gameObject.SetActive(true);
-        introImage.sprite =
-            introWeaponImages[index];
-        Time.timeScale = 0;
-
-    }
-
+   
 
     public void SkipIntro()
     {
