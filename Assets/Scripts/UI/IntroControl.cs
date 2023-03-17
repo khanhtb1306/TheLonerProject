@@ -16,6 +16,8 @@ public class IntroControl : MonoBehaviour
     {
         GameManager.instance.introControl = this;
         gameObject.SetActive(false);
+
+
     }
     public void SetIntroEnemy(int index)
     {
@@ -35,6 +37,17 @@ public class IntroControl : MonoBehaviour
         Time.timeScale = 0;
 
     }
+    public void SetIntroWeapon(int index)
+    {
+        ButtonControl.instance.isShowIntro = true;
+        this.gameObject.SetActive(true);
+        introImage.sprite =
+            introWeaponImages[index];
+        Time.timeScale = 0;
+
+    }
+
+
     public void SkipIntro()
     {
         if (!ButtonControl.instance.isGamePause)
@@ -44,6 +57,8 @@ public class IntroControl : MonoBehaviour
             ButtonControl.instance.isShowIntro = false;
         }
     }
+
+
    
 
 }
