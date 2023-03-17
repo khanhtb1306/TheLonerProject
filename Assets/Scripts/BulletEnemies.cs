@@ -30,9 +30,18 @@ public class BulletEnemies : MonoBehaviour
             case BulletType.Ranged:
                 damage = 15f;
                 break;
-            case BulletType.Boss:
-                damage = 20f;
-                break;
+        }
+    }
+
+    public void Update()
+    {
+        if (GameSave.instance.isIntro)
+        {
+            damage = 1;
+        }
+        else
+        {
+            SetUp();
         }
     }
 

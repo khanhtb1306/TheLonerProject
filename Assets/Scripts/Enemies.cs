@@ -31,10 +31,12 @@ public class Enemies : MonoBehaviour
     public float popular;
 
     Timer timer;
+    Timer timer1;
 
     void Start()
     {
         timer = gameObject.AddComponent<Timer>();
+        timer1 = gameObject.AddComponent<Timer>();
         SetUp();
         currentHealth = maxHealth;
         isAlive = true;
@@ -42,6 +44,8 @@ public class Enemies : MonoBehaviour
         endPoint = Gennerate();
         timer.Duarion = 2;
         timer.Run();
+        timer1.Duarion = 3;
+        timer1.Run();
     }
 
     public void SetUp()
@@ -65,7 +69,7 @@ public class Enemies : MonoBehaviour
                 popular = 0.1f;
                 maxHealth = 20;
                 damage = 20;
-                movementSpeed = 25;
+                movementSpeed = 25f;
                 attackSpeed = 50;
                 break;
             case EnemyType.Boss:
@@ -117,13 +121,19 @@ public class Enemies : MonoBehaviour
             {
                 GameManager.instance.isAntAliveIntro = false;
 
-                ScoreController.instance.Addpoint(1);
+                if (GameSave.instance.isIntro != true)
+                {
+                    ScoreController.instance.Addpoint(1);
+                }
             }
             if (enemyType == EnemyType.Ranged)
             {
                 GameManager.instance.isRangedAliveIntro = false;
 
-                ScoreController.instance.Addpoint(2);
+                if (GameSave.instance.isIntro != true)
+                {
+                    ScoreController.instance.Addpoint(2);
+                }
             }
             if (enemyType == EnemyType.Bee)
             {
@@ -139,6 +149,10 @@ public class Enemies : MonoBehaviour
                     GameManager.instance.UpgradeAttribute();
                     GameManager.instance.isUpgrade = true;
                 }
+                if (GameSave.instance.isIntro != true)
+                {
+                    ScoreController.instance.Addpoint(4);
+                }
             }
             DestroyEnemies();
         }
@@ -146,18 +160,23 @@ public class Enemies : MonoBehaviour
 
     public void Hunt(Vector3 player, float MovementSpeed)
     {
-        if (enemyType == EnemyType.Ant && GameManager.instance.player.isVisible == false) 
+        if (enemyType == EnemyType.Ant)
         {
-            transform.position = Vector3.MoveTowards(transform.position,
-                        player, MovementSpeed * Time.deltaTime);
-        } else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, endPoint, MovementSpeed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+            if (GameManager.instance.player.isVisible == false)
             {
-                endPoint = Gennerate();
+                transform.position = Vector3.MoveTowards(transform.position,
+                                        player, MovementSpeed * Time.deltaTime);
             }
-        } 
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, endPoint, MovementSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+                {
+                    endPoint = Gennerate();
+                }
+            }
+
+        }
 
         Vector3 po = player;
         if (enemyType == EnemyType.Bee)
@@ -168,25 +187,30 @@ public class Enemies : MonoBehaviour
 
         Vector3 po1 = transform.position;
 
-        if (enemyType == EnemyType.Boss && GameManager.instance.player.isVisible == false)
+        if (enemyType == EnemyType.Boss)
         {
-            if (Vector3.Distance(po1, player) < 10f)
+            if (GameManager.instance.player.isVisible == false)
             {
-                transform.position = po1;
+                if (Vector3.Distance(po1, player) < 10f)
+                {
+                    transform.position = po1;
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(po1,
+                                player, MovementSpeed * Time.deltaTime);
+                }
             }
             else
             {
-                transform.position = Vector3.MoveTowards(po1,
-                            player, MovementSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, endPoint, MovementSpeed * Time.deltaTime);
+                if (Vector3.Distance(transform.position, endPoint) < 0.001f)
+                {
+                    endPoint = Gennerate();
+                }
             }
-        } else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, endPoint, MovementSpeed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, endPoint) < 0.001f)
-            {
-                endPoint = Gennerate();
-            }
-        }
+
+        } 
     }
 
 
@@ -213,15 +237,18 @@ public class Enemies : MonoBehaviour
         Vector3 po = transform.position;
         if (enemyType == EnemyType.Bee)
         {
-            if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) < 10f && GameManager.instance.player.isVisible == false)
+            Vector3 pl = GameManager.instance.player.transform.position;
+            if (Vector3.Distance(po, pl) < 10f && GameManager.instance.player.isVisible == false)
             {
-                Vector3 pl = GameManager.instance.player.transform.position;
                 if (timer.Finished)
                 {
-                    Hunt(pl, movementSpeed);
+                    transform.position = Vector3.MoveTowards(transform.position,
+                       pl, movementSpeed);
+                    Debug.Log("Bee Attack");
+                    timer1.Duarion = 3;
+                    timer1.Run();
 
-                }
-                    
+                }         
             }
             else
             {
@@ -297,7 +324,11 @@ public class Enemies : MonoBehaviour
             if (enemyType == EnemyType.Bee)
             {
                 DestroyEnemies();
-                ScoreController.instance.Addpoint(3);
+                if(GameSave.instance.isIntro != true)
+                {
+                    ScoreController.instance.Addpoint(3);
+                }
+                
                 GameManager.instance.isBeeAliveIntro = false;
                 AttackPlayer();
                

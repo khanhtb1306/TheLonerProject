@@ -2732,7 +2732,6 @@ MonoBehaviour:
   isStrongGun: 0
   isBoomGun: 0
   isUpgrade: 0
-  isIntro: 0
 --- !u!4 &1550795596
 Transform:
   m_ObjectHideFlags: 0
