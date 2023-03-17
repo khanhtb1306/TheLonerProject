@@ -202,9 +202,9 @@ public class Player : MonoBehaviour
     private void Dash()
     {
         Debug.Log("dash");
-        Vector2 force = 1000 * transform.up;
+        Vector3 force = transform.up + new Vector3(0, 2,0);
         Debug.Log(force);
-        rb2d.AddForce(force);
+         transform.position = force;
     }
 
 
