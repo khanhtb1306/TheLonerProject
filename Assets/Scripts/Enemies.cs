@@ -46,7 +46,7 @@ public class Enemies : MonoBehaviour
 
     public void SetUp()
     {
-        //HP player: 200
+       
         switch (enemyType)
         {
             case EnemyType.Ant:
@@ -77,6 +77,14 @@ public class Enemies : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.instance.isIntro)
+        {
+            damage = 1;
+        } else
+        {
+            SetUp();
+        }
+
         if (enemyType == EnemyType.Ant)
         {
             Hunt(GameManager.instance.player.transform.position, movementSpeed);
