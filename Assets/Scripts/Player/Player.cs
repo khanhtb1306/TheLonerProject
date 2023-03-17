@@ -17,13 +17,14 @@ public class Player : MonoBehaviour
 
     public Weapon firstWeapon;
     public Buff firtBuff;
+    public BuffSkill firtBuffSkill;
+   
     public bool isVisible;
     public bool isUndead;
     //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
     [SerializeField] public Weapon curWeapon;
-
     [SerializeField] private BuffSkill curBuffSkill;
   
 
@@ -34,6 +35,10 @@ public class Player : MonoBehaviour
 
     public delegate void WeaponChangedHandler();
     public static event WeaponChangedHandler OnWeaponChanged;
+    
+    public delegate void BuffSkillChangedHandler();
+    public static event BuffSkillChangedHandler OnBuffSkillChanged;
+   
     private void Awake()
     {
         isVisible = false;
@@ -145,7 +150,7 @@ public class Player : MonoBehaviour
 
     public void BuffSkill()
     {
-        if (curBuffSkill != null)
+        if (curBuffSkill.buffReady)
         {
             switch (curBuffSkill.buffskill)
             {
@@ -159,13 +164,20 @@ public class Player : MonoBehaviour
                     Undead();
                     break;
             }
+                curBuffSkill.buffReady = false;
+                StartCoroutine(CountDownBuff(curBuffSkill.cdBuff));
         }
+       
     }
 
+    IEnumerator CountDownBuff(float time)
+    {
+        yield return new WaitForSeconds(time);
+        curBuffSkill.buffReady = true;
+    }
     public void BuffUpdate(Buff b)
     {
 
-            
             switch (b.style)
             {
                 case BuffStyle.health:
@@ -198,7 +210,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(IEInvisible(5));
     }
-
+    
     private void Dash()
     {
         Debug.Log("dash");
@@ -221,9 +233,7 @@ public class Player : MonoBehaviour
 
     public void ChangeBuffSkill(BuffSkill newBuff)
     {
-        if (curBuffSkill == null || (curBuffSkill.buffskill != newBuff.buffskill))
-        {
-            Debug.Log("change");
+         Debug.Log("change");
             foreach (BuffSkill buff in GameManager.instance.BuffSkill)
             {
                 if (buff.buffskill == newBuff.buffskill)
@@ -232,7 +242,8 @@ public class Player : MonoBehaviour
                     break;
                 }
             }
-        }
+        OnBuffSkillChanged?.Invoke();
+        
     }
 
    

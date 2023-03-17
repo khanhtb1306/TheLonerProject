@@ -8,9 +8,10 @@ public enum BuffSkillStyle
     }
 public class BuffSkill : MonoBehaviour
 {
-    
 
+    public float cdBuff;
     public BuffSkillStyle buffskill;
+    public bool buffReady = true;
     // Start is called before the first frame update
     void Start()
     {
