@@ -77,7 +77,7 @@ public class Enemies : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.instance.isIntro)
+        if (GameSave.instance.isIntro)
         {
             damage = 1;
         } else
@@ -115,13 +115,15 @@ public class Enemies : MonoBehaviour
 
             if (enemyType == EnemyType.Ant)
             {
-                ScoreController.instance.Addpoint(1);
                 GameManager.instance.isAntAliveIntro = false;
+
+                ScoreController.instance.Addpoint(1);
             }
             if (enemyType == EnemyType.Ranged)
             {
-                ScoreController.instance.Addpoint(2);
                 GameManager.instance.isRangedAliveIntro = false;
+
+                ScoreController.instance.Addpoint(2);
             }
             if (enemyType == EnemyType.Bee)
             {
@@ -129,10 +131,14 @@ public class Enemies : MonoBehaviour
             }
             if (enemyType == EnemyType.Boss)
             {
+                GameManager.instance.isBossAlive = false;
+
                 Instantiate<GameObject>(explosivePrefabs, transform.position, Quaternion.identity);
                 ScoreController.instance.Addpoint(4);
-                GameManager.instance.isBossAlive = false;
-                GameManager.instance.UpgradeAttribute();      
+                if (!GameManager.instance.isUpgrade) { 
+                    GameManager.instance.UpgradeAttribute();
+                    GameManager.instance.isUpgrade = true;
+                }
             }
             DestroyEnemies();
         }

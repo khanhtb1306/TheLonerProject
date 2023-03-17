@@ -23,7 +23,6 @@ public class FireBullet : MonoBehaviour
     public void BossShot()
     {
         int a = Random.Range(1, 4);
-        Debug.Log(a);
         if (a == 1 )
         {
             Fire();  

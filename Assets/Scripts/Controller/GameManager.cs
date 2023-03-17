@@ -31,11 +31,11 @@ public class GameManager : Singleton<GameManager>
     public bool isFastGun;
     public bool isStrongGun;
     public bool isBoomGun;
+    public bool isUpgrade;
 
 
 
 
-    public bool isIntro;
 
 
 
@@ -57,11 +57,11 @@ public class GameManager : Singleton<GameManager>
         isHealthInfo= true;
         isSpeedInfo= true;
         isStrongInfo=true;
-        isIntro = true;
         isFastGun= true;
         isStrongGun=true;
         isBoomGun=true;
         isPistoGun=true;
+        isUpgrade = false;
 
     }
 
@@ -72,7 +72,10 @@ public class GameManager : Singleton<GameManager>
 
     public void UpdateEnemyAttribute()
     {
+        Debug.Log(totalEnemies);
         totalEnemies = (int)Mathf.Round(totalEnemies * 1.3f);
+        Debug.Log(totalEnemies);
+
         foreach (var enemyType in Enemies)
         {
             if (enemyType.enemyType != EnemyType.Boss)

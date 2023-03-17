@@ -32,7 +32,9 @@ public class ButtonControl : Singleton<ButtonControl>
 
     public void Reset()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SampleSence");
+        GameSave.instance.isIntro = false;
+
     }
     private void Update()
     {
@@ -53,6 +55,23 @@ public class ButtonControl : Singleton<ButtonControl>
         SoundController.instance.PlayGameStart();
         isGameStart = true;
         yield return new  WaitForSecondsRealtime(SoundController.instance.GameStart.length);
+        countBar.SetActive(false);
+        pauseButton.SetActive(true);
+        isGamePause = false;
+        SpawnManager.instance.StartSpawn();
+    }
+
+    public void RePlay()
+    {
+        StartCoroutine(ReadyToReplayGame());
+    }
+    public IEnumerator ReadyToReplayGame()
+    {
+        startMenu.SetActive(false);
+        countBar.SetActive(true);
+        SoundController.instance.PlayGameStart();
+        isGameStart = true;
+        yield return new WaitForSecondsRealtime(SoundController.instance.GameStart.length);
         countBar.SetActive(false);
         pauseButton.SetActive(true);
         isGamePause = false;
