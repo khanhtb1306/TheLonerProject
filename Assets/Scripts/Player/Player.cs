@@ -18,12 +18,14 @@ public class Player : MonoBehaviour
     public Weapon firstWeapon;
     public Buff firtBuff;
     public bool isVisible;
+    public bool isUndead;
     //abc
     private Rigidbody2D rb2d;
     private Camera mainCamera;
     [SerializeField] public Weapon curWeapon;
 
-    [SerializeField] private Buff curBuff;
+    [SerializeField] private BuffSkill curBuffSkill;
+  
 
 
     private Vector2 movementInput;
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         isVisible = false;
+        isUndead = false;
         GameManager.instance.player = this;
         healthBar.maxValue = maxHealth;
         mainCamera = Camera.main;
@@ -52,6 +55,12 @@ public class Player : MonoBehaviour
         {
             ChangeWeapon(firstWeapon);
         }
+        if (isUndead)
+        {
+            if (curHealth <= 1)curHealth = 1;
+        }
+
+        if(curHealth > maxHealth)curHealth = maxHealth;
     }
 
     private void LateUpdate()
@@ -74,9 +83,10 @@ public class Player : MonoBehaviour
     {
         return movementInputSmooth;
     }
-    public Buff GetCurBuff()
+    
+    public BuffSkill GetCurBuffSkill()
     {
-        return curBuff;
+        return curBuffSkill;
     }
     public float GetCurHealth()
     {
@@ -135,12 +145,12 @@ public class Player : MonoBehaviour
 
     public void BuffSkill()
     {
-        if (curBuff != null)
+        if (curBuffSkill != null)
         {
-            switch (curBuff.buffskill)
+            switch (curBuffSkill.buffskill)
             {
                 case BuffSkillStyle.boomSkill:
-                    Boom();
+                    Invisible();
                     break;
                 case BuffSkillStyle.dashSkill:
                     Dash();
@@ -151,28 +161,44 @@ public class Player : MonoBehaviour
             }
         }
     }
-    public void BuffUpdate()
-    {
-        if (curBuff != null)
-        {
-            switch (curBuff.style)
-            {
-                case BuffStyle.health:
-                    curHealth += curBuff.quantity;
-                    break;
-                case BuffStyle.speed:
-                    speed += curBuff.quantity;
-                    break;
-                case BuffStyle.strong:
-                    bonusdame += curBuff.quantity;
-                    break;
-            }
-        }
-    }
-    private void Boom()
+
+    public void BuffUpdate(Buff b)
     {
 
+            
+            switch (b.style)
+            {
+                case BuffStyle.health:
+                    curHealth += b.quantity;
+                    break;
+                case BuffStyle.speed:
+                    speed += b.quantity;
+                    break;
+                case BuffStyle.strong:
+                   maxHealth += b.quantity;
+                   curHealth += b.quantity;
+                     break;
+            }
+       
     }
+    
+    private IEnumerator IEInvisible(float timeDuration)
+    {
+
+        isVisible = true;
+        Debug.Log("IEInvisible");
+        this.gameObject.GetComponent<Renderer>().material.color = Color.green;
+        //this.gameObject.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+        yield return new WaitForSeconds(timeDuration);
+        isVisible = false;
+        this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+    }
+
+    private void Invisible()
+    {
+        StartCoroutine(IEInvisible(5));
+    }
+
     private void Dash()
     {
         Debug.Log("dash");
@@ -181,13 +207,6 @@ public class Player : MonoBehaviour
         rb2d.AddForce(force);
     }
 
-
-    float undeadDuration = 5.0f;
-    bool isUndead = true;
-    private void Undead()
-    {
-        StartCoroutine(Undead(undeadDuration, this));
-    }
 
 
     public void ChangeWeapon(Weapon newWeapon)
@@ -200,21 +219,23 @@ public class Player : MonoBehaviour
 
     }
 
-    public void ChangeBuffSkill(Buff newBuff)
+    public void ChangeBuffSkill(BuffSkill newBuff)
     {
-        if (curBuff == null || (curBuff.style != newBuff.style))
+        if (curBuffSkill == null || (curBuffSkill.buffskill != newBuff.buffskill))
         {
             Debug.Log("change");
-            foreach (Buff buff in GameManager.instance.Buffs)
+            foreach (BuffSkill buff in GameManager.instance.BuffSkill)
             {
-                if (buff.style == newBuff.style)
+                if (buff.buffskill == newBuff.buffskill)
                 {
-                    curBuff = buff;
+                    curBuffSkill = buff;
                     break;
                 }
             }
         }
     }
+
+   
 
     public void TakeDamge(float damage)
     {
@@ -230,21 +251,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator Undead(float timeDuration, Player player)
+    private IEnumerator IEUndead(float timeDuration)
     {
         isUndead = true;
-        float timeCount = timeDuration;
-        while (timeCount > 0)
-        {
-            Debug.Log(isUndead);
-            timeCount -= Time.deltaTime;
-            if (isUndead)
-            {
-                if (player.curHealth <= 160) player.curHealth = 160;
-            }
-            yield return null;
-        }
-        isUndead = false;
-    }
+        Debug.Log("Undead");
+        this.gameObject.GetComponent<Renderer>().material.color = Color.black;
 
+        yield return new WaitForSeconds(timeDuration);
+        isUndead = false;
+        this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
+    }
+    private void Undead()
+    {
+
+        StartCoroutine(IEUndead(5));
+    }
 }
