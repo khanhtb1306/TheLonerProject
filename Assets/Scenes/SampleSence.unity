@@ -1628,6 +1628,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8870499329453688616, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4658863745312110291, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1676,6 +1680,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5435559365384897879, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: joystick
       value: 
@@ -1684,6 +1696,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 263114929}
+    - target: {fileID: 6938910332532043853, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
+      propertyPath: firstWeapon
+      value: 
+      objectReference: {fileID: -4833847005105964476, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
     - target: {fileID: 7230842613747717989, guid: ab9d1b9929391a54bb6260b78c0452c4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3169,10 +3185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479b03bf4db95dd4886c8e7fa9d8b23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonAvas:
-  - {fileID: 21300000, guid: 408dc85c9b3f44e42817e9c0289c9950, type: 3}
-  - {fileID: 21300000, guid: 9d484d60e0f1b3547aebd810eb5f3a7a, type: 3}
-  - {fileID: 21300000, guid: e30cabb6ade4b5441a1a36426a51e2ca, type: 3}
 --- !u!114 &1509173250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3230,10 +3242,10 @@ MonoBehaviour:
   - {fileID: 4497544349142146614, guid: 94957040a6bcf544e9f84261b715af19, type: 3}
   - {fileID: -7906949417531086320, guid: 7b97543503a4da34ba52c59a18136f73, type: 3}
   Weapons:
+  - {fileID: -4833847005105964476, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
   - {fileID: -4833847005105964476, guid: bb10adb16aa7c4a4f925483a3a48e452, type: 3}
   - {fileID: -4833847005105964476, guid: c7903bf7ef1c9a147bf52175c9128bb6, type: 3}
   - {fileID: -4833847005105964476, guid: 8fd19624db8ceb7418e1eef863dde023, type: 3}
-  - {fileID: -4833847005105964476, guid: fb2d41c3ca7ddff479158d5aeef7ae5f, type: 3}
   Enemies:
   - {fileID: 8580815902667108611, guid: d9bed6ba2e3a7f0449abc06acc230522, type: 3}
   - {fileID: 7969016790558176023, guid: a2f56e0142cbf6b4ea1465fa61172bcd, type: 3}
@@ -3930,7 +3942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1882483835
 RectTransform:
   m_ObjectHideFlags: 0

@@ -35,16 +35,16 @@ public class Weapon : MonoBehaviour
         switch (style)
         {
             case WeaponStyle.Pistol:
-                quantity = 100000;
+                quantity = 100;
                 break;
             case WeaponStyle.FartGun:
-                quantity = 500;
+                quantity = 10;
                 break;
             case WeaponStyle.StrongGun:
-                quantity = 500;
+                quantity = 5;
                 break;
             case WeaponStyle.Bom:
-                quantity = 10;
+                quantity = 1;
                 break;
         }
     }
@@ -58,7 +58,6 @@ public class Weapon : MonoBehaviour
         {
             GunBullet bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
             bullet.Fire(direction, bulletForce);
-            quantity -= 1;
             norReady = false;
             StartCoroutine(CountDownShoot(norCd));
         }
@@ -71,17 +70,19 @@ public class Weapon : MonoBehaviour
             switch (style)
             {
                 case WeaponStyle.Pistol:
-                    break;
-                case WeaponStyle.FartGun:
                     FastGunUlti();
                     break;
-                case WeaponStyle.StrongGun:
+                case WeaponStyle.FartGun:
                     StronngShotUlti(direction);
+                    break;
+                case WeaponStyle.StrongGun:
+                    BoomShotUlti(direction);
                     break;
                 case WeaponStyle.Bom:
                     UltimateSkillBom();
                     break;
             }
+            quantity -= 1;
             ultReady = false;
             StartCoroutine(CountDownUtil(ultCd));
         }

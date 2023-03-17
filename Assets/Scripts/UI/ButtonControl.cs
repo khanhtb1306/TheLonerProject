@@ -43,8 +43,13 @@ public class ButtonControl : Singleton<ButtonControl>
         {
             Time.timeScale = 0;
         }
-        else Time.timeScale = 1;
+        else
+        {
+            Time.timeScale = 1;
+            GameManager.instance.player.Shoot();
+        }
         GameSave.instance.isIntro = toggle.GetComponent<Toggle>().isOn;
+        
     }
 
     public void StartGame()
@@ -62,6 +67,7 @@ public class ButtonControl : Singleton<ButtonControl>
         pauseButton.SetActive(true);
         isGamePause = false;
         SpawnManager.instance.StartSpawn();
+
     }
 
    
