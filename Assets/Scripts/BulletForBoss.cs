@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletForBoss : MonoBehaviour
 {
+    public float damage;
     private float moveSpeed;
     private Vector2 moveDirection;
     public float bulletLifeTime = 3f;
@@ -17,14 +18,29 @@ public class BulletForBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetUp();
         DestroyBullet();
+        
+    }
+
+    public void SetUp()
+    {
+        damage = 15f;
         moveSpeed = 5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        if (GameSave.instance.isIntro)
+        {
+            damage = 1;
+        }
+        else
+        {
+            SetUp();
+        }
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);   
     }
 
     public void DestroyBullet()
