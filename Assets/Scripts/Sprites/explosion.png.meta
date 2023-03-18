@@ -355,13 +355,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      explosion_2: 21300004
       explosion_0: 21300000
-      explosion_5: 21300010
       explosion_1: 21300002
-      explosion_4: 21300008
-      explosion_6: 21300012
+      explosion_2: 21300004
       explosion_3: 21300006
+      explosion_4: 21300008
+      explosion_5: 21300010
+      explosion_6: 21300012
       explosion_7: 21300014
       explosion_8: 21300016
   spritePackingTag: 

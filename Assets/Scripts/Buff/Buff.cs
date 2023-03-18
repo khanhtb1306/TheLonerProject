@@ -51,7 +51,9 @@ public class Buff : MonoBehaviour
 
         if (p != null)
         {
-            if(GameManager.instance.isStrongInfo && style == BuffStyle.strong)
+            if (GameSave.instance.isIntro)
+            {
+ if(GameManager.instance.isStrongInfo && style == BuffStyle.strong)
             {
                 GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isStrongInfo= false;
@@ -62,6 +64,8 @@ public class Buff : MonoBehaviour
                 GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isHealthInfo = false;
             }
+            }
+           
             p.BuffUpdate(this);
             
             Destroy(this.gameObject);

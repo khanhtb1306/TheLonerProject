@@ -169,8 +169,9 @@ public class Weapon : MonoBehaviour
         Player p = collision.gameObject.GetComponent<Player>();
         if (p != null)
         {
-            
-            if (GameManager.instance.isFastGun && style == WeaponStyle.FartGun)
+            if(GameSave.instance.isIntro)
+            {
+ if (GameManager.instance.isFastGun && style == WeaponStyle.FartGun)
             {
                 GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isFastGun = false;
@@ -185,6 +186,8 @@ public class Weapon : MonoBehaviour
                 GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isBoomGun = false;
             }
+            }
+           
             p.ChangeWeapon(this);
             Destroy(gameObject);
         }

@@ -33,8 +33,8 @@ public class BuffSkill : MonoBehaviour
 
         if (p != null)
         {
-
-           
+            if (GameSave.instance.isIntro)
+            {
             if (GameManager.instance.isDashInfo && buffskill == BuffSkillStyle.dashSkill)
             {
                 GameManager.instance.introControl.SetIntro(intro);
@@ -52,6 +52,9 @@ public class BuffSkill : MonoBehaviour
 
                 GameManager.instance.isImmortalInfo = false;
             }
+            }
+           
+           
             p.ChangeBuffSkill(this);
             GameManager.instance.skillButton.ChangeAvatar(avatar);
             Destroy(this.gameObject);
