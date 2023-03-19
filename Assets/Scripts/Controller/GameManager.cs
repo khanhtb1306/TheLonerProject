@@ -72,7 +72,7 @@ public class GameManager : Singleton<GameManager>
         UpdateEnemyAttribute();
 
         UpdateBuffAttribute();
-
+        UpdateWeaponAttribute();
     }
 
     public Enemies GetEnemy(EnemyType type)
