@@ -18,6 +18,7 @@ public class Weapon : MonoBehaviour
     public GunBullet ultiBullet;
     public Sprite intro;
     public AudioClip ultiSound;
+    public AudioClip norSound;
 
     public float bulletForce;
 
@@ -62,6 +63,7 @@ public class Weapon : MonoBehaviour
     {
         if (norReady)
         {
+            SoundController.instance.PlaySound(norSound);
             Instantiate<GameObject>(explosivePrefabs, hittf.position, Quaternion.identity);
             GunBullet bullet = Instantiate(normalBullet, hittf.position, Quaternion.identity);
             bullet.Fire(direction, bulletForce);
