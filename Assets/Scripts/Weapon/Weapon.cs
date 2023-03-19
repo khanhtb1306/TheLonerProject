@@ -195,9 +195,9 @@ public class Weapon : MonoBehaviour
                 GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isBoomGun = false;
             }
-            }
-           
             p.ChangeWeapon(this);
             Destroy(gameObject);
+        }
+            
         }
     }
