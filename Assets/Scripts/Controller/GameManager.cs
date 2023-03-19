@@ -68,6 +68,7 @@ public class GameManager : Singleton<GameManager>
     public void UpgradeAttribute()
     {
         UpdateEnemyAttribute();
+        UpdateWeaponAttribute();
     }
 
     public Enemies GetEnemy(EnemyType type)
@@ -139,5 +140,73 @@ public class GameManager : Singleton<GameManager>
     public void UpdateBuffAttribute()
     {
 
+    }
+
+    public void UpdateWeaponAttribute()
+    {
+        foreach (var weapon in Weapons)
+        {
+            if (weapon.style != WeaponStyle.Pistol)
+            {
+                weapon.damage += weapon.damage * 0.1f;
+                if(weapon.norCd >= 0.2f)
+                {
+                    weapon.norCd -=0.05f;
+
+                }
+                if (weapon.ultCd >= 3f)
+                {
+                    weapon.ultCd -= 0.2f;
+
+                }
+                weapon.bulletForce += weapon.bulletForce * 0.09f;
+            }
+            else if(weapon.style != WeaponStyle.FartGun)
+            {
+                weapon.damage += weapon.damage * 0.1f;
+                if (weapon.norCd >= 0.2f)
+                {
+                    weapon.norCd -= 0.05f;
+
+                }
+                if (weapon.ultCd >= 3f)
+                {
+                    weapon.ultCd -= 0.2f;
+
+                }
+                weapon.bulletForce += weapon.bulletForce * 0.09f;
+            }
+            else if (weapon.style != WeaponStyle.StrongGun)
+            {
+                weapon.damage += weapon.damage * 0.1f;
+                if (weapon.norCd >= 0.2f)
+                {
+                    weapon.norCd -= 0.05f;
+
+                }
+                if (weapon.ultCd >= 3f)
+                {
+                    weapon.ultCd -= 0.2f;
+
+                }
+                weapon.bulletForce += weapon.bulletForce * 0.09f;
+            }
+            else if (weapon.style != WeaponStyle.Bom)
+            {
+                weapon.damage += weapon.damage * 0.1f;
+                if (weapon.norCd >= 0.2f)
+                {
+                    weapon.norCd -= 0.05f;
+
+                }
+                if (weapon.ultCd >= 3f)
+                {
+                    weapon.ultCd -= 0.2f;
+
+                }
+                weapon.bulletForce += weapon.bulletForce * 0.09f;
+            }
+
+        }
     }
 }
