@@ -1,5 +1,6 @@
-﻿using System.Collections;
+using UnityEngine.WSA;
 using UnityEngine;
+using System.Collections;
 
 
 public enum WeaponStyle
@@ -35,7 +36,7 @@ public class Weapon : MonoBehaviour
         switch (style)
         {
             case WeaponStyle.Pistol:
-                quantity = 100;
+                quantity = 1000;
                 break;
             case WeaponStyle.FartGun:
                 quantity = 10;
@@ -70,13 +71,13 @@ public class Weapon : MonoBehaviour
             switch (style)
             {
                 case WeaponStyle.Pistol:
-                    FastGunUlti();
+                    BoomShotUlti(direction);
                     break;
                 case WeaponStyle.FartGun:
-                    StronngShotUlti(direction);
+                    FastGunUlti();
                     break;
                 case WeaponStyle.StrongGun:
-                    BoomShotUlti(direction);
+                    StronngShotUlti(direction);
                     break;
                 case WeaponStyle.Bom:
                     UltimateSkillBom();
@@ -125,9 +126,9 @@ public class Weapon : MonoBehaviour
         {
             Debug.Log("1");
             Enemies e = collider.gameObject.GetComponent<Enemies>();
-            if(e!= null)
+            if (e != null)
             {
-                if(e.enemyType != EnemyType.Boss)
+                if (e.enemyType != EnemyType.Boss)
                 {
                     e.TakeDamage(10000);
                 }
@@ -169,9 +170,10 @@ public class Weapon : MonoBehaviour
         Player p = collision.gameObject.GetComponent<Player>();
         if (p != null)
         {
-            if(GameSave.instance.isIntro)
-            {
- if (GameManager.instance.isFastGun && style == WeaponStyle.FartGun)
+
+
+            if (GameManager.instance.isFastGun && style == WeaponStyle.FartGun)
+
             {
                 GameManager.instance.introControl.SetIntro(intro);
                 GameManager.instance.isFastGun = false;
@@ -192,4 +194,3 @@ public class Weapon : MonoBehaviour
             Destroy(gameObject);
         }
     }
-}

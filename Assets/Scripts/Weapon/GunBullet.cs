@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public enum BulletStyle
 {
@@ -12,6 +11,8 @@ public enum BulletStyle
 
 public class GunBullet : MonoBehaviour
 {
+
+    [SerializeField] public GameObject explosivePrefabs;
 
     public BulletStyle style;
 
@@ -70,7 +71,7 @@ public class GunBullet : MonoBehaviour
     private IEnumerator FireBulletsStrong(float time)
     {
         yield return new WaitForSeconds(time);
-        GunBullet extraBullet = GameManager.instance.Bullet[0];
+        GunBullet extraBullet = GameManager.instance.player.curWeapon.normalBullet;
         float halfConeAngle = (20 - 1) * 20f / 2f;
         //Vector2 direction = transform.right;
 
@@ -100,8 +101,8 @@ public class GunBullet : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         GetComponent<Rigidbody2D>().velocity = transform.up * 0;
-        Collider2D[] colliders = Physics2D.OverlapAreaAll(gameObject.transform.position, gameObject.transform.position + new Vector3(10, 10,0));
-        foreach(Collider2D collider in colliders)
+        Collider2D[] colliders = Physics2D.OverlapAreaAll(gameObject.transform.position, gameObject.transform.position + new Vector3(5, 5, 0));
+        foreach (Collider2D collider in colliders)
         {
             Enemies e = collider.gameObject.GetComponent<Enemies>();
             if (e != null)
@@ -110,8 +111,8 @@ public class GunBullet : MonoBehaviour
                 //Destroy(e.gameObject);
             }
         }
+        Instantiate<GameObject>(explosivePrefabs, transform.position, Quaternion.identity);
         Destroy(gameObject);
+
     }
-
-
 }
