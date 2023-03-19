@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
         switch (style)
         {
             case WeaponStyle.Pistol:
-                quantity = 100;
+                quantity = 1000;
                 break;
             case WeaponStyle.FartGun:
                 quantity = 10;

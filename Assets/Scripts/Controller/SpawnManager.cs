@@ -173,7 +173,7 @@ public class SpawnManager : Singleton<SpawnManager>
     public void SpawnWeapon(Transform tf)
     {
         Weapon w = null;
-        int r = Random.Range(0, 12);
+        int r = Random.Range(0, 20);
         if (r <= 4)
         {
             w = Instantiate(GameManager.instance.Weapons[Random.Range(1, 3)], tf.position, Quaternion.identity);
