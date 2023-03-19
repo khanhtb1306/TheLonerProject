@@ -39,4 +39,10 @@ public class SoundController : Singleton<SoundController>
         AudioSource.clip = GameStart;
         AudioSource.Play();
     }
+
+    public void PlaySound(AudioClip ac)
+    {
+        AudioSource.clip = ac;
+        AudioSource.Play();
+    }
 }
