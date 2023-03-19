@@ -43,15 +43,31 @@ public class Weapon : MonoBehaviour
         {
             case WeaponStyle.Pistol:
                 quantity = 1000;
+                damage = 10;
+                norCd = 0.5f;
+                ultCd = 5f;
+                bulletForce = 15;
                 break;
             case WeaponStyle.FartGun:
                 quantity = 10;
+                damage = 15;
+                norCd = 0.2f;
+                ultCd = 6f;
+                bulletForce = 30;
                 break;
             case WeaponStyle.StrongGun:
                 quantity = 5;
+                damage = 50;
+                norCd = 0.8f;
+                ultCd = 7f;
+                bulletForce = 15;
                 break;
             case WeaponStyle.Bom:
                 quantity = 1;
+                damage = 100;
+                norCd = 1f;
+                ultCd = 10f;
+                bulletForce = 10;
                 break;
         }
     }
