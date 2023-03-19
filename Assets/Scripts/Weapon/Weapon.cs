@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
     public GunBullet normalBullet;
     public GunBullet ultiBullet;
     public Sprite intro;
+    public AudioClip ultiSound;
 
     public float bulletForce;
 
@@ -26,6 +27,10 @@ public class Weapon : MonoBehaviour
     public bool norReady;
     public bool ultReady;
 
+    public Transform hittf;
+    public GameObject explosivePrefabs;
+
+    public float damage;
     private void Awake()
     {
         SetUp();
@@ -57,7 +62,8 @@ public class Weapon : MonoBehaviour
     {
         if (norReady)
         {
-            GunBullet bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+            Instantiate<GameObject>(explosivePrefabs, hittf.position, Quaternion.identity);
+            GunBullet bullet = Instantiate(normalBullet, hittf.position, Quaternion.identity);
             bullet.Fire(direction, bulletForce);
             norReady = false;
             StartCoroutine(CountDownShoot(norCd));
@@ -83,6 +89,7 @@ public class Weapon : MonoBehaviour
                     UltimateSkillBom();
                     break;
             }
+            SoundController.instance.PlaySound(ultiSound);
             quantity -= 1;
             ultReady = false;
             StartCoroutine(CountDownUtil(ultCd));
@@ -104,7 +111,7 @@ public class Weapon : MonoBehaviour
 
     public void StronngShotUlti(Vector2 direction)
     {
-        GunBullet bullet = Instantiate(ultiBullet, transform.position, Quaternion.identity);
+        GunBullet bullet = Instantiate(ultiBullet, hittf.position, Quaternion.identity);
         bullet.Fire(direction, bulletForce);
     }
     public void FastGunUlti()
@@ -113,7 +120,7 @@ public class Weapon : MonoBehaviour
     }
     public void BoomShotUlti(Vector2 direction)
     {
-        GunBullet bullet = Instantiate(ultiBullet, transform.position, Quaternion.identity);
+        GunBullet bullet = Instantiate(ultiBullet, hittf.position, Quaternion.identity);
         bullet.Fire(direction, bulletForce);
     }
 
@@ -156,7 +163,7 @@ public class Weapon : MonoBehaviour
                 float angle = j * 6f - halfConeAngle;
                 Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 Vector2 rotatedDirection = rotation * direction;
-                GunBullet bullet = Instantiate(normalBullet, transform.position, Quaternion.identity);
+                GunBullet bullet = Instantiate(normalBullet, hittf.position, Quaternion.identity);
                 bullet.Fire(rotatedDirection, bulletForce);
             }
             yield return new WaitForSeconds(0.2f);

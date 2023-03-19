@@ -17,7 +17,7 @@ public class GunBullet : MonoBehaviour
     public BulletStyle style;
 
     public float bulletLifeTime = 2f;
-    public float damage = 10;
+
 
 
 
@@ -56,7 +56,7 @@ public class GunBullet : MonoBehaviour
         Enemies e = collision.gameObject.GetComponent<Enemies>();
         if (e != null)
         {
-            e.TakeDamage(damage);
+            e.TakeDamage(GameManager.instance.player.curWeapon.damage);
             DestroyBullet(0f);
         }
     }
@@ -107,7 +107,7 @@ public class GunBullet : MonoBehaviour
             Enemies e = collider.gameObject.GetComponent<Enemies>();
             if (e != null)
             {
-                e.TakeDamage(damage);
+                e.TakeDamage(GameManager.instance.player.curWeapon.damage);
                 //Destroy(e.gameObject);
             }
         }
