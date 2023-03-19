@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4236174427617264566}
   - component: {fileID: 3585432991636945113}
   m_Layer: 0
-  m_Name: BulletStrong
+  m_Name: StrongPistol
   m_TagString: Pistol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,9 +27,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5121156366898255071}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7056724, w: 0.7085383}
-  m_LocalPosition: {x: -1.6739, y: -45.6794, z: 0}
-  m_LocalScale: {x: 0.07514, y: 0.078234, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.0596, y: 0.0596, z: 0.0596}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 439274957, guid: 35d9c68d24e426f40acffc25d6f8352c, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.11904287, a: 1}
+  m_Color: {r: 0.3443396, g: 1, b: 0.41419786, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.03022535, y: -0.03022535}
   serializedVersion: 2
-  m_Radius: 5.5
+  m_Radius: 0.5
 --- !u!50 &-4236174427617264566
 Rigidbody2D:
   serializedVersion: 4
@@ -137,6 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosivePrefabs: {fileID: 0}
-  style: 2
-  bulletLifeTime: 2
-  damage: 10
+  style: 0
+  bulletLifeTime: 3
+  damage: 30

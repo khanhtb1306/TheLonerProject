@@ -101,10 +101,10 @@ MonoBehaviour:
   style: 1
   quantity: 0
   normalBullet: {fileID: 3585432991636945113, guid: 54fb43722a4918d46a944d160f15bc18, type: 3}
-  ultiBullet: {fileID: 3585432991636945113, guid: b4d7ab5c55f36eb4c9d2ea0d8499982c, type: 3}
+  ultiBullet: {fileID: 3585432991636945113, guid: 54fb43722a4918d46a944d160f15bc18, type: 3}
   intro: {fileID: 21300000, guid: c6a8eec57c071db47bc22babfaed2c6f, type: 3}
-  bulletForce: 40
-  norCd: 0.1
+  bulletForce: 30
+  norCd: 0.2
   ultCd: 5
   norReady: 1
   ultReady: 1
