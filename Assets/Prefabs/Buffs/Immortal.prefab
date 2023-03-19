@@ -129,3 +129,4 @@ MonoBehaviour:
   buffReady: 0
   intro: {fileID: 21300000, guid: 689c5eb68b159e146aa8a3b79038ed1c, type: 3}
   avatar: {fileID: 21300000, guid: 540464daa5be7bf488074d89c9db142e, type: 3}
+  timeEffect: 5

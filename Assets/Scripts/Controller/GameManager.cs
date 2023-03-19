@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,7 +68,10 @@ public class GameManager : Singleton<GameManager>
 
     public void UpgradeAttribute()
     {
+        totalEnemies = (int)Mathf.Round(totalEnemies * 1.3f);
         UpdateEnemyAttribute();
+        UpdateBuffAttribute();
+
     }
 
     public Enemies GetEnemy(EnemyType type)
@@ -113,10 +117,6 @@ public class GameManager : Singleton<GameManager>
 
     public void UpdateEnemyAttribute()
     {
-        Debug.Log(totalEnemies);
-        totalEnemies = (int)Mathf.Round(totalEnemies * 1.3f);
-        Debug.Log(totalEnemies);
-
         foreach (var enemyType in Enemies)
         {
             if (enemyType.enemyType != EnemyType.Boss)
@@ -138,6 +138,15 @@ public class GameManager : Singleton<GameManager>
 
     public void UpdateBuffAttribute()
     {
-
+        foreach (var buffs in BuffSkill)
+        {
+            buffs.timeEffect += 0.5f;
+            buffs.cdBuff += 1f;
+        }
+        foreach (var buff in Buffs)
+        {
+            buff.quantity *= 0.2f;
+        }
+        
     }
 }
