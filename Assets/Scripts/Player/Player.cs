@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
     private Vector2 movementInput;
     private Vector2 movementInputSmooth;
     private Vector2 velocityInputSmooth;
-
+    private float unDeahHeath;
     public delegate void WeaponChangedHandler();
     public static event WeaponChangedHandler OnWeaponChanged;
     
@@ -60,9 +60,10 @@ public class Player : MonoBehaviour
         {
             ChangeWeapon(firstWeapon);
         }
+
         if (isUndead)
         {
-            if (curHealth <= 1)curHealth = 1;
+            if (curHealth <= unDeahHeath)curHealth = unDeahHeath;
         }
 
         if(curHealth > maxHealth)curHealth = maxHealth;
@@ -207,12 +208,12 @@ public class Player : MonoBehaviour
 
     private void Invisible()
     {
-        StartCoroutine(IEInvisible(5));
+        StartCoroutine(IEInvisible(curBuffSkill.timeEffect));
     }
     
     private void Dash()
     {
-        Vector2 force = 1000 * transform.up;
+        Vector2 force = 10000 * transform.up;
         rb2d.AddForce(force);
     }
 
@@ -261,7 +262,7 @@ public class Player : MonoBehaviour
     {
         isUndead = true;
         this.gameObject.GetComponent<Renderer>().material.color = Color.black;
-
+        unDeahHeath = curHealth;
         yield return new WaitForSeconds(timeDuration);
         isUndead = false;
         this.gameObject.GetComponent<Renderer>().material.color = Color.blue;
@@ -269,6 +270,6 @@ public class Player : MonoBehaviour
     private void Undead()
     {
 
-        StartCoroutine(IEUndead(5));
+        StartCoroutine(IEUndead(curBuffSkill.timeEffect));
     }
 }

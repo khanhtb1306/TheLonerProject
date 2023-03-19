@@ -15,6 +15,7 @@ public class BuffSkill : MonoBehaviour
     public Sprite intro;
     public Sprite avatar;
 
+    public float timeEffect;
     // Start is called before the first frame update
     void Start()
     {
