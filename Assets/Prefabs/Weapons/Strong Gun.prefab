@@ -137,15 +137,15 @@ MonoBehaviour:
   intro: {fileID: 21300000, guid: 78224e613e0aab044b16677dc7dd4683, type: 3}
   ultiSound: {fileID: 8300000, guid: 5a1ea113a1d61684cb86393b70c245cd, type: 3}
   norSound: {fileID: 8300000, guid: 09c1f23cce646564483d4f54f5e28eb8, type: 3}
-  bulletForce: 12.95029
-  norCd: 0.84999996
-  ultCd: 4.4000006
+  bulletForce: 14.115816
+  norCd: 0.79999995
+  ultCd: 5
   norReady: 1
   ultReady: 1
   hittf: {fileID: 4363602071400782956}
   explosivePrefabs: {fileID: 3409857125561947499, guid: 39d760669e2d4e54d87a3722e17a1510, type: 3}
 
-  damage: 39.93
+  damage: 44
 --- !u!61 &4075792847134869855
 BoxCollider2D:
   m_ObjectHideFlags: 0

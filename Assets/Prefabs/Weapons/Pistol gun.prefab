@@ -137,8 +137,8 @@ MonoBehaviour:
   intro: {fileID: 21300000, guid: b5916b183acb57f4e9f25c508931559b, type: 3}
   ultiSound: {fileID: 8300000, guid: 5a1ea113a1d61684cb86393b70c245cd, type: 3}
   norSound: {fileID: 8300000, guid: 5a1ea113a1d61684cb86393b70c245cd, type: 3}
-  bulletForce: 15
-  norCd: 0.5
+  bulletForce: 27.42059
+  norCd: 0.19999996
   ultCd: 5
   norReady: 1
   ultReady: 1
