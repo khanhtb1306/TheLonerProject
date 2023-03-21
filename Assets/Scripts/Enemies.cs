@@ -75,7 +75,7 @@ public class Enemies : MonoBehaviour
                 attackSpeed = 50;
                 break;
             case EnemyType.Boss:
-                maxHealth = 250;
+                maxHealth = 1000;
                 damage = 15;
                 movementSpeed = 2;
                 break;

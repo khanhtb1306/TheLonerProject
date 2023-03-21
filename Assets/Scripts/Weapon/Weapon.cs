@@ -52,14 +52,14 @@ public class Weapon : MonoBehaviour
                 quantity = 10;
                 damage = 15;
                 norCd = 0.2f;
-                ultCd = 6f;
+                ultCd = 8f;
                 bulletForce = 30;
                 break;
             case WeaponStyle.StrongGun:
                 quantity = 5;
                 damage = 50;
                 norCd = 0.8f;
-                ultCd = 7f;
+                ultCd = 8f;
                 bulletForce = 15;
                 break;
             case WeaponStyle.Bom:
