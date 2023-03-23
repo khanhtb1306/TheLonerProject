@@ -11,6 +11,7 @@ public class SpawnManager : Singleton<SpawnManager>
     // Start is called before the first frame update
     public void BuffSpawn(Transform tf)
     {
+        //vị trí sẽ lấy từ bị trí quoái bị tiêu diệt
         Buff f = null;
         BuffSkill bf = null;
         int r = Random.Range(0, 10);

@@ -153,6 +153,7 @@ public class Player : MonoBehaviour
     {
         if (curBuffSkill.buffReady)
         {
+            //thay đổi loại buff
             switch (curBuffSkill.buffskill)
             {
                 case BuffSkillStyle.boomSkill:
@@ -165,6 +166,7 @@ public class Player : MonoBehaviour
                     Undead();
                     break;
             }
+                //Đếm ngược để có thể sử dụng buff
                 curBuffSkill.buffReady = false;
                 StartCoroutine(CountDownBuff(curBuffSkill.cdBuff));
         }
@@ -176,9 +178,10 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(time);
         curBuffSkill.buffReady = true;
     }
+
     public void BuffUpdate(Buff b)
     {
-
+            //
             switch (b.style)
             {
                 case BuffStyle.health:
@@ -210,7 +213,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(IEInvisible(curBuffSkill.timeEffect));
     }
-    
+    //dịch chuyển đường thẳng
     private void Dash()
     {
         Vector2 force = 10000 * transform.up;
