@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -27,6 +27,8 @@ public class Buff : MonoBehaviour
     
     public void Setup()
     {
+        //Khởi tạo ban đầu khi bắt đầu chơi game thì mỗi khi ăn từng loại buff sẽ có
+        // những số lượng chỉ số được cộng thêm dựa trên loại buff nào
         switch (style)
         {
             case BuffStyle.health:
@@ -46,6 +48,7 @@ public class Buff : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        //Check va chạm để in ra màn hình intro
         Debug.Log(collision.gameObject.name);
         Player p = collision.gameObject.GetComponent<Player>();
 

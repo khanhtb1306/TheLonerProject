@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,6 +35,7 @@ public class BuffCoolDown : MonoBehaviour
         imageCount.fillAmount = 0;
     }
     // Update is called once per frame
+    //Thay đổi ảnh panel bên ngoài để hiện button skill
     void Update()
     {
         if (GameManager.instance.player.GetCurBuffSkill() != null) { 
